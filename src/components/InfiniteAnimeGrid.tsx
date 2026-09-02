@@ -2,6 +2,7 @@
 
 import React, { useState, useEffect, useRef, useCallback } from "react";
 import MediaCard from "./MediaCard";
+import MediaCardSkeleton from "./skeletons/MediaCardSkeleton";
 import { MediaDetail } from "@/types";
 import { Terminal } from "lucide-react";
 
@@ -116,45 +117,29 @@ export default function InfiniteAnimeGrid({
         {items.map((item, idx) => (
           <MediaCard key={`${item.tmdbId}-${idx}`} item={item} />
         ))}
+        {loading && (
+          <>
+            <MediaCardSkeleton />
+            <MediaCardSkeleton />
+            <MediaCardSkeleton />
+            <MediaCardSkeleton />
+            <MediaCardSkeleton />
+            <MediaCardSkeleton />
+          </>
+        )}
       </div>
 
       {/* Sentinel & Scroll Loader */}
       <div
         ref={sentinelRef}
         style={{
-          minHeight: "60px",
+          minHeight: "40px",
           display: "flex",
           alignItems: "center",
           justifyContent: "center",
-          marginTop: "1.5rem",
+          marginTop: "1rem",
         }}
       >
-        {loading && (
-          <div
-            className="panel font-mono"
-            style={{
-              display: "flex",
-              alignItems: "center",
-              gap: 8,
-              padding: "5px 12px",
-              fontSize: "0.75rem",
-              color: "var(--text-secondary)",
-            }}
-          >
-            <div
-              style={{
-                width: 12,
-                height: 12,
-                border: "2px solid var(--border-strong)",
-                borderTopColor: "var(--text-primary)",
-                borderRadius: "50%",
-                animation: "spin 0.6s linear infinite",
-              }}
-            />
-            <span>STREAMING_NEXT_BATCH...</span>
-          </div>
-        )}
-
         {!hasMore && items.length > 0 && (
           <div
             className="font-mono"

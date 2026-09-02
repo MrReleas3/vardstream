@@ -2,6 +2,7 @@
 
 import React, { useState, useEffect } from "react";
 import MediaCard from "@/components/MediaCard";
+import MediaGridSkeleton from "@/components/skeletons/MediaGridSkeleton";
 import { UserActivity } from "@/types";
 import { Bookmark, Clock, CheckCircle, Heart, Folder } from "lucide-react";
 
@@ -160,22 +161,7 @@ export default function WatchlistPage() {
 
       {/* Grid */}
       {loading ? (
-        <div style={{ textAlign: "center", padding: "3rem" }}>
-          <div
-            style={{
-              width: 18,
-              height: 18,
-              border: "2px solid var(--border-default)",
-              borderTopColor: "var(--text-primary)",
-              borderRadius: "50%",
-              animation: "spin 0.6s linear infinite",
-              margin: "0 auto 0.5rem auto",
-            }}
-          />
-          <p className="font-mono" style={{ color: "var(--text-muted)", fontSize: "0.75rem" }}>
-            SYNCHRONIZING_USER_LIBRARY...
-          </p>
-        </div>
+        <MediaGridSkeleton count={12} />
       ) : filteredItems.length > 0 ? (
         <div className="responsive-media-grid">
           {filteredItems.map((act) => (

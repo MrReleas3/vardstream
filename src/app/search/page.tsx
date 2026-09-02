@@ -4,6 +4,8 @@ import React, { useState, useEffect, useCallback, Suspense } from "react";
 import { useSearchParams } from "next/navigation";
 import { Search, Terminal } from "lucide-react";
 import MediaCard from "@/components/MediaCard";
+import MediaGridSkeleton from "@/components/skeletons/MediaGridSkeleton";
+import SearchLoading from "./loading";
 import { MediaDetail, MediaType } from "@/types";
 
 function SearchContent() {
@@ -152,22 +154,7 @@ function SearchContent() {
         </div>
 
         {loading ? (
-          <div style={{ textAlign: "center", padding: "3rem" }}>
-            <div
-              style={{
-                width: 18,
-                height: 18,
-                border: "2px solid var(--border-default)",
-                borderTopColor: "var(--text-primary)",
-                borderRadius: "50%",
-                animation: "spin 0.6s linear infinite",
-                margin: "0 auto 0.5rem auto",
-              }}
-            />
-            <p className="font-mono" style={{ color: "var(--text-muted)", fontSize: "0.75rem" }}>
-              QUERYING_DATABASE...
-            </p>
-          </div>
+          <MediaGridSkeleton count={12} />
         ) : results.length > 0 ? (
           <div className="responsive-media-grid">
             {results.map((item) => (
@@ -201,7 +188,7 @@ function SearchContent() {
 
 export default function SearchPage() {
   return (
-    <Suspense fallback={<div className="font-mono" style={{ padding: "3rem", textAlign: "center", color: "var(--text-muted)", fontSize: "0.8rem" }}>INITIALIZING_SEARCH_MODULE...</div>}>
+    <Suspense fallback={<SearchLoading />}>
       <SearchContent />
     </Suspense>
   );

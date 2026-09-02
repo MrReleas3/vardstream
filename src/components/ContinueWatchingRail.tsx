@@ -2,6 +2,7 @@
 
 import React, { useState, useEffect } from "react";
 import MediaRail from "./MediaRail";
+import MediaRailSkeleton from "./skeletons/MediaRailSkeleton";
 import { UserActivity } from "@/types";
 
 export default function ContinueWatchingRail() {
@@ -31,7 +32,11 @@ export default function ContinueWatchingRail() {
     setActivities((prev) => prev.filter((a) => a.mediaId !== mediaId));
   };
 
-  if (!loaded || activities.length === 0) {
+  if (!loaded) {
+    return <MediaRailSkeleton titleWidth={160} count={6} />;
+  }
+
+  if (activities.length === 0) {
     return null;
   }
 
@@ -45,3 +50,4 @@ export default function ContinueWatchingRail() {
     />
   );
 }
+

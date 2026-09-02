@@ -2,11 +2,27 @@ import { NextResponse } from "next/server";
 import { getCollection, getMemoryCollection } from "@/lib/db";
 import { ForgotPasswordSchema } from "@/lib/validators";
 import { sendPasswordResetEmail } from "@/lib/email";
+import { checkRateLimit } from "@/lib/rate-limit";
 import { User, PasswordResetToken } from "@/types";
 import crypto from "crypto";
 
 export async function POST(req: Request) {
   try {
+    const ip = req.headers.get("x-forwarded-for") || req.headers.get("x-real-ip") || "127.0.0.1";
+    const ipLimit = await checkRateLimit(`auth:forgot-pw:ip:${ip}`, 5, 900);
+    if (!ipLimit.success) {
+      return NextResponse.json(
+        {
+          ok: false,
+          error: {
+            code: "RATE_LIMITED",
+            message: "Too many password reset requests from this IP. Please try again in 15 minutes.",
+          },
+        },
+        { status: 429 }
+      );
+    }
+
     const body = await req.json().catch(() => ({}));
     const validated = ForgotPasswordSchema.safeParse(body);
 
@@ -19,6 +35,18 @@ export async function POST(req: Request) {
 
     const { email } = validated.data;
     const normalizedEmail = email.toLowerCase().trim();
+
+    // Check per-target-email rate limit (max 3 reset emails per 15 minutes)
+    const emailLimit = await checkRateLimit(`auth:forgot-pw:email:${normalizedEmail}`, 3, 900);
+    if (!emailLimit.success) {
+      // Return generic success without sending another email to protect SMTP provider quota and prevent inbox bombing
+      return NextResponse.json({
+        ok: true,
+        data: {
+          message: "If an account with that email exists, a password reset link has been dispatched.",
+        },
+      });
+    }
 
     // Find user
     const usersCol = await getCollection<User>("users");

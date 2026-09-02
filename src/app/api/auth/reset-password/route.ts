@@ -1,12 +1,28 @@
 import { NextResponse } from "next/server";
 import { getCollection, getMemoryCollection } from "@/lib/db";
 import { hashPassword } from "@/lib/auth";
+import { checkRateLimit } from "@/lib/rate-limit";
 import { ResetPasswordSchema } from "@/lib/validators";
 import { User, PasswordResetToken } from "@/types";
 import { ObjectId } from "mongodb";
 
 export async function POST(req: Request) {
   try {
+    const ip = req.headers.get("x-forwarded-for") || req.headers.get("x-real-ip") || "127.0.0.1";
+    const ipLimit = await checkRateLimit(`auth:reset-pw:ip:${ip}`, 10, 900);
+    if (!ipLimit.success) {
+      return NextResponse.json(
+        {
+          ok: false,
+          error: {
+            code: "RATE_LIMITED",
+            message: "Too many password reset submission attempts. Please try again in 15 minutes.",
+          },
+        },
+        { status: 429 }
+      );
+    }
+
     const body = await req.json().catch(() => ({}));
     const validated = ResetPasswordSchema.safeParse(body);
 

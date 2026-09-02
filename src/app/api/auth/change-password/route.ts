@@ -1,6 +1,7 @@
 import { NextResponse } from "next/server";
 import { getAuthUserFromRequest, verifyPassword, hashPassword } from "@/lib/auth";
 import { getCollection, getMemoryCollection } from "@/lib/db";
+import { checkRateLimit } from "@/lib/rate-limit";
 import { ChangePasswordSchema } from "@/lib/validators";
 import { User } from "@/types";
 import { ObjectId } from "mongodb";
@@ -11,6 +12,20 @@ export async function POST(req: Request) {
     return NextResponse.json(
       { ok: false, error: { code: "UNAUTHORIZED", message: "Authentication required." } },
       { status: 401 }
+    );
+  }
+
+  const userLimit = await checkRateLimit(`auth:change-pw:${authUser.userId}`, 10, 900);
+  if (!userLimit.success) {
+    return NextResponse.json(
+      {
+        ok: false,
+        error: {
+          code: "RATE_LIMITED",
+          message: "Too many password change attempts. Please try again in 15 minutes.",
+        },
+      },
+      { status: 429 }
     );
   }
 

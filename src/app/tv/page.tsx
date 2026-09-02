@@ -3,6 +3,7 @@
 import React, { useState, useEffect, useCallback } from "react";
 import { Tv, Filter, Star, Sparkles, ChevronDown, RefreshCw, SlidersHorizontal } from "lucide-react";
 import MediaCard from "@/components/MediaCard";
+import MediaGridSkeleton from "@/components/skeletons/MediaGridSkeleton";
 import { MediaDetail } from "@/types";
 
 const TV_GENRES = [
@@ -370,22 +371,7 @@ export default function TVExplorerPage() {
         </div>
 
         {loading ? (
-          <div style={{ textAlign: "center", padding: "4rem 2rem" }}>
-            <div
-              style={{
-                width: 20,
-                height: 20,
-                border: "2px solid var(--border-default)",
-                borderTopColor: "var(--text-primary)",
-                borderRadius: "50%",
-                animation: "spin 0.6s linear infinite",
-                margin: "0 auto 0.75rem auto",
-              }}
-            />
-            <p className="font-mono" style={{ color: "var(--text-muted)", fontSize: "0.75rem" }}>
-              FETCHING_TV_CATALOG...
-            </p>
-          </div>
+          <MediaGridSkeleton count={18} />
         ) : items.length > 0 ? (
           <>
             <div className="responsive-media-grid">
@@ -393,6 +379,12 @@ export default function TVExplorerPage() {
                 <MediaCard key={`${item.tmdbId}-${idx}`} item={item} />
               ))}
             </div>
+
+            {loadingMore && (
+              <div style={{ marginTop: "1rem" }}>
+                <MediaGridSkeleton count={6} />
+              </div>
+            )}
 
             {page < totalPages && (
               <div style={{ textAlign: "center", marginTop: "2.5rem" }}>

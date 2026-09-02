@@ -395,3 +395,43 @@ a {
     -webkit-backdrop-filter: none;
   }
 }
+
+/* Skeleton Loading & Shimmer Animations */
+@keyframes skeleton-pulse {
+  0%, 100% {
+    opacity: 1;
+    background-color: #121316;
+  }
+  50% {
+    opacity: 0.55;
+    background-color: #1c1d24;
+  }
+}
+
+@keyframes skeleton-shimmer {
+  0% {
+    background-position: -200% 0;
+  }
+  100% {
+    background-position: 200% 0;
+  }
+}
+
+.skeleton {
+  background: linear-gradient(
+    90deg,
+    #121316 0%,
+    #1c1d24 50%,
+    #121316 100%
+  );
+  background-size: 200% 100%;
+  animation: skeleton-shimmer 1.8s ease-in-out infinite;
+  border-radius: var(--radius-xs);
+}
+
+.skeleton-pulse {
+  background-color: #121316;
+  animation: skeleton-pulse 1.5s cubic-bezier(0.4, 0, 0.6, 1) infinite;
+  border-radius: var(--radius-xs);
+}
+

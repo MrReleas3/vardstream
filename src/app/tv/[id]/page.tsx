@@ -5,18 +5,13 @@ import { useParams, useRouter, useSearchParams } from "next/navigation";
 import Player from "@/components/Player";
 import MediaRail from "@/components/MediaRail";
 import WatchlistDropdown from "@/components/WatchlistDropdown";
+import DetailBentoSkeleton from "@/components/skeletons/DetailBentoSkeleton";
 import { MediaDetail, StreamOption, TVEpisode } from "@/types";
 import { Star, Tv, Play, Layers, Hash, Calendar, X, Film, Check } from "lucide-react";
 
 export default function TVShowPage() {
   return (
-    <Suspense fallback={
-      <div style={{ maxWidth: 1360, margin: "0 auto", padding: "4rem 1rem", textAlign: "center" }}>
-        <p className="font-mono" style={{ color: "var(--text-muted)", fontSize: "0.8rem" }}>
-          INITIALIZING_SERIES_HUB...
-        </p>
-      </div>
-    }>
+    <Suspense fallback={<DetailBentoSkeleton isTv={true} />}>
       <TVShowPageContent />
     </Suspense>
   );
@@ -126,24 +121,7 @@ function TVShowPageContent() {
   };
 
   if (loading || !show) {
-    return (
-      <div style={{ maxWidth: 1360, margin: "0 auto", padding: "4rem 1rem", textAlign: "center" }}>
-        <div
-          style={{
-            width: 24,
-            height: 24,
-            border: "2px solid var(--border-default)",
-            borderTopColor: "var(--text-primary)",
-            borderRadius: "50%",
-            animation: "spin 0.6s linear infinite",
-            margin: "0 auto 0.75rem auto",
-          }}
-        />
-        <p className="font-mono" style={{ color: "var(--text-muted)", fontSize: "0.8rem" }}>
-          INITIALIZING_SERIES_HUB...
-        </p>
-      </div>
-    );
+    return <DetailBentoSkeleton isTv={true} />;
   }
 
   const releaseYear = show.firstAirDate ? show.firstAirDate.substring(0, 4) : "";
