@@ -1,0 +1,272 @@
+- generic [active] [ref=e1]:
+  - banner [ref=e2]:
+    - generic [ref=e3]:
+      - generic [ref=e4]:
+        - link "V VARD//STREAM" [ref=e5] [cursor=pointer]:
+          - /url: /
+          - generic [ref=e6]: V
+          - generic [ref=e7]: VARD//STREAM
+        - navigation [ref=e8]:
+          - link "Home" [ref=e9] [cursor=pointer]:
+            - /url: /
+          - link "Movies" [ref=e10] [cursor=pointer]:
+            - /url: /movie
+          - link "TV & Anime" [ref=e13] [cursor=pointer]:
+            - /url: /tv
+          - link "Watchlist" [ref=e17] [cursor=pointer]:
+            - /url: /watchlist
+          - link "ADMIN" [ref=e20] [cursor=pointer]:
+            - /url: /admin
+      - generic [ref=e23]:
+        - generic [ref=e24]:
+          - textbox "Search..." [ref=e28]
+          - generic [ref=e29]: /
+        - button "A admin" [ref=e31] [cursor=pointer]:
+          - generic [ref=e32]: A
+          - generic [ref=e33]: admin
+  - main [ref=e34]:
+    - generic [ref=e35]:
+      - generic [ref=e36]:
+        - generic [ref=e38]:
+          - generic [ref=e39]:
+            - generic [ref=e40]: FEATURE_FILM
+            - generic [ref=e41]: "2026"
+          - heading "The Runner" [level=1] [ref=e44]
+          - paragraph [ref=e45]: A high-powered attorney must race through London, following the cryptic commands of a mysterious caller, as she fights against time to save her abducted son.
+          - generic [ref=e46]:
+            - link "Watch Now" [ref=e47] [cursor=pointer]:
+              - /url: /movie/1386315
+            - button "Add to Watchlist" [ref=e51] [cursor=pointer]
+            - link "Inspect Metadata" [ref=e56] [cursor=pointer]:
+              - /url: /movie/1386315
+        - generic [ref=e59]:
+          - button "Previous Slide" [ref=e60] [cursor=pointer]
+          - generic [ref=e63]:
+            - button "Slide 1" [ref=e64] [cursor=pointer]
+            - button "Slide 2" [ref=e65] [cursor=pointer]
+            - button "Slide 3" [ref=e66] [cursor=pointer]
+            - button "Slide 4" [ref=e67] [cursor=pointer]
+            - button "Slide 5" [ref=e68] [cursor=pointer]
+            - button "Slide 6" [ref=e69] [cursor=pointer]
+            - button "Slide 7" [ref=e70] [cursor=pointer]
+            - button "Slide 8" [ref=e71] [cursor=pointer]
+          - button "Next Slide" [ref=e72] [cursor=pointer]
+      - generic [ref=e75]:
+        - generic [ref=e76]:
+          - generic [ref=e77]:
+            - heading "Latest Anime Feed" [level=2] [ref=e78]
+            - generic [ref=e79]: FIRST_AIR_DATE.DESC
+          - generic [ref=e80]: 20 TITLES
+        - generic [ref=e81]:
+          - 'link "Star Wars: Visions Presents - The Ninth Jedi TV 7.7 Star Wars: Visions Presents - The Ninth Jedi 2026" [ref=e82] [cursor=pointer]':
+            - /url: /tv/289324
+            - generic [ref=e83]:
+              - 'img "Star Wars: Visions Presents - The Ninth Jedi" [ref=e84]'
+              - generic:
+                - generic: TV
+                - generic: "7.7"
+              - button "+ Add to Watchlist" [ref=e87]
+            - generic [ref=e90]:
+              - 'heading "Star Wars: Visions Presents - The Ninth Jedi" [level=4] [ref=e91]'
+              - generic [ref=e92]: "2026"
+          - link "Cyborg 009 Nemesis TV 6.0 Cyborg 009 Nemesis 2026" [ref=e94] [cursor=pointer]:
+            - /url: /tv/317256
+            - generic [ref=e95]:
+              - img "Cyborg 009 Nemesis" [ref=e96]
+              - generic:
+                - generic: TV
+                - generic: "6.0"
+              - button "+ Add to Watchlist" [ref=e99]
+            - generic [ref=e102]:
+              - heading "Cyborg 009 Nemesis" [level=4] [ref=e103]
+              - generic [ref=e104]: "2026"
+          - 'link "Plannosaurus: Serious Paleontology Club TV Plannosaurus: Serious Paleontology Club 2026" [ref=e106] [cursor=pointer]':
+            - /url: /tv/328237
+            - generic [ref=e107]:
+              - 'img "Plannosaurus: Serious Paleontology Club" [ref=e108]'
+              - generic: TV
+              - button "+ Add to Watchlist" [ref=e111]
+            - generic [ref=e114]:
+              - 'heading "Plannosaurus: Serious Paleontology Club" [level=4] [ref=e115]'
+              - generic [ref=e116]: "2026"
+          - link "Hanaori-san Still Wants to Fight in the Next Life TV 7.4 Hanaori-san Still Wants to Fight in the Next Life 2026" [ref=e118] [cursor=pointer]:
+            - /url: /tv/312266
+            - generic [ref=e119]:
+              - img "Hanaori-san Still Wants to Fight in the Next Life" [ref=e120]
+              - generic:
+                - generic: TV
+                - generic: "7.4"
+              - button "+ Add to Watchlist" [ref=e123]
+            - generic [ref=e126]:
+              - heading "Hanaori-san Still Wants to Fight in the Next Life" [level=4] [ref=e127]
+              - generic [ref=e128]: "2026"
+          - link "Though I Am an Inept Villainess TV 8.5 Though I Am an Inept Villainess 2026" [ref=e130] [cursor=pointer]:
+            - /url: /tv/286345
+            - generic [ref=e131]:
+              - img "Though I Am an Inept Villainess" [ref=e132]
+              - generic:
+                - generic: TV
+                - generic: "8.5"
+              - button "+ Add to Watchlist" [ref=e135]
+            - generic [ref=e138]:
+              - heading "Though I Am an Inept Villainess" [level=4] [ref=e139]
+              - generic [ref=e140]: "2026"
+          - link "The Frontier Lord Begins with Zero Subjects TV 6.7 The Frontier Lord Begins with Zero Subjects 2026" [ref=e142] [cursor=pointer]:
+            - /url: /tv/296437
+            - generic [ref=e143]:
+              - img "The Frontier Lord Begins with Zero Subjects" [ref=e144]
+              - generic:
+                - generic: TV
+                - generic: "6.7"
+              - button "+ Add to Watchlist" [ref=e147]
+            - generic [ref=e150]:
+              - heading "The Frontier Lord Begins with Zero Subjects" [level=4] [ref=e151]
+              - generic [ref=e152]: "2026"
+          - link "Thunder 3 TV 8.7 Thunder 3 2026" [ref=e154] [cursor=pointer]:
+            - /url: /tv/326119
+            - generic [ref=e155]:
+              - img "Thunder 3" [ref=e156]
+              - generic:
+                - generic: TV
+                - generic: "8.7"
+              - button "+ Add to Watchlist" [ref=e159]
+            - generic [ref=e162]:
+              - heading "Thunder 3" [level=4] [ref=e163]
+              - generic [ref=e164]: "2026"
+          - link "Smoking Behind the Supermarket with You TV 9.0 Smoking Behind the Supermarket with You 2026" [ref=e166] [cursor=pointer]:
+            - /url: /tv/296286
+            - generic [ref=e167]:
+              - img "Smoking Behind the Supermarket with You" [ref=e168]
+              - generic:
+                - generic: TV
+                - generic: "9.0"
+              - button "+ Add to Watchlist" [ref=e171]
+            - generic [ref=e174]:
+              - heading "Smoking Behind the Supermarket with You" [level=4] [ref=e175]
+              - generic [ref=e176]: "2026"
+          - link "MEBIUS DUST TV MEBIUS DUST 2026" [ref=e178] [cursor=pointer]:
+            - /url: /tv/98865
+            - generic [ref=e179]:
+              - img "MEBIUS DUST" [ref=e180]
+              - generic: TV
+              - button "+ Add to Watchlist" [ref=e183]
+            - generic [ref=e186]:
+              - heading "MEBIUS DUST" [level=4] [ref=e187]
+              - generic [ref=e188]: "2026"
+          - link "Migawari Reijou wo Sukutta no wa Reikoku Mujihi na Koori no Ouji no Ai deshita TV Migawari Reijou wo Sukutta no wa Reikoku Mujihi na Koori no Ouji no Ai deshita 2026" [ref=e190] [cursor=pointer]:
+            - /url: /tv/327843
+            - generic [ref=e191]:
+              - img "Migawari Reijou wo Sukutta no wa Reikoku Mujihi na Koori no Ouji no Ai deshita" [ref=e192]
+              - generic: TV
+              - button "+ Add to Watchlist" [ref=e195]
+            - generic [ref=e198]:
+              - heading "Migawari Reijou wo Sukutta no wa Reikoku Mujihi na Koori no Ouji no Ai deshita" [level=4] [ref=e199]
+              - generic [ref=e200]: "2026"
+          - link "Perfect Addiction TV Perfect Addiction 2026" [ref=e202] [cursor=pointer]:
+            - /url: /tv/314561
+            - generic [ref=e203]:
+              - img "Perfect Addiction" [ref=e204]
+              - generic: TV
+              - button "+ Add to Watchlist" [ref=e207]
+            - generic [ref=e210]:
+              - heading "Perfect Addiction" [level=4] [ref=e211]
+              - generic [ref=e212]: "2026"
+          - link "Red River TV 7.7 Red River 2026" [ref=e214] [cursor=pointer]:
+            - /url: /tv/314054
+            - generic [ref=e215]:
+              - img "Red River" [ref=e216]
+              - generic:
+                - generic: TV
+                - generic: "7.7"
+              - button "+ Add to Watchlist" [ref=e219]
+            - generic [ref=e222]:
+              - heading "Red River" [level=4] [ref=e223]
+              - generic [ref=e224]: "2026"
+          - link "Victoria of Many Faces TV 8.3 Victoria of Many Faces 2026" [ref=e226] [cursor=pointer]:
+            - /url: /tv/302519
+            - generic [ref=e227]:
+              - img "Victoria of Many Faces" [ref=e228]
+              - generic:
+                - generic: TV
+                - generic: "8.3"
+              - button "+ Add to Watchlist" [ref=e231]
+            - generic [ref=e234]:
+              - heading "Victoria of Many Faces" [level=4] [ref=e235]
+              - generic [ref=e236]: "2026"
+          - link "My Stepmother and Stepsisters Aren't Wicked TV 8.5 My Stepmother and Stepsisters Aren't Wicked 2026" [ref=e238] [cursor=pointer]:
+            - /url: /tv/298103
+            - generic [ref=e239]:
+              - img "My Stepmother and Stepsisters Aren't Wicked" [ref=e240]
+              - generic:
+                - generic: TV
+                - generic: "8.5"
+              - button "+ Add to Watchlist" [ref=e243]
+            - generic [ref=e246]:
+              - heading "My Stepmother and Stepsisters Aren't Wicked" [level=4] [ref=e247]
+              - generic [ref=e248]: "2026"
+          - link "Saved by the Ice Cold Prince's Embrace TV Saved by the Ice Cold Prince's Embrace 2026" [ref=e250] [cursor=pointer]:
+            - /url: /tv/326191
+            - generic [ref=e251]:
+              - img "Saved by the Ice Cold Prince's Embrace" [ref=e252]
+              - generic: TV
+              - button "+ Add to Watchlist" [ref=e255]
+            - generic [ref=e258]:
+              - heading "Saved by the Ice Cold Prince's Embrace" [level=4] [ref=e259]
+              - generic [ref=e260]: "2026"
+          - link "I Want to Love You Till Your Dying Day TV 9.5 I Want to Love You Till Your Dying Day 2026" [ref=e262] [cursor=pointer]:
+            - /url: /tv/285574
+            - generic [ref=e263]:
+              - img "I Want to Love You Till Your Dying Day" [ref=e264]
+              - generic:
+                - generic: TV
+                - generic: "9.5"
+              - button "+ Add to Watchlist" [ref=e267]
+            - generic [ref=e270]:
+              - heading "I Want to Love You Till Your Dying Day" [level=4] [ref=e271]
+              - generic [ref=e272]: "2026"
+          - link "THE GHOST IN THE SHELL TV 8.4 THE GHOST IN THE SHELL 2026" [ref=e274] [cursor=pointer]:
+            - /url: /tv/255358
+            - generic [ref=e275]:
+              - img "THE GHOST IN THE SHELL" [ref=e276]
+              - generic:
+                - generic: TV
+                - generic: "8.4"
+              - button "+ Add to Watchlist" [ref=e279]
+            - generic [ref=e282]:
+              - heading "THE GHOST IN THE SHELL" [level=4] [ref=e283]
+              - generic [ref=e284]: "2026"
+          - link "Young Ladies Don't Play Fighting Games TV 7.7 Young Ladies Don't Play Fighting Games 2026" [ref=e286] [cursor=pointer]:
+            - /url: /tv/117120
+            - generic [ref=e287]:
+              - img "Young Ladies Don't Play Fighting Games" [ref=e288]
+              - generic:
+                - generic: TV
+                - generic: "7.7"
+              - button "+ Add to Watchlist" [ref=e291]
+            - generic [ref=e294]:
+              - heading "Young Ladies Don't Play Fighting Games" [level=4] [ref=e295]
+              - generic [ref=e296]: "2026"
+          - link "The Forsaken Saintess and Her Foodie Road Trip in Another World TV 7.0 The Forsaken Saintess and Her Foodie Road Trip in Another World 2026" [ref=e298] [cursor=pointer]:
+            - /url: /tv/325158
+            - generic [ref=e299]:
+              - img "The Forsaken Saintess and Her Foodie Road Trip in Another World" [ref=e300]
+              - generic:
+                - generic: TV
+                - generic: "7.0"
+              - button "+ Add to Watchlist" [ref=e303]
+            - generic [ref=e306]:
+              - heading "The Forsaken Saintess and Her Foodie Road Trip in Another World" [level=4] [ref=e307]
+              - generic [ref=e308]: "2026"
+          - link "Love Unseen Beneath the Clear Night Sky TV 7.7 Love Unseen Beneath the Clear Night Sky 2026" [ref=e310] [cursor=pointer]:
+            - /url: /tv/309974
+            - generic [ref=e311]:
+              - img "Love Unseen Beneath the Clear Night Sky" [ref=e312]
+              - generic:
+                - generic: TV
+                - generic: "7.7"
+              - button "+ Add to Watchlist" [ref=e315]
+            - generic [ref=e318]:
+              - heading "Love Unseen Beneath the Clear Night Sky" [level=4] [ref=e319]
+              - generic [ref=e320]: "2026"
+  - button "Open Next.js Dev Tools" [ref=e328] [cursor=pointer]
+  - alert [ref=e332]

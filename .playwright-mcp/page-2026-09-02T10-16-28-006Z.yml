@@ -1,0 +1,43 @@
+- generic [active] [ref=f1e1]:
+  - banner [ref=f1e2]:
+    - generic [ref=f1e3]:
+      - generic [ref=f1e4]:
+        - link "V VARD//STREAM" [ref=f1e5] [cursor=pointer]:
+          - /url: /welcome
+          - generic [ref=f1e6]: V
+          - generic [ref=f1e7]: VARD//STREAM
+        - navigation [ref=f1e8]:
+          - link "Home" [ref=f1e9] [cursor=pointer]:
+            - /url: /
+          - link "Movies" [ref=f1e10] [cursor=pointer]:
+            - /url: /movie
+          - link "TV & Anime" [ref=f1e13] [cursor=pointer]:
+            - /url: /tv
+          - link "Watchlist" [ref=f1e17] [cursor=pointer]:
+            - /url: /watchlist
+      - generic [ref=f1e20]:
+        - generic [ref=f1e21]:
+          - textbox "Search..." [ref=f1e25]
+          - generic [ref=f1e26]: /
+        - generic [ref=f1e27]:
+          - link "Invite" [ref=f1e28] [cursor=pointer]:
+            - /url: /register
+          - link "Sign In" [ref=f1e33] [cursor=pointer]:
+            - /url: /login
+  - main [ref=f1e34]:
+    - generic [ref=f1e35]:
+      - generic [ref=f1e36]:
+        - generic [ref=f1e37]:
+          - generic [ref=f1e38]:
+            - heading "My Watchlist" [level=1] [ref=f1e39]
+            - generic [ref=f1e40]: USER_WATCHLIST
+          - paragraph [ref=f1e41]: Saved catalog items, personal bookmarks, and watch history
+        - generic [ref=f1e42]:
+          - button "ALL (0)" [ref=f1e43] [cursor=pointer]
+          - button "WATCHING" [ref=f1e44] [cursor=pointer]
+          - button "PLAN_TO_WATCH" [ref=f1e48] [cursor=pointer]
+          - button "DONE" [ref=f1e51] [cursor=pointer]
+          - button "FAVS" [ref=f1e55] [cursor=pointer]
+      - paragraph [ref=f1e60]: SYNCHRONIZING_USER_LIBRARY...
+  - button "Open Next.js Dev Tools" [ref=f1e66] [cursor=pointer]
+  - alert [ref=f1e70]

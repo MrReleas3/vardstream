@@ -1,0 +1,397 @@
+- generic [active] [ref=f2e1]:
+  - banner [ref=f2e2]:
+    - generic [ref=f2e3]:
+      - generic [ref=f2e4]:
+        - link "V VARD//STREAM" [ref=f2e5] [cursor=pointer]:
+          - /url: /welcome
+          - generic [ref=f2e6]: V
+          - generic [ref=f2e7]: VARD//STREAM
+        - navigation [ref=f2e8]:
+          - link "Home" [ref=f2e9] [cursor=pointer]:
+            - /url: /
+          - link "Movies" [ref=f2e10] [cursor=pointer]:
+            - /url: /movie
+          - link "TV & Anime" [ref=f2e13] [cursor=pointer]:
+            - /url: /tv
+          - link "Watchlist" [ref=f2e17] [cursor=pointer]:
+            - /url: /watchlist
+      - generic [ref=f2e20]:
+        - generic [ref=f2e21]:
+          - textbox "Search..." [ref=f2e25]
+          - generic [ref=f2e26]: /
+        - generic [ref=f2e27]:
+          - link "Invite" [ref=f2e28] [cursor=pointer]:
+            - /url: /register
+          - link "Sign In" [ref=f2e33] [cursor=pointer]:
+            - /url: /login
+  - main [ref=f2e34]:
+    - generic [ref=f2e35]:
+      - generic [ref=f2e37]:
+        - 'img "Dune: Part Two" [ref=f2e39]'
+        - generic [ref=f2e40]:
+          - generic [ref=f2e41]:
+            - generic [ref=f2e42]: FEATURE_FILM
+            - generic [ref=f2e43]: 8.1 / 10
+            - generic [ref=f2e46]: 167m
+            - generic [ref=f2e50]: 2024-02-27
+            - generic [ref=f2e53]: TMDB_693134
+          - 'heading "Dune: Part Two(2024)" [level=1] [ref=f2e57]':
+            - text: "Dune: Part Two"
+            - generic [ref=f2e58]: (2024)
+          - paragraph [ref=f2e59]: // “Long live the fighters.”
+          - generic [ref=f2e60]:
+            - button "Watch Movie" [ref=f2e61] [cursor=pointer]
+            - button "Add to Watchlist" [ref=f2e65] [cursor=pointer]
+          - generic [ref=f2e70]:
+            - generic [ref=f2e71]: Science Fiction
+            - generic [ref=f2e72]: Adventure
+          - generic [ref=f2e74]:
+            - heading "SYNOPSIS_OVERVIEW" [level=3] [ref=f2e75]
+            - paragraph [ref=f2e76]: Follow the mythic journey of Paul Atreides as he unites with Chani and the Fremen while on a path of revenge against the conspirators who destroyed his family. Facing a choice between the love of his life and the fate of the known universe, Paul endeavors to prevent a terrible future only he can foresee.
+      - generic [ref=f2e77]:
+        - generic [ref=f2e78]:
+          - generic [ref=f2e79]:
+            - heading "RELATIONS" [level=2] [ref=f2e80]
+            - generic [ref=f2e81]: // Sequels, prequels & franchise timeline
+          - generic [ref=f2e82]:
+            - generic [ref=f2e83]: 10 titles
+            - button "Scroll Left" [ref=f2e84] [cursor=pointer]
+            - button "Scroll Right" [ref=f2e87] [cursor=pointer]
+        - generic [ref=f2e90]:
+          - link "Dune MOV 6.2 Dune 1984" [ref=f2e92] [cursor=pointer]:
+            - /url: /movie/841
+            - generic [ref=f2e93]:
+              - img "Dune" [ref=f2e94]
+              - generic:
+                - generic: MOV
+                - generic: "6.2"
+              - button "+ Add to Watchlist" [ref=f2e97]
+            - generic [ref=f2e100]:
+              - heading "Dune" [level=4] [ref=f2e101]
+              - generic [ref=f2e102]: "1984"
+          - link "Dune MOV 6.7 Dune 1989" [ref=f2e105] [cursor=pointer]:
+            - /url: /movie/627150
+            - generic [ref=f2e106]:
+              - img "Dune" [ref=f2e107]
+              - generic:
+                - generic: MOV
+                - generic: "6.7"
+              - button "+ Add to Watchlist" [ref=f2e110]
+            - generic [ref=f2e113]:
+              - heading "Dune" [level=4] [ref=f2e114]
+              - generic [ref=f2e115]: "1989"
+          - link "Frank Herbert's Dune TV 6.8 Frank Herbert's Dune 2000" [ref=f2e118] [cursor=pointer]:
+            - /url: /tv/19566
+            - generic [ref=f2e119]:
+              - img "Frank Herbert's Dune" [ref=f2e120]
+              - generic:
+                - generic: TV
+                - generic: "6.8"
+              - button "+ Add to Watchlist" [ref=f2e123]
+            - generic [ref=f2e126]:
+              - heading "Frank Herbert's Dune" [level=4] [ref=f2e127]
+              - generic [ref=f2e128]: "2000"
+          - link "The Dune MOV 5.5 The Dune 2014" [ref=f2e131] [cursor=pointer]:
+            - /url: /movie/271683
+            - generic [ref=f2e132]:
+              - img "The Dune" [ref=f2e133]
+              - generic:
+                - generic: MOV
+                - generic: "5.5"
+              - button "+ Add to Watchlist" [ref=f2e136]
+            - generic [ref=f2e139]:
+              - heading "The Dune" [level=4] [ref=f2e140]
+              - generic [ref=f2e141]: "2014"
+          - link "Dune MOV 7.4 Dune 2020" [ref=f2e144] [cursor=pointer]:
+            - /url: /movie/697620
+            - generic [ref=f2e145]:
+              - img "Dune" [ref=f2e146]
+              - generic:
+                - generic: MOV
+                - generic: "7.4"
+              - button "+ Add to Watchlist" [ref=f2e149]
+            - generic [ref=f2e152]:
+              - heading "Dune" [level=4] [ref=f2e153]
+              - generic [ref=f2e154]: "2020"
+          - link "Dune MOV 7.8 Dune 2021" [ref=f2e157] [cursor=pointer]:
+            - /url: /movie/438631
+            - generic [ref=f2e158]:
+              - img "Dune" [ref=f2e159]
+              - generic:
+                - generic: MOV
+                - generic: "7.8"
+              - button "+ Add to Watchlist" [ref=f2e162]
+            - generic [ref=f2e165]:
+              - heading "Dune" [level=4] [ref=f2e166]
+              - generic [ref=f2e167]: "2021"
+          - link "Planet Dune MOV 5.0 Planet Dune 2021" [ref=f2e170] [cursor=pointer]:
+            - /url: /movie/881460
+            - generic [ref=f2e171]:
+              - img "Planet Dune" [ref=f2e172]
+              - generic:
+                - generic: MOV
+                - generic: "5.0"
+              - button "+ Add to Watchlist" [ref=f2e175]
+            - generic [ref=f2e178]:
+              - heading "Planet Dune" [level=4] [ref=f2e179]
+              - generic [ref=f2e180]: "2021"
+          - 'link "Dune: Prophecy TV 7.2 Dune: Prophecy 2024" [ref=f2e183] [cursor=pointer]':
+            - /url: /tv/90228
+            - generic [ref=f2e184]:
+              - 'img "Dune: Prophecy" [ref=f2e185]'
+              - generic:
+                - generic: TV
+                - generic: "7.2"
+              - button "+ Add to Watchlist" [ref=f2e188]
+            - generic [ref=f2e191]:
+              - 'heading "Dune: Prophecy" [level=4] [ref=f2e192]'
+              - generic [ref=f2e193]: "2024"
+          - link "The Dune MOV The Dune 2025" [ref=f2e196] [cursor=pointer]:
+            - /url: /movie/1274770
+            - generic [ref=f2e197]:
+              - img "The Dune" [ref=f2e198]
+              - generic: MOV
+              - button "+ Add to Watchlist" [ref=f2e201]
+            - generic [ref=f2e204]:
+              - heading "The Dune" [level=4] [ref=f2e205]
+              - generic [ref=f2e206]: "2025"
+          - 'link "Dune: Part Three MOV Dune: Part Three 2026" [ref=f2e209] [cursor=pointer]':
+            - /url: /movie/1170608
+            - generic [ref=f2e210]:
+              - 'img "Dune: Part Three" [ref=f2e211]'
+              - generic: MOV
+              - button "+ Add to Watchlist" [ref=f2e214]
+            - generic [ref=f2e217]:
+              - 'heading "Dune: Part Three" [level=4] [ref=f2e218]'
+              - generic [ref=f2e219]: "2026"
+      - generic [ref=f2e221]:
+        - generic [ref=f2e222]:
+          - generic [ref=f2e223]:
+            - heading "RECOMMENDATIONS" [level=2] [ref=f2e224]
+            - generic [ref=f2e225]: // Curated based on this title
+          - generic [ref=f2e226]:
+            - generic [ref=f2e227]: 20 titles
+            - button "Scroll Left" [ref=f2e228] [cursor=pointer]
+            - button "Scroll Right" [ref=f2e231] [cursor=pointer]
+        - generic [ref=f2e234]:
+          - link "Dune MOV 7.8 Dune 2021" [ref=f2e236] [cursor=pointer]:
+            - /url: /movie/438631
+            - generic [ref=f2e237]:
+              - img "Dune" [ref=f2e238]
+              - generic:
+                - generic: MOV
+                - generic: "7.8"
+              - button "+ Add to Watchlist" [ref=f2e241]
+            - generic [ref=f2e244]:
+              - heading "Dune" [level=4] [ref=f2e245]
+              - generic [ref=f2e246]: "2021"
+          - link "Spider-Man 3 MOV 6.5 Spider-Man 3 2007" [ref=f2e249] [cursor=pointer]:
+            - /url: /movie/559
+            - generic [ref=f2e250]:
+              - img "Spider-Man 3" [ref=f2e251]
+              - generic:
+                - generic: MOV
+                - generic: "6.5"
+              - button "+ Add to Watchlist" [ref=f2e254]
+            - generic [ref=f2e257]:
+              - heading "Spider-Man 3" [level=4] [ref=f2e258]
+              - generic [ref=f2e259]: "2007"
+          - 'link "Star Wars: Episode III - Revenge of the Sith MOV 7.5 Star Wars: Episode III - Revenge of the Sith 2005" [ref=f2e262] [cursor=pointer]':
+            - /url: /movie/1895
+            - generic [ref=f2e263]:
+              - 'img "Star Wars: Episode III - Revenge of the Sith" [ref=f2e264]'
+              - generic:
+                - generic: MOV
+                - generic: "7.5"
+              - button "+ Add to Watchlist" [ref=f2e267]
+            - generic [ref=f2e270]:
+              - 'heading "Star Wars: Episode III - Revenge of the Sith" [level=4] [ref=f2e271]'
+              - generic [ref=f2e272]: "2005"
+          - link "Chaos Walking MOV 6.5 Chaos Walking 2021" [ref=f2e275] [cursor=pointer]:
+            - /url: /movie/412656
+            - generic [ref=f2e276]:
+              - img "Chaos Walking" [ref=f2e277]
+              - generic:
+                - generic: MOV
+                - generic: "6.5"
+              - button "+ Add to Watchlist" [ref=f2e280]
+            - generic [ref=f2e283]:
+              - heading "Chaos Walking" [level=4] [ref=f2e284]
+              - generic [ref=f2e285]: "2021"
+          - link "The 5th Wave MOV 5.9 The 5th Wave 2016" [ref=f2e288] [cursor=pointer]:
+            - /url: /movie/299687
+            - generic [ref=f2e289]:
+              - img "The 5th Wave" [ref=f2e290]
+              - generic:
+                - generic: MOV
+                - generic: "5.9"
+              - button "+ Add to Watchlist" [ref=f2e293]
+            - generic [ref=f2e296]:
+              - heading "The 5th Wave" [level=4] [ref=f2e297]
+              - generic [ref=f2e298]: "2016"
+          - 'link "Prince of Persia: The Sands of Time MOV 6.3 Prince of Persia: The Sands of Time 2010" [ref=f2e301] [cursor=pointer]':
+            - /url: /movie/9543
+            - generic [ref=f2e302]:
+              - 'img "Prince of Persia: The Sands of Time" [ref=f2e303]'
+              - generic:
+                - generic: MOV
+                - generic: "6.3"
+              - button "+ Add to Watchlist" [ref=f2e306]
+            - generic [ref=f2e309]:
+              - 'heading "Prince of Persia: The Sands of Time" [level=4] [ref=f2e310]'
+              - generic [ref=f2e311]: "2010"
+          - link "Star Trek Beyond MOV 6.8 Star Trek Beyond 2016" [ref=f2e314] [cursor=pointer]:
+            - /url: /movie/188927
+            - generic [ref=f2e315]:
+              - img "Star Trek Beyond" [ref=f2e316]
+              - generic:
+                - generic: MOV
+                - generic: "6.8"
+              - button "+ Add to Watchlist" [ref=f2e319]
+            - generic [ref=f2e322]:
+              - heading "Star Trek Beyond" [level=4] [ref=f2e323]
+              - generic [ref=f2e324]: "2016"
+          - 'link "X-Men: Days of Future Past MOV 7.5 X-Men: Days of Future Past 2014" [ref=f2e327] [cursor=pointer]':
+            - /url: /movie/127585
+            - generic [ref=f2e328]:
+              - 'img "X-Men: Days of Future Past" [ref=f2e329]'
+              - generic:
+                - generic: MOV
+                - generic: "7.5"
+              - button "+ Add to Watchlist" [ref=f2e332]
+            - generic [ref=f2e335]:
+              - 'heading "X-Men: Days of Future Past" [level=4] [ref=f2e336]'
+              - generic [ref=f2e337]: "2014"
+          - link "Ender's Game MOV 6.6 Ender's Game 2013" [ref=f2e340] [cursor=pointer]:
+            - /url: /movie/80274
+            - generic [ref=f2e341]:
+              - img "Ender's Game" [ref=f2e342]
+              - generic:
+                - generic: MOV
+                - generic: "6.6"
+              - button "+ Add to Watchlist" [ref=f2e345]
+            - generic [ref=f2e348]:
+              - heading "Ender's Game" [level=4] [ref=f2e349]
+              - generic [ref=f2e350]: "2013"
+          - 'link "Godzilla x Kong: The New Empire MOV 7.0 Godzilla x Kong: The New Empire 2024" [ref=f2e353] [cursor=pointer]':
+            - /url: /movie/823464
+            - generic [ref=f2e354]:
+              - 'img "Godzilla x Kong: The New Empire" [ref=f2e355]'
+              - generic:
+                - generic: MOV
+                - generic: "7.0"
+              - button "+ Add to Watchlist" [ref=f2e358]
+            - generic [ref=f2e361]:
+              - 'heading "Godzilla x Kong: The New Empire" [level=4] [ref=f2e362]'
+              - generic [ref=f2e363]: "2024"
+          - link "Jack the Giant Slayer MOV 5.9 Jack the Giant Slayer 2013" [ref=f2e366] [cursor=pointer]:
+            - /url: /movie/81005
+            - generic [ref=f2e367]:
+              - img "Jack the Giant Slayer" [ref=f2e368]
+              - generic:
+                - generic: MOV
+                - generic: "5.9"
+              - button "+ Add to Watchlist" [ref=f2e371]
+            - generic [ref=f2e374]:
+              - heading "Jack the Giant Slayer" [level=4] [ref=f2e375]
+              - generic [ref=f2e376]: "2013"
+          - 'link "Star Wars: The Rise of Skywalker MOV 6.3 Star Wars: The Rise of Skywalker 2019" [ref=f2e379] [cursor=pointer]':
+            - /url: /movie/181812
+            - generic [ref=f2e380]:
+              - 'img "Star Wars: The Rise of Skywalker" [ref=f2e381]'
+              - generic:
+                - generic: MOV
+                - generic: "6.3"
+              - button "+ Add to Watchlist" [ref=f2e384]
+            - generic [ref=f2e387]:
+              - 'heading "Star Wars: The Rise of Skywalker" [level=4] [ref=f2e388]'
+              - generic [ref=f2e389]: "2019"
+          - link "Beneath the Planet of the Apes MOV 6.1 Beneath the Planet of the Apes 1970" [ref=f2e392] [cursor=pointer]:
+            - /url: /movie/1685
+            - generic [ref=f2e393]:
+              - img "Beneath the Planet of the Apes" [ref=f2e394]
+              - generic:
+                - generic: MOV
+                - generic: "6.1"
+              - button "+ Add to Watchlist" [ref=f2e397]
+            - generic [ref=f2e400]:
+              - heading "Beneath the Planet of the Apes" [level=4] [ref=f2e401]
+              - generic [ref=f2e402]: "1970"
+          - 'link "Thor: Ragnarok MOV 7.6 Thor: Ragnarok 2017" [ref=f2e405] [cursor=pointer]':
+            - /url: /movie/284053
+            - generic [ref=f2e406]:
+              - 'img "Thor: Ragnarok" [ref=f2e407]'
+              - generic:
+                - generic: MOV
+                - generic: "7.6"
+              - button "+ Add to Watchlist" [ref=f2e410]
+            - generic [ref=f2e413]:
+              - 'heading "Thor: Ragnarok" [level=4] [ref=f2e414]'
+              - generic [ref=f2e415]: "2017"
+          - link "The Host MOV 6.3 The Host 2013" [ref=f2e418] [cursor=pointer]:
+            - /url: /movie/72710
+            - generic [ref=f2e419]:
+              - img "The Host" [ref=f2e420]
+              - generic:
+                - generic: MOV
+                - generic: "6.3"
+              - button "+ Add to Watchlist" [ref=f2e423]
+            - generic [ref=f2e426]:
+              - heading "The Host" [level=4] [ref=f2e427]
+              - generic [ref=f2e428]: "2013"
+          - link "Allegiant MOV 6.1 Allegiant 2016" [ref=f2e431] [cursor=pointer]:
+            - /url: /movie/262504
+            - generic [ref=f2e432]:
+              - img "Allegiant" [ref=f2e433]
+              - generic:
+                - generic: MOV
+                - generic: "6.1"
+              - button "+ Add to Watchlist" [ref=f2e436]
+            - generic [ref=f2e439]:
+              - heading "Allegiant" [level=4] [ref=f2e440]
+              - generic [ref=f2e441]: "2016"
+          - link "The Time Machine MOV 6.3 The Time Machine 2002" [ref=f2e444] [cursor=pointer]:
+            - /url: /movie/2135
+            - generic [ref=f2e445]:
+              - img "The Time Machine" [ref=f2e446]
+              - generic:
+                - generic: MOV
+                - generic: "6.3"
+              - button "+ Add to Watchlist" [ref=f2e449]
+            - generic [ref=f2e452]:
+              - heading "The Time Machine" [level=4] [ref=f2e453]
+              - generic [ref=f2e454]: "2002"
+          - 'link "Thor: The Dark World MOV 6.5 Thor: The Dark World 2013" [ref=f2e457] [cursor=pointer]':
+            - /url: /movie/76338
+            - generic [ref=f2e458]:
+              - 'img "Thor: The Dark World" [ref=f2e459]'
+              - generic:
+                - generic: MOV
+                - generic: "6.5"
+              - button "+ Add to Watchlist" [ref=f2e462]
+            - generic [ref=f2e465]:
+              - 'heading "Thor: The Dark World" [level=4] [ref=f2e466]'
+              - generic [ref=f2e467]: "2013"
+          - link "Mortal Engines MOV 6.3 Mortal Engines 2018" [ref=f2e470] [cursor=pointer]:
+            - /url: /movie/428078
+            - generic [ref=f2e471]:
+              - img "Mortal Engines" [ref=f2e472]
+              - generic:
+                - generic: MOV
+                - generic: "6.3"
+              - button "+ Add to Watchlist" [ref=f2e475]
+            - generic [ref=f2e478]:
+              - heading "Mortal Engines" [level=4] [ref=f2e479]
+              - generic [ref=f2e480]: "2018"
+          - link "Guardians of the Galaxy MOV 7.9 Guardians of the Galaxy 2014" [ref=f2e483] [cursor=pointer]:
+            - /url: /movie/118340
+            - generic [ref=f2e484]:
+              - img "Guardians of the Galaxy" [ref=f2e485]
+              - generic:
+                - generic: MOV
+                - generic: "7.9"
+              - button "+ Add to Watchlist" [ref=f2e488]
+            - generic [ref=f2e491]:
+              - heading "Guardians of the Galaxy" [level=4] [ref=f2e492]
+              - generic [ref=f2e493]: "2014"
+  - button "Open Next.js Dev Tools" [ref=f2e500] [cursor=pointer]

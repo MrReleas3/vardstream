@@ -1,0 +1,35 @@
+- generic [active] [ref=e1]:
+  - banner [ref=e2]:
+    - generic [ref=e3]:
+      - link "V VARD//STREAM" [ref=e5] [cursor=pointer]:
+        - /url: /welcome
+        - generic [ref=e6]: V
+        - generic [ref=e7]: VARD//STREAM
+      - generic [ref=e9]:
+        - link "Invite" [ref=e10] [cursor=pointer]:
+          - /url: /register
+        - link "Sign In" [ref=e15] [cursor=pointer]:
+          - /url: /login
+  - main [ref=e16]:
+    - generic [ref=e17]:
+      - generic [ref=e19]:
+        - generic [ref=e20]: PRIVATE_STREAMING_CLUSTER // INVITE_ONLY
+        - heading "Aggregated Streaming Portal. Zero Lag. Multi-Server Resilience." [level=1] [ref=e25]
+        - paragraph [ref=e26]: A high-performance media portal with intelligent waterfall embed routing, client-side canary health telemetry, and multi-device playback synchronization.
+        - generic [ref=e27]:
+          - link "REGISTER_WITH_KEY" [ref=e28] [cursor=pointer]:
+            - /url: /register
+          - link "MEMBER_LOGIN" [ref=e31] [cursor=pointer]:
+            - /url: /login
+      - generic [ref=e36]:
+        - generic [ref=e37]:
+          - generic [ref=e38]: WATERFALL_ROUTING
+          - paragraph [ref=e44]: Automated multi-server fallbacks across VidSrc, SuperEmbed, and AutoEmbed ensure continuous playback even when individual sources fail.
+        - generic [ref=e45]:
+          - generic [ref=e46]: CANARY_TELEMETRY
+          - paragraph [ref=e51]: Real-time iframe failure triggers and automated background circuit breakers actively score and prioritize responsive streams.
+        - generic [ref=e52]:
+          - generic [ref=e53]: INVITE_PROTECTED
+          - paragraph [ref=e58]: Single-use invite tokens guarantee controlled resource allocation, low-congestion routing, and reliable playback bandwidth.
+      - paragraph [ref=e60]: VARDSTREAM // PRIVATE_MEDIA_ROUTER © 2026 // ALL_RIGHTS_RESERVED
+  - button "Open Next.js Dev Tools" [ref=e66] [cursor=pointer]

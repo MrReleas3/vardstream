@@ -1,0 +1,445 @@
+- generic [active] [ref=f1e1]:
+  - banner [ref=f1e2]:
+    - generic [ref=f1e3]:
+      - generic [ref=f1e4]:
+        - link "V VARD//STREAM" [ref=f1e5] [cursor=pointer]:
+          - /url: /
+          - generic [ref=f1e6]: V
+          - generic [ref=f1e7]: VARD//STREAM
+        - navigation [ref=f1e8]:
+          - link "Home" [ref=f1e9] [cursor=pointer]:
+            - /url: /
+          - link "Movies" [ref=f1e10] [cursor=pointer]:
+            - /url: /movie
+          - link "TV & Anime" [ref=f1e13] [cursor=pointer]:
+            - /url: /tv
+          - link "Watchlist" [ref=f1e17] [cursor=pointer]:
+            - /url: /watchlist
+          - link "ADMIN" [ref=f1e47] [cursor=pointer]:
+            - /url: /admin
+      - generic [ref=f1e20]:
+        - generic [ref=f1e21]:
+          - textbox "Search..." [ref=f1e25]
+          - generic [ref=f1e26]: /
+        - button "A admin" [ref=f1e50] [cursor=pointer]:
+          - generic [ref=f1e51]: A
+          - generic [ref=f1e52]: admin
+  - main [ref=f1e34]:
+    - generic [ref=f1e35]:
+      - generic [ref=f1e54]:
+        - img "That Time I Got Reincarnated as a Slime" [ref=f1e56]
+        - generic [ref=f1e57]:
+          - generic [ref=f1e58]:
+            - generic [ref=f1e59]: TV_SERIES
+            - generic [ref=f1e60]: 8.4 / 10
+            - generic [ref=f1e63]: 4 SEASONS // 96 EPS
+            - generic [ref=f1e64]: 2018-10-02
+            - generic [ref=f1e67]: TMDB_82684
+          - heading "That Time I Got Reincarnated as a Slime(2018)" [level=1] [ref=f1e71]:
+            - text: That Time I Got Reincarnated as a Slime
+            - generic [ref=f1e72]: (2018)
+          - paragraph [ref=f1e73]: // “Ascend into your true form.”
+          - generic [ref=f1e74]:
+            - button "Watch S1:E1" [ref=f1e75] [cursor=pointer]
+            - button "Add to Watchlist" [ref=f1e79] [cursor=pointer]
+          - generic [ref=f1e84]:
+            - generic [ref=f1e85]: Action & Adventure
+            - generic [ref=f1e86]: Animation
+            - generic [ref=f1e87]: Sci-Fi & Fantasy
+            - generic [ref=f1e88]: Comedy
+          - generic [ref=f1e90]:
+            - heading "SERIES_OVERVIEW" [level=3] [ref=f1e91]
+            - paragraph [ref=f1e92]: Corporate worker Mikami Satoru is stabbed by a random killer, and is reborn to an alternate world. But he turns out to be reborn a slime! Thrown into this new world with the name Rimuru, he begins his quest to create a world that’s welcoming to all races.
+      - generic [ref=f1e93]:
+        - generic [ref=f1e94]:
+          - generic [ref=f1e95]:
+            - generic [ref=f1e96]: EPISODES
+            - generic [ref=f1e97]: SEASON 1 // 24 EPS
+          - generic [ref=f1e98]:
+            - button "S1" [ref=f1e99] [cursor=pointer]
+            - button "S2" [ref=f1e100] [cursor=pointer]
+            - button "S3" [ref=f1e101] [cursor=pointer]
+            - button "S4" [ref=f1e102] [cursor=pointer]
+        - generic [ref=f1e103]:
+          - generic [ref=f1e108] [cursor=pointer]:
+            - heading "1. The Storm Dragon, Veldora" [level=4] [ref=f1e109]
+            - paragraph [ref=f1e110]: 2018-10-02
+          - generic [ref=f1e111] [cursor=pointer]:
+            - generic [ref=f1e112]: "2"
+            - generic [ref=f1e113]:
+              - heading "2. Meeting the Goblins" [level=4] [ref=f1e114]
+              - paragraph [ref=f1e115]: 2018-10-09
+          - generic [ref=f1e116] [cursor=pointer]:
+            - generic [ref=f1e117]: "3"
+            - generic [ref=f1e118]:
+              - heading "3. Battle at the Goblin Village" [level=4] [ref=f1e119]
+              - paragraph [ref=f1e120]: 2018-10-16
+          - generic [ref=f1e121] [cursor=pointer]:
+            - generic [ref=f1e122]: "4"
+            - generic [ref=f1e123]:
+              - heading "4. In the Kingdom of the Dwarves" [level=4] [ref=f1e124]
+              - paragraph [ref=f1e125]: 2018-10-23
+          - generic [ref=f1e126] [cursor=pointer]:
+            - generic [ref=f1e127]: "5"
+            - generic [ref=f1e128]:
+              - heading "5. Hero King, Gazel Dwargo" [level=4] [ref=f1e129]
+              - paragraph [ref=f1e130]: 2018-10-30
+          - generic [ref=f1e131] [cursor=pointer]:
+            - generic [ref=f1e132]: "6"
+            - generic [ref=f1e133]:
+              - heading "6. Shizu" [level=4] [ref=f1e134]
+              - paragraph [ref=f1e135]: 2018-11-06
+          - generic [ref=f1e136] [cursor=pointer]:
+            - generic [ref=f1e137]: "7"
+            - generic [ref=f1e138]:
+              - heading "7. Conqueror of Flames" [level=4] [ref=f1e139]
+              - paragraph [ref=f1e140]: 2018-11-13
+          - generic [ref=f1e141] [cursor=pointer]:
+            - generic [ref=f1e142]: "8"
+            - generic [ref=f1e143]:
+              - heading "8. Inherited Will" [level=4] [ref=f1e144]
+              - paragraph [ref=f1e145]: 2018-11-20
+          - generic [ref=f1e146] [cursor=pointer]:
+            - generic [ref=f1e147]: "9"
+            - generic [ref=f1e148]:
+              - heading "9. Attack of the Ogres" [level=4] [ref=f1e149]
+              - paragraph [ref=f1e150]: 2018-11-27
+          - generic [ref=f1e151] [cursor=pointer]:
+            - generic [ref=f1e152]: "10"
+            - generic [ref=f1e153]:
+              - heading "10. The Orc Lord" [level=4] [ref=f1e154]
+              - paragraph [ref=f1e155]: 2018-12-04
+          - generic [ref=f1e156] [cursor=pointer]:
+            - generic [ref=f1e157]: "11"
+            - generic [ref=f1e158]:
+              - heading "11. Gabiru is Here!" [level=4] [ref=f1e159]
+              - paragraph [ref=f1e160]: 2018-12-11
+          - generic [ref=f1e161] [cursor=pointer]:
+            - generic [ref=f1e162]: "12"
+            - generic [ref=f1e163]:
+              - heading "12. The Gears Spin Out of Control" [level=4] [ref=f1e164]
+              - paragraph [ref=f1e165]: 2018-12-18
+          - generic [ref=f1e166] [cursor=pointer]:
+            - generic [ref=f1e167]: "13"
+            - generic [ref=f1e168]:
+              - heading "13. The Great Clash" [level=4] [ref=f1e169]
+              - paragraph [ref=f1e170]: 2018-12-25
+          - generic [ref=f1e171] [cursor=pointer]:
+            - generic [ref=f1e172]: "14"
+            - generic [ref=f1e173]:
+              - heading "14. The One Who Devours All" [level=4] [ref=f1e174]
+              - paragraph [ref=f1e175]: 2019-01-08
+          - generic [ref=f1e176] [cursor=pointer]:
+            - generic [ref=f1e177]: "15"
+            - generic [ref=f1e178]:
+              - heading "15. The Jura Forest Alliance" [level=4] [ref=f1e179]
+              - paragraph [ref=f1e180]: 2019-01-15
+          - generic [ref=f1e181] [cursor=pointer]:
+            - generic [ref=f1e182]: "16"
+            - generic [ref=f1e183]:
+              - heading "16. Demon Lord Milim Attacks" [level=4] [ref=f1e184]
+              - paragraph [ref=f1e185]: 2019-01-22
+          - generic [ref=f1e186] [cursor=pointer]:
+            - generic [ref=f1e187]: "17"
+            - generic [ref=f1e188]:
+              - heading "17. The Gathering" [level=4] [ref=f1e189]
+              - paragraph [ref=f1e190]: 2019-01-29
+          - generic [ref=f1e191] [cursor=pointer]:
+            - generic [ref=f1e192]: "18"
+            - generic [ref=f1e193]:
+              - heading "18. Evil Creeps Closer" [level=4] [ref=f1e194]
+              - paragraph [ref=f1e195]: 2019-02-05
+          - generic [ref=f1e196] [cursor=pointer]:
+            - generic [ref=f1e197]: "19"
+            - generic [ref=f1e198]:
+              - heading "19. Charybdis" [level=4] [ref=f1e199]
+              - paragraph [ref=f1e200]: 2019-02-12
+          - generic [ref=f1e201] [cursor=pointer]:
+            - generic [ref=f1e202]: "20"
+            - generic [ref=f1e203]:
+              - heading "20. Yuuki Kagurazaka" [level=4] [ref=f1e204]
+              - paragraph [ref=f1e205]: 2019-02-19
+          - generic [ref=f1e206] [cursor=pointer]:
+            - generic [ref=f1e207]: "21"
+            - generic [ref=f1e208]:
+              - heading "21. Shizu-san's Students" [level=4] [ref=f1e209]
+              - paragraph [ref=f1e210]: 2019-02-26
+          - generic [ref=f1e211] [cursor=pointer]:
+            - generic [ref=f1e212]: "22"
+            - generic [ref=f1e213]:
+              - heading "22. Conquering the Labyrinth" [level=4] [ref=f1e214]
+              - paragraph [ref=f1e215]: 2019-03-05
+          - generic [ref=f1e216] [cursor=pointer]:
+            - generic [ref=f1e217]: "23"
+            - generic [ref=f1e218]:
+              - heading "23. Saved Souls" [level=4] [ref=f1e219]
+              - paragraph [ref=f1e220]: 2019-03-12
+          - generic [ref=f1e221] [cursor=pointer]:
+            - generic [ref=f1e222]: "24"
+            - generic [ref=f1e223]:
+              - heading "24. Black and the Mask" [level=4] [ref=f1e224]
+              - paragraph [ref=f1e225]: 2019-03-19
+      - generic [ref=f1e226]:
+        - generic [ref=f1e227]:
+          - generic [ref=f1e228]:
+            - heading "RELATIONS" [level=2] [ref=f1e229]
+            - generic [ref=f1e230]: // Sequels, prequels & spin-offs
+          - generic [ref=f1e231]:
+            - generic [ref=f1e232]: 2 titles
+            - button "Scroll Left" [ref=f1e233] [cursor=pointer]
+            - button "Scroll Right" [ref=f1e236] [cursor=pointer]
+        - generic [ref=f1e239]:
+          - 'link "That Time I Got Reincarnated as a Slime the Movie: Scarlet Bond MOV 7.4 That Time I Got Reincarnated as a Slime the Movie: Scarlet Bond 2022" [ref=f1e241] [cursor=pointer]':
+            - /url: /movie/876792
+            - generic [ref=f1e242]:
+              - 'img "That Time I Got Reincarnated as a Slime the Movie: Scarlet Bond" [ref=f1e243]'
+              - generic:
+                - generic: MOV
+                - generic: "7.4"
+              - button "+ Add to Watchlist" [ref=f1e246]
+            - generic [ref=f1e249]:
+              - 'heading "That Time I Got Reincarnated as a Slime the Movie: Scarlet Bond" [level=4] [ref=f1e250]'
+              - generic [ref=f1e251]: "2022"
+          - 'link "That Time I Got Reincarnated as a Slime the Movie: Tears of the Azure Sea MOV 8.2 That Time I Got Reincarnated as a Slime the Movie: Tears of the Azure Sea 2026" [ref=f1e254] [cursor=pointer]':
+            - /url: /movie/1363974
+            - generic [ref=f1e255]:
+              - 'img "That Time I Got Reincarnated as a Slime the Movie: Tears of the Azure Sea" [ref=f1e256]'
+              - generic:
+                - generic: MOV
+                - generic: "8.2"
+              - button "+ Add to Watchlist" [ref=f1e259]
+            - generic [ref=f1e262]:
+              - 'heading "That Time I Got Reincarnated as a Slime the Movie: Tears of the Azure Sea" [level=4] [ref=f1e263]'
+              - generic [ref=f1e264]: "2026"
+      - generic [ref=f1e266]:
+        - generic [ref=f1e267]:
+          - generic [ref=f1e268]:
+            - heading "RECOMMENDATIONS" [level=2] [ref=f1e269]
+            - generic [ref=f1e270]: // Curated series recommendations
+          - generic [ref=f1e271]:
+            - generic [ref=f1e272]: 20 titles
+            - button "Scroll Left" [ref=f1e273] [cursor=pointer]
+            - button "Scroll Right" [ref=f1e276] [cursor=pointer]
+        - generic [ref=f1e279]:
+          - link "The Slime Diaries TV 8.0 The Slime Diaries 2021" [ref=f1e281] [cursor=pointer]:
+            - /url: /tv/118541
+            - generic [ref=f1e282]:
+              - img "The Slime Diaries" [ref=f1e283]
+              - generic:
+                - generic: TV
+                - generic: "8.0"
+              - button "+ Add to Watchlist" [ref=f1e286]
+            - generic [ref=f1e289]:
+              - heading "The Slime Diaries" [level=4] [ref=f1e290]
+              - generic [ref=f1e291]: "2021"
+          - link "The Faraway Paladin TV 7.1 The Faraway Paladin 2021" [ref=f1e294] [cursor=pointer]:
+            - /url: /tv/123525
+            - generic [ref=f1e295]:
+              - img "The Faraway Paladin" [ref=f1e296]
+              - generic:
+                - generic: TV
+                - generic: "7.1"
+              - button "+ Add to Watchlist" [ref=f1e299]
+            - generic [ref=f1e302]:
+              - heading "The Faraway Paladin" [level=4] [ref=f1e303]
+              - generic [ref=f1e304]: "2021"
+          - link "By the Grace of the Gods TV 8.0 By the Grace of the Gods 2020" [ref=f1e307] [cursor=pointer]:
+            - /url: /tv/102086
+            - generic [ref=f1e308]:
+              - img "By the Grace of the Gods" [ref=f1e309]
+              - generic:
+                - generic: TV
+                - generic: "8.0"
+              - button "+ Add to Watchlist" [ref=f1e312]
+            - generic [ref=f1e315]:
+              - heading "By the Grace of the Gods" [level=4] [ref=f1e316]
+              - generic [ref=f1e317]: "2020"
+          - link "TSUKIMICHI -Moonlit Fantasy- TV 8.4 TSUKIMICHI -Moonlit Fantasy- 2021" [ref=f1e320] [cursor=pointer]:
+            - /url: /tv/111819
+            - generic [ref=f1e321]:
+              - img "TSUKIMICHI -Moonlit Fantasy-" [ref=f1e322]
+              - generic:
+                - generic: TV
+                - generic: "8.4"
+              - button "+ Add to Watchlist" [ref=f1e325]
+            - generic [ref=f1e328]:
+              - heading "TSUKIMICHI -Moonlit Fantasy-" [level=4] [ref=f1e329]
+              - generic [ref=f1e330]: "2021"
+          - 'link "Beheneko: The Elf-Girl''s Cat Is Secretly an S-Ranked Monster! TV 6.3 Beheneko: The Elf-Girl''s Cat Is Secretly an S-Ranked Monster! 2025" [ref=f1e333] [cursor=pointer]':
+            - /url: /tv/249545
+            - generic [ref=f1e334]:
+              - 'img "Beheneko: The Elf-Girl''s Cat Is Secretly an S-Ranked Monster!" [ref=f1e335]'
+              - generic:
+                - generic: TV
+                - generic: "6.3"
+              - button "+ Add to Watchlist" [ref=f1e338]
+            - generic [ref=f1e341]:
+              - 'heading "Beheneko: The Elf-Girl''s Cat Is Secretly an S-Ranked Monster!" [level=4] [ref=f1e342]'
+              - generic [ref=f1e343]: "2025"
+          - link "Dead Mount Death Play TV 6.9 Dead Mount Death Play 2023" [ref=f1e346] [cursor=pointer]:
+            - /url: /tv/214540
+            - generic [ref=f1e347]:
+              - img "Dead Mount Death Play" [ref=f1e348]
+              - generic:
+                - generic: TV
+                - generic: "6.9"
+              - button "+ Add to Watchlist" [ref=f1e351]
+            - generic [ref=f1e354]:
+              - heading "Dead Mount Death Play" [level=4] [ref=f1e355]
+              - generic [ref=f1e356]: "2023"
+          - 'link "Demon Slayer: Kimetsu no Yaiba TV 8.6 Demon Slayer: Kimetsu no Yaiba 2019" [ref=f1e359] [cursor=pointer]':
+            - /url: /tv/85937
+            - generic [ref=f1e360]:
+              - 'img "Demon Slayer: Kimetsu no Yaiba" [ref=f1e361]'
+              - generic:
+                - generic: TV
+                - generic: "8.6"
+              - button "+ Add to Watchlist" [ref=f1e364]
+            - generic [ref=f1e367]:
+              - 'heading "Demon Slayer: Kimetsu no Yaiba" [level=4] [ref=f1e368]'
+              - generic [ref=f1e369]: "2019"
+          - link "I've Been Killing Slimes for 300 Years and Maxed Out My Level TV 7.8 I've Been Killing Slimes for 300 Years and Maxed Out My Level 2021" [ref=f1e372] [cursor=pointer]:
+            - /url: /tv/99073
+            - generic [ref=f1e373]:
+              - img "I've Been Killing Slimes for 300 Years and Maxed Out My Level" [ref=f1e374]
+              - generic:
+                - generic: TV
+                - generic: "7.8"
+              - button "+ Add to Watchlist" [ref=f1e377]
+            - generic [ref=f1e380]:
+              - heading "I've Been Killing Slimes for 300 Years and Maxed Out My Level" [level=4] [ref=f1e381]
+              - generic [ref=f1e382]: "2021"
+          - link "Good Bye, Dragon Life TV 7.5 Good Bye, Dragon Life 2024" [ref=f1e385] [cursor=pointer]:
+            - /url: /tv/259786
+            - generic [ref=f1e386]:
+              - img "Good Bye, Dragon Life" [ref=f1e387]
+              - generic:
+                - generic: TV
+                - generic: "7.5"
+              - button "+ Add to Watchlist" [ref=f1e390]
+            - generic [ref=f1e393]:
+              - heading "Good Bye, Dragon Life" [level=4] [ref=f1e394]
+              - generic [ref=f1e395]: "2024"
+          - link "The Greatest Demon Lord Is Reborn as a Typical Nobody TV 7.2 The Greatest Demon Lord Is Reborn as a Typical Nobody 2022" [ref=f1e398] [cursor=pointer]:
+            - /url: /tv/120155
+            - generic [ref=f1e399]:
+              - img "The Greatest Demon Lord Is Reborn as a Typical Nobody" [ref=f1e400]
+              - generic:
+                - generic: TV
+                - generic: "7.2"
+              - button "+ Add to Watchlist" [ref=f1e403]
+            - generic [ref=f1e406]:
+              - heading "The Greatest Demon Lord Is Reborn as a Typical Nobody" [level=4] [ref=f1e407]
+              - generic [ref=f1e408]: "2022"
+          - link "Blood+ TV 8.1 Blood+ 2005" [ref=f1e411] [cursor=pointer]:
+            - /url: /tv/19849
+            - generic [ref=f1e412]:
+              - img "Blood+" [ref=f1e413]
+              - generic:
+                - generic: TV
+                - generic: "8.1"
+              - button "+ Add to Watchlist" [ref=f1e416]
+            - generic [ref=f1e419]:
+              - heading "Blood+" [level=4] [ref=f1e420]
+              - generic [ref=f1e421]: "2005"
+          - link "Tower of God TV 8.1 Tower of God 2020" [ref=f1e424] [cursor=pointer]:
+            - /url: /tv/97860
+            - generic [ref=f1e425]:
+              - img "Tower of God" [ref=f1e426]
+              - generic:
+                - generic: TV
+                - generic: "8.1"
+              - button "+ Add to Watchlist" [ref=f1e429]
+            - generic [ref=f1e432]:
+              - heading "Tower of God" [level=4] [ref=f1e433]
+              - generic [ref=f1e434]: "2020"
+          - 'link "The Aristocrat''s Otherworldly Adventure: Serving Gods Who Go Too Far TV 7.1 The Aristocrat''s Otherworldly Adventure: Serving Gods Who Go Too Far 2023" [ref=f1e437] [cursor=pointer]':
+            - /url: /tv/207493
+            - generic [ref=f1e438]:
+              - 'img "The Aristocrat''s Otherworldly Adventure: Serving Gods Who Go Too Far" [ref=f1e439]'
+              - generic:
+                - generic: TV
+                - generic: "7.1"
+              - button "+ Add to Watchlist" [ref=f1e442]
+            - generic [ref=f1e445]:
+              - 'heading "The Aristocrat''s Otherworldly Adventure: Serving Gods Who Go Too Far" [level=4] [ref=f1e446]'
+              - generic [ref=f1e447]: "2023"
+          - link "The Hidden Dungeon Only I Can Enter TV 7.9 The Hidden Dungeon Only I Can Enter 2021" [ref=f1e450] [cursor=pointer]:
+            - /url: /tv/103157
+            - generic [ref=f1e451]:
+              - img "The Hidden Dungeon Only I Can Enter" [ref=f1e452]
+              - generic:
+                - generic: TV
+                - generic: "7.9"
+              - button "+ Add to Watchlist" [ref=f1e455]
+            - generic [ref=f1e458]:
+              - heading "The Hidden Dungeon Only I Can Enter" [level=4] [ref=f1e459]
+              - generic [ref=f1e460]: "2021"
+          - link "KONOSUBA - God's blessing on this wonderful world! TV 8.5 KONOSUBA - God's blessing on this wonderful world! 2016" [ref=f1e463] [cursor=pointer]:
+            - /url: /tv/65844
+            - generic [ref=f1e464]:
+              - img "KONOSUBA - God's blessing on this wonderful world!" [ref=f1e465]
+              - generic:
+                - generic: TV
+                - generic: "8.5"
+              - button "+ Add to Watchlist" [ref=f1e468]
+            - generic [ref=f1e471]:
+              - heading "KONOSUBA - God's blessing on this wonderful world!" [level=4] [ref=f1e472]
+              - generic [ref=f1e473]: "2016"
+          - link "Noragami TV 8.2 Noragami 2014" [ref=f1e476] [cursor=pointer]:
+            - /url: /tv/64710
+            - generic [ref=f1e477]:
+              - img "Noragami" [ref=f1e478]
+              - generic:
+                - generic: TV
+                - generic: "8.2"
+              - button "+ Add to Watchlist" [ref=f1e481]
+            - generic [ref=f1e484]:
+              - heading "Noragami" [level=4] [ref=f1e485]
+              - generic [ref=f1e486]: "2014"
+          - link "The Reincarnation of the Strongest Exorcist in Another World TV 7.0 The Reincarnation of the Strongest Exorcist in Another World 2023" [ref=f1e489] [cursor=pointer]:
+            - /url: /tv/156563
+            - generic [ref=f1e490]:
+              - img "The Reincarnation of the Strongest Exorcist in Another World" [ref=f1e491]
+              - generic:
+                - generic: TV
+                - generic: "7.0"
+              - button "+ Add to Watchlist" [ref=f1e494]
+            - generic [ref=f1e497]:
+              - heading "The Reincarnation of the Strongest Exorcist in Another World" [level=4] [ref=f1e498]
+              - generic [ref=f1e499]: "2023"
+          - link "Goblin Slayer TV 8.0 Goblin Slayer 2018" [ref=f1e502] [cursor=pointer]:
+            - /url: /tv/82591
+            - generic [ref=f1e503]:
+              - img "Goblin Slayer" [ref=f1e504]
+              - generic:
+                - generic: TV
+                - generic: "8.0"
+              - button "+ Add to Watchlist" [ref=f1e507]
+            - generic [ref=f1e510]:
+              - heading "Goblin Slayer" [level=4] [ref=f1e511]
+              - generic [ref=f1e512]: "2018"
+          - link "I Got a Cheat Skill in Another World and Became Unrivaled in the Real World, Too TV 8.2 I Got a Cheat Skill in Another World and Became Unrivaled in the Real World, Too 2023" [ref=f1e515] [cursor=pointer]:
+            - /url: /tv/208493
+            - generic [ref=f1e516]:
+              - img "I Got a Cheat Skill in Another World and Became Unrivaled in the Real World, Too" [ref=f1e517]
+              - generic:
+                - generic: TV
+                - generic: "8.2"
+              - button "+ Add to Watchlist" [ref=f1e520]
+            - generic [ref=f1e523]:
+              - heading "I Got a Cheat Skill in Another World and Became Unrivaled in the Real World, Too" [level=4] [ref=f1e524]
+              - generic [ref=f1e525]: "2023"
+          - link "Log Horizon TV 7.7 Log Horizon 2013" [ref=f1e528] [cursor=pointer]:
+            - /url: /tv/60846
+            - generic [ref=f1e529]:
+              - img "Log Horizon" [ref=f1e530]
+              - generic:
+                - generic: TV
+                - generic: "7.7"
+              - button "+ Add to Watchlist" [ref=f1e533]
+            - generic [ref=f1e536]:
+              - heading "Log Horizon" [level=4] [ref=f1e537]
+              - generic [ref=f1e538]: "2013"
+  - button "Open Next.js Dev Tools" [ref=f1e43] [cursor=pointer]
+  - alert [ref=f1e540]

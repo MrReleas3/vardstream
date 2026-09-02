@@ -1,0 +1,213 @@
+[    2601ms] [INFO] %cDownload the React DevTools for a better development experience: https://react.dev/link/react-devtools font-weight:bold @ http://localhost:3000/_next/static/chunks/node_modules_next_dist_1e8vcs8._.js:776
+[    2655ms] [LOG] [HMR] connected @ http://localhost:3000/_next/static/chunks/node_modules_next_dist_1e8vcs8._.js:776
+[    3011ms] [LOG] [Fast Refresh] rebuilding @ http://localhost:3000/_next/static/chunks/node_modules_next_dist_1e8vcs8._.js:776
+[    3032ms] [LOG] [Fast Refresh] done in 138ms @ http://localhost:3000/_next/static/chunks/node_modules_next_dist_1e8vcs8._.js:776
+[   44102ms] [WARNING] document.domain mutation is ignored because the surrounding agent cluster is origin-keyed. @ https://vsembed.ru/assets/sbx.js?v=1786671805:20
+[   44447ms] [WARNING] Allow attribute will take precedence over 'allowfullscreen'. @ https://vsembed.ru/embed/movie/438631/:24
+[   44518ms] SecurityError: Failed to read a named property 'addEventListener' from 'Window': Blocked a frame with origin "https://vsembed.ru" from accessing a cross-origin frame.
+    at Object.assign.isRunning (https://vsembed.ru/assets/disable-devtool.js?v=1785879645:1:16799)
+    at https://vsembed.ru/embed/movie/438631/:124:5
+    at https://vsembed.ru/embed/movie/438631/:127:3
+[   44769ms] [LOG] Error
+    at <anonymous>:1:37
+    at https://llvpn.com/tag.min.js:1:71346
+    at new Promise (<anonymous>)
+    at Nn (https://llvpn.com/tag.min.js:1:71241)
+    at Mo (https://llvpn.com/tag.min.js:1:90396)
+    at Ho (https://llvpn.com/tag.min.js:1:92550) @ :0
+[   44931ms] [LOG] Error
+    at <anonymous>:1:37
+    at https://llvpn.com/tag.min.js:1:71346
+    at new Promise (<anonymous>)
+    at Nn (https://llvpn.com/tag.min.js:1:71241)
+    at Mo (https://llvpn.com/tag.min.js:1:90396)
+    at Ho (https://llvpn.com/tag.min.js:1:92550) @ :0
+[   45423ms] [WARNING] Allow attribute will take precedence over 'allowfullscreen'. @ https://vsembed.ru/embed/movie/438631/:54
+[   45787ms] SecurityError: Failed to read a named property 'addEventListener' from 'Window': Blocked a frame with origin "https://cloudorchestranova.com" from accessing a cross-origin frame.
+    at Object.assign.isRunning (https://cloudorchestranova.com/embed/iframe_player/assets/disable-devtool.js?v=1786492668:1:16799)
+    at https://cloudorchestranova.com/embed/movie/438631?vs=zlJnODDjG7xBf70yEJ5LCCiLNxdTfLIOlUeX14KoiJvgxjpDw7XeVG6RJ9VDx9qklVOmglRxE-x4LAUQF8RGoohEFQvEEr-d6g:94:5
+    at https://cloudorchestranova.com/embed/movie/438631?vs=zlJnODDjG7xBf70yEJ5LCCiLNxdTfLIOlUeX14KoiJvgxjpDw7XeVG6RJ9VDx9qklVOmglRxE-x4LAUQF8RGoohEFQvEEr-d6g:96:3
+[   45799ms] [WARNING] Allow attribute will take precedence over 'allowfullscreen'. @ https://vsembed.ru/embed/movie/438631/:0
+[   46209ms] [WARNING] WARNING: Too many active WebGL contexts. Oldest context will be lost. @ https://484r.com/apu.php?zoneid=11064922&var=10966354:0
+[   46215ms] [WARNING] WARNING: Too many active WebGL contexts. Oldest context will be lost. @ https://484r.com/apu.php?zoneid=11064922&var=10966354:0
+[   46231ms] [WARNING] WARNING: Too many active WebGL contexts. Oldest context will be lost. @ https://vr-gc.com/vignette.min.js?z=11064924&var=10966354:0
+[   46239ms] [WARNING] WARNING: Too many active WebGL contexts. Oldest context will be lost. @ https://484r.com/apu.php?zoneid=11064922&var=10966354:0
+[   46245ms] [WARNING] WARNING: Too many active WebGL contexts. Oldest context will be lost. @ https://484r.com/apu.php?zoneid=11064922&var=10966354:0
+[   46258ms] [WARNING] WARNING: Too many active WebGL contexts. Oldest context will be lost. @ https://vr-gc.com/vignette.min.js?z=11064924&var=10966354:0
+[   46296ms] [WARNING] WARNING: Too many active WebGL contexts. Oldest context will be lost. @ https://92mim.com/tag.min.js?z=11064923&var=10966354:0
+[   46305ms] [WARNING] WARNING: Too many active WebGL contexts. Oldest context will be lost. @ https://92mim.com/tag.min.js?z=11064923&var=10966354:0
+[   46389ms] [WARNING] WARNING: Too many active WebGL contexts. Oldest context will be lost. @ https://484r.com/apu.php?zoneid=11064922&var=10966354:0
+[   46412ms] [WARNING] WARNING: Too many active WebGL contexts. Oldest context will be lost. @ https://484r.com/apu.php?zoneid=11064922&var=10966354:0
+[   46878ms] [WARNING] document.domain mutation is ignored because the surrounding agent cluster is origin-keyed. @ https://vr-gc.com/vignette.min.js?z=11064924&var=10966354:0
+[   46946ms] [WARNING] document.domain mutation is ignored because the surrounding agent cluster is origin-keyed. @ https://92mim.com/tag.min.js?z=11064923&var=10966354:0
+[   47001ms] [WARNING] WARNING: Too many active WebGL contexts. Oldest context will be lost. @ https://tzegilo.com/stattag.js:1
+[   47636ms] [WARNING] WARNING: Too many active WebGL contexts. Oldest context will be lost. @ https://484r.com/apu.php?zoneid=11064922&var=10966354:0
+[   47642ms] [LOG] Error
+    at <anonymous>:1:37
+    at https://484r.com/apu.php?zoneid=11064922&var=10966354:1:71370
+    at new Promise (<anonymous>)
+    at Nn (https://484r.com/apu.php?zoneid=11064922&var=10966354:1:71265)
+    at nr (https://484r.com/apu.php?zoneid=11064922&var=10966354:1:74021)
+    at https://484r.com/apu.php?zoneid=11064922&var=10966354:1:85580
+    at Array.forEach (<anonymous>)
+    at https://484r.com/apu.php?zoneid=11064922&var=10966354:1:85341
+    at Array.forEach (<anonymous>)
+    at Zi (https://484r.com/apu.php?zoneid=11064922&var=10966354:1:85260) @ :0
+[   47643ms] [LOG] Error
+    at <anonymous>:1:37
+    at https://484r.com/apu.php?zoneid=11064922&var=10966354:1:71370
+    at new Promise (<anonymous>)
+    at Nn (https://484r.com/apu.php?zoneid=11064922&var=10966354:1:71265)
+    at nr (https://484r.com/apu.php?zoneid=11064922&var=10966354:1:74021)
+    at https://484r.com/apu.php?zoneid=11064922&var=10966354:1:85580
+    at Array.forEach (<anonymous>)
+    at https://484r.com/apu.php?zoneid=11064922&var=10966354:1:85341
+    at Array.forEach (<anonymous>)
+    at Zi (https://484r.com/apu.php?zoneid=11064922&var=10966354:1:85260) @ :0
+[   47643ms] [LOG] Error
+    at <anonymous>:1:37
+    at https://484r.com/apu.php?zoneid=11064922&var=10966354:1:71370
+    at new Promise (<anonymous>)
+    at Nn (https://484r.com/apu.php?zoneid=11064922&var=10966354:1:71265)
+    at nr (https://484r.com/apu.php?zoneid=11064922&var=10966354:1:74021)
+    at https://484r.com/apu.php?zoneid=11064922&var=10966354:1:85580
+    at Array.forEach (<anonymous>)
+    at https://484r.com/apu.php?zoneid=11064922&var=10966354:1:85341
+    at Array.forEach (<anonymous>)
+    at Zi (https://484r.com/apu.php?zoneid=11064922&var=10966354:1:85260) @ :0
+[   47644ms] [LOG] Error
+    at <anonymous>:1:37
+    at https://484r.com/apu.php?zoneid=11064922&var=10966354:1:71370
+    at new Promise (<anonymous>)
+    at Nn (https://484r.com/apu.php?zoneid=11064922&var=10966354:1:71265)
+    at nr (https://484r.com/apu.php?zoneid=11064922&var=10966354:1:74021)
+    at Ho (https://484r.com/apu.php?zoneid=11064922&var=10966354:1:93385) @ :0
+[   47650ms] [WARNING] WARNING: Too many active WebGL contexts. Oldest context will be lost. @ https://484r.com/apu.php?zoneid=11064922&var=10966354:0
+[   47653ms] [LOG] Error
+    at <anonymous>:1:37
+    at https://484r.com/apu.php?zoneid=11064922&var=10966354:1:71370
+    at new Promise (<anonymous>)
+    at Nn (https://484r.com/apu.php?zoneid=11064922&var=10966354:1:71265)
+    at nr (https://484r.com/apu.php?zoneid=11064922&var=10966354:1:74021)
+    at https://484r.com/apu.php?zoneid=11064922&var=10966354:1:85580
+    at Array.forEach (<anonymous>)
+    at https://484r.com/apu.php?zoneid=11064922&var=10966354:1:85341
+    at Array.forEach (<anonymous>)
+    at Zi (https://484r.com/apu.php?zoneid=11064922&var=10966354:1:85260) @ :0
+[   47654ms] [LOG] Error
+    at <anonymous>:1:37
+    at https://484r.com/apu.php?zoneid=11064922&var=10966354:1:71370
+    at new Promise (<anonymous>)
+    at Nn (https://484r.com/apu.php?zoneid=11064922&var=10966354:1:71265)
+    at nr (https://484r.com/apu.php?zoneid=11064922&var=10966354:1:74021)
+    at https://484r.com/apu.php?zoneid=11064922&var=10966354:1:85580
+    at Array.forEach (<anonymous>)
+    at https://484r.com/apu.php?zoneid=11064922&var=10966354:1:85341
+    at Array.forEach (<anonymous>)
+    at Zi (https://484r.com/apu.php?zoneid=11064922&var=10966354:1:85260) @ :0
+[   47655ms] [LOG] Error
+    at <anonymous>:1:37
+    at https://484r.com/apu.php?zoneid=11064922&var=10966354:1:71370
+    at new Promise (<anonymous>)
+    at Nn (https://484r.com/apu.php?zoneid=11064922&var=10966354:1:71265)
+    at nr (https://484r.com/apu.php?zoneid=11064922&var=10966354:1:74021)
+    at https://484r.com/apu.php?zoneid=11064922&var=10966354:1:85580
+    at Array.forEach (<anonymous>)
+    at https://484r.com/apu.php?zoneid=11064922&var=10966354:1:85341
+    at Array.forEach (<anonymous>)
+    at Zi (https://484r.com/apu.php?zoneid=11064922&var=10966354:1:85260) @ :0
+[   47655ms] [LOG] Error
+    at <anonymous>:1:37
+    at https://484r.com/apu.php?zoneid=11064922&var=10966354:1:71370
+    at new Promise (<anonymous>)
+    at Nn (https://484r.com/apu.php?zoneid=11064922&var=10966354:1:71265)
+    at nr (https://484r.com/apu.php?zoneid=11064922&var=10966354:1:74021)
+    at Ho (https://484r.com/apu.php?zoneid=11064922&var=10966354:1:93385) @ :0
+[   51311ms] [LOG] Error
+    at <anonymous>:1:37
+    at https://484r.com/apu.php?zoneid=11064922&var=10966354:1:71370
+    at new Promise (<anonymous>)
+    at Nn (https://484r.com/apu.php?zoneid=11064922&var=10966354:1:71265)
+    at nr (https://484r.com/apu.php?zoneid=11064922&var=10966354:1:74021)
+    at https://484r.com/apu.php?zoneid=11064922&var=10966354:1:85580
+    at Array.forEach (<anonymous>)
+    at https://484r.com/apu.php?zoneid=11064922&var=10966354:1:85341
+    at Array.forEach (<anonymous>)
+    at Zi (https://484r.com/apu.php?zoneid=11064922&var=10966354:1:85260) @ :0
+[   51312ms] [LOG] Error
+    at <anonymous>:1:37
+    at https://484r.com/apu.php?zoneid=11064922&var=10966354:1:71370
+    at new Promise (<anonymous>)
+    at Nn (https://484r.com/apu.php?zoneid=11064922&var=10966354:1:71265)
+    at nr (https://484r.com/apu.php?zoneid=11064922&var=10966354:1:74021)
+    at https://484r.com/apu.php?zoneid=11064922&var=10966354:1:85580
+    at Array.forEach (<anonymous>)
+    at https://484r.com/apu.php?zoneid=11064922&var=10966354:1:85341
+    at Array.forEach (<anonymous>)
+    at Zi (https://484r.com/apu.php?zoneid=11064922&var=10966354:1:85260) @ :0
+[   51312ms] [LOG] Error
+    at <anonymous>:1:37
+    at https://484r.com/apu.php?zoneid=11064922&var=10966354:1:71370
+    at new Promise (<anonymous>)
+    at Nn (https://484r.com/apu.php?zoneid=11064922&var=10966354:1:71265)
+    at nr (https://484r.com/apu.php?zoneid=11064922&var=10966354:1:74021)
+    at https://484r.com/apu.php?zoneid=11064922&var=10966354:1:85580
+    at Array.forEach (<anonymous>)
+    at https://484r.com/apu.php?zoneid=11064922&var=10966354:1:85341
+    at Array.forEach (<anonymous>)
+    at Zi (https://484r.com/apu.php?zoneid=11064922&var=10966354:1:85260) @ :0
+[   51313ms] [LOG] Error
+    at <anonymous>:1:37
+    at https://484r.com/apu.php?zoneid=11064922&var=10966354:1:71370
+    at new Promise (<anonymous>)
+    at Nn (https://484r.com/apu.php?zoneid=11064922&var=10966354:1:71265)
+    at nr (https://484r.com/apu.php?zoneid=11064922&var=10966354:1:74021)
+    at https://484r.com/apu.php?zoneid=11064922&var=10966354:1:85580
+    at Array.forEach (<anonymous>)
+    at https://484r.com/apu.php?zoneid=11064922&var=10966354:1:85341
+    at Array.forEach (<anonymous>)
+    at Zi (https://484r.com/apu.php?zoneid=11064922&var=10966354:1:85260) @ :0
+[   51314ms] [LOG] Error
+    at <anonymous>:1:37
+    at https://484r.com/apu.php?zoneid=11064922&var=10966354:1:71370
+    at new Promise (<anonymous>)
+    at Nn (https://484r.com/apu.php?zoneid=11064922&var=10966354:1:71265)
+    at nr (https://484r.com/apu.php?zoneid=11064922&var=10966354:1:74021)
+    at https://484r.com/apu.php?zoneid=11064922&var=10966354:1:85580
+    at Array.forEach (<anonymous>)
+    at https://484r.com/apu.php?zoneid=11064922&var=10966354:1:85341
+    at Array.forEach (<anonymous>)
+    at Zi (https://484r.com/apu.php?zoneid=11064922&var=10966354:1:85260) @ :0
+[   51315ms] [LOG] Error
+    at <anonymous>:1:37
+    at https://484r.com/apu.php?zoneid=11064922&var=10966354:1:71370
+    at new Promise (<anonymous>)
+    at Nn (https://484r.com/apu.php?zoneid=11064922&var=10966354:1:71265)
+    at nr (https://484r.com/apu.php?zoneid=11064922&var=10966354:1:74021)
+    at https://484r.com/apu.php?zoneid=11064922&var=10966354:1:85580
+    at Array.forEach (<anonymous>)
+    at https://484r.com/apu.php?zoneid=11064922&var=10966354:1:85341
+    at Array.forEach (<anonymous>)
+    at Zi (https://484r.com/apu.php?zoneid=11064922&var=10966354:1:85260) @ :0
+[   51316ms] [LOG] Error
+    at <anonymous>:1:37
+    at https://484r.com/apu.php?zoneid=11064922&var=10966354:1:71370
+    at new Promise (<anonymous>)
+    at Nn (https://484r.com/apu.php?zoneid=11064922&var=10966354:1:71265)
+    at nr (https://484r.com/apu.php?zoneid=11064922&var=10966354:1:74021)
+    at https://484r.com/apu.php?zoneid=11064922&var=10966354:1:85580
+    at Array.forEach (<anonymous>)
+    at https://484r.com/apu.php?zoneid=11064922&var=10966354:1:85341
+    at Array.forEach (<anonymous>)
+    at Zi (https://484r.com/apu.php?zoneid=11064922&var=10966354:1:85260) @ :0
+[   51316ms] [LOG] Error
+    at <anonymous>:1:37
+    at https://484r.com/apu.php?zoneid=11064922&var=10966354:1:71370
+    at new Promise (<anonymous>)
+    at Nn (https://484r.com/apu.php?zoneid=11064922&var=10966354:1:71265)
+    at nr (https://484r.com/apu.php?zoneid=11064922&var=10966354:1:74021)
+    at https://484r.com/apu.php?zoneid=11064922&var=10966354:1:85580
+    at Array.forEach (<anonymous>)
+    at https://484r.com/apu.php?zoneid=11064922&var=10966354:1:85341
+    at Array.forEach (<anonymous>)
+    at Zi (https://484r.com/apu.php?zoneid=11064922&var=10966354:1:85260) @ :0
