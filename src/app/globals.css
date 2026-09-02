@@ -1,3 +1,5 @@
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&family=JetBrains+Mono:wght@400;500;600;700&display=swap');
+
 :root {
   /* Canvas & Backgrounds */
   --bg-canvas: #09090b;
@@ -39,8 +41,8 @@
   --radius-md: 6px;
 
   /* Typography Fonts */
-  --font-sans: var(--font-sans), 'Inter', -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
-  --font-mono: var(--font-mono), 'JetBrains Mono', ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, monospace;
+  --font-sans: 'Inter', -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+  --font-mono: 'JetBrains Mono', ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, monospace;
 }
 
 * {
