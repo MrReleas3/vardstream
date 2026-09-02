@@ -3,6 +3,7 @@ import { getAuthUserFromRequest } from "@/lib/auth";
 import { getCollection, getMemoryCollection } from "@/lib/db";
 import { ProviderSchema, UpdateProviderSchema } from "@/lib/validators";
 import { Provider } from "@/types";
+import { cacheDelete } from "@/lib/redis";
 
 export async function GET(req: Request) {
   const authUser = await getAuthUserFromRequest(req);
@@ -57,6 +58,8 @@ export async function POST(req: Request) {
     memory.push({ ...newProvider, _id: `prov-${newProvider.slug}` });
   }
 
+  await cacheDelete("providers:active:v1");
+
   return NextResponse.json({ ok: true, data: { provider: newProvider } });
 }
 
@@ -86,6 +89,8 @@ export async function PATCH(req: Request) {
     if (p) Object.assign(p, validated.data);
   }
 
+  await cacheDelete("providers:active:v1");
+
   return NextResponse.json({ ok: true, data: { message: "Provider updated successfully" } });
 }
 
@@ -109,6 +114,8 @@ export async function DELETE(req: Request) {
     const idx = memory.findIndex((p) => p.slug === slug);
     if (idx !== -1) memory.splice(idx, 1);
   }
+
+  await cacheDelete("providers:active:v1");
 
   return NextResponse.json({ ok: true, data: { message: `Provider ${slug} removed` } });
 }

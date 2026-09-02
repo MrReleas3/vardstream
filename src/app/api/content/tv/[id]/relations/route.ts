@@ -14,7 +14,10 @@ export async function GET(req: Request, { params }: { params: Promise<{ id: stri
 
   try {
     const relations = await getFranchiseRelations(tmdbId, "tv");
-    return NextResponse.json({ ok: true, data: { relations } });
+    return NextResponse.json(
+      { ok: true, data: { relations } },
+      { headers: { "Cache-Control": "public, s-maxage=43200, stale-while-revalidate=86400" } }
+    );
   } catch (err: any) {
     console.error(`[TV Relations Error on ${tmdbId}]:`, err);
     return NextResponse.json(

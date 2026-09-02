@@ -18,7 +18,10 @@ export async function GET(
 
   try {
     const episodes = await getSeasonEpisodes(tmdbId, sNum);
-    return NextResponse.json({ ok: true, data: { episodes } });
+    return NextResponse.json(
+      { ok: true, data: { episodes } },
+      { headers: { "Cache-Control": "public, s-maxage=86400, stale-while-revalidate=604800" } }
+    );
   } catch (err: any) {
     console.error(`[Season Episodes Error on ${tmdbId} s${sNum}]:`, err);
     return NextResponse.json(

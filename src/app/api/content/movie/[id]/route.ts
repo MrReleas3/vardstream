@@ -21,7 +21,10 @@ export async function GET(req: Request, { params }: { params: Promise<{ id: stri
       );
     }
 
-    return NextResponse.json({ ok: true, data: { movie } });
+    return NextResponse.json(
+      { ok: true, data: { movie } },
+      { headers: { "Cache-Control": "public, s-maxage=3600, stale-while-revalidate=86400" } }
+    );
   } catch (err: any) {
     console.error(`[Movie Details Error on ${tmdbId}]:`, err);
     return NextResponse.json(

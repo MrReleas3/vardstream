@@ -57,8 +57,12 @@ export default function MediaCard({
   const [removing, setRemoving] = useState(false);
   const [showConfirm, setShowConfirm] = useState(false);
   const isActivity = "progress" in item || "status" in item;
-  const tmdbId = isActivity ? (item as UserActivity).mediaId : (item as MediaDetail).tmdbId;
-  const mediaType: MediaType = isActivity ? (item as UserActivity).mediaType : (item as MediaDetail).mediaType || "movie";
+  const tmdbId = isActivity
+    ? (item as UserActivity).mediaId || (item as any).tmdbId || (item as any).id
+    : (item as MediaDetail).tmdbId || (item as any).id || (item as any).mediaId;
+  const mediaType: MediaType = isActivity
+    ? (item as UserActivity).mediaType || "movie"
+    : (item as MediaDetail).mediaType || (item as any).type || "movie";
   const title = (item as any).title || "Untitled";
   const posterPath = (item as any).posterPath;
   const backdropPath = (item as any).backdropPath;
@@ -68,7 +72,7 @@ export default function MediaCard({
   const initialFavorite = isActivity ? (item as UserActivity).isFavorite : false;
   const badgeText = (item as any).badgeText;
   const episodeCount = (item as any).episodeCount;
-  const targetUrl = (item as any).href || `/${mediaType}/${tmdbId}`;
+  const targetUrl = (item as any).href || (tmdbId ? `/${mediaType}/${tmdbId}` : `/${mediaType}`);
 
   const statusConfig = initialStatus && STATUS_CONFIG[initialStatus] ? STATUS_CONFIG[initialStatus] : null;
 

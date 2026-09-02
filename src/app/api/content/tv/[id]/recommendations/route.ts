@@ -17,7 +17,10 @@ export async function GET(req: Request, { params }: { params: Promise<{ id: stri
     const page = parseInt(url.searchParams.get("page") || "1", 10);
     const recommendations = await getRecommendations(tmdbId, "tv", page);
 
-    return NextResponse.json({ ok: true, data: { recommendations } });
+    return NextResponse.json(
+      { ok: true, data: { recommendations } },
+      { headers: { "Cache-Control": "public, s-maxage=7200, stale-while-revalidate=86400" } }
+    );
   } catch (err: any) {
     console.error(`[TV Recommendations Error on ${tmdbId}]:`, err);
     return NextResponse.json(

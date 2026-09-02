@@ -8,7 +8,8 @@ import { bootstrapDatabase } from "@/lib/seed";
 export const revalidate = 300;
 
 export default async function HomePage() {
-  await bootstrapDatabase();
+  // Run bootstrap in background if needed without delaying page TTFB
+  bootstrapDatabase().catch(() => {});
 
   const [trendingAll, popularMovies, animeData] = await Promise.all([
     getTrending("all", "day"),

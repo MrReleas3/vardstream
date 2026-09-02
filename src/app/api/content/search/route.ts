@@ -13,7 +13,10 @@ export async function GET(req: Request) {
 
   try {
     const results = await searchMedia(q.trim(), type);
-    return NextResponse.json({ ok: true, data: { results } });
+    return NextResponse.json(
+      { ok: true, data: { results } },
+      { headers: { "Cache-Control": "public, s-maxage=3600, stale-while-revalidate=86400" } }
+    );
   } catch (err: any) {
     console.error("[Search Error]:", err);
     return NextResponse.json(

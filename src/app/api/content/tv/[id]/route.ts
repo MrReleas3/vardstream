@@ -21,7 +21,10 @@ export async function GET(req: Request, { params }: { params: Promise<{ id: stri
       );
     }
 
-    return NextResponse.json({ ok: true, data: { show } });
+    return NextResponse.json(
+      { ok: true, data: { show } },
+      { headers: { "Cache-Control": "public, s-maxage=3600, stale-while-revalidate=86400" } }
+    );
   } catch (err: any) {
     console.error(`[TV Details Error on ${tmdbId}]:`, err);
     return NextResponse.json(
