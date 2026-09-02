@@ -9,7 +9,8 @@
     "lint": "eslint",
     "type-check": "tsc --noEmit",
     "seed": "node scripts/seed.mjs",
-    "db:init": "node scripts/seed.mjs"
+    "db:init": "node scripts/seed.mjs",
+    "admin": "node scripts/admin.mjs"
   },
   "dependencies": {
     "@upstash/ratelimit": "^2.0.8",

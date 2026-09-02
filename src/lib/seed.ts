@@ -5,7 +5,8 @@ import { InviteCode, Provider, User } from "@/types";
 
 export async function bootstrapDatabase(): Promise<{ message: string; adminCreated: boolean }> {
   let adminCreated = false;
-  const adminEmail = process.env.ADMIN_INITIAL_EMAIL || "admin@vardsrm.local";
+  const adminEmail = process.env.ADMIN_INITIAL_EMAIL;
+  const adminPassword = process.env.ADMIN_INITIAL_PASSWORD;
 
   // 1. Check or seed Providers
   const providersCol = await getCollection<Provider>("providers");
@@ -22,48 +23,50 @@ export async function bootstrapDatabase(): Promise<{ message: string; adminCreat
     }
   }
 
-  // 2. Check or seed Admin User
-  const usersCol = await getCollection<User>("users");
-  if (usersCol) {
-    const existingAdmin = await usersCol.findOne({ role: "admin" });
-    if (!existingAdmin) {
-      const passwordHash = await hashPassword("admin12345");
-      await usersCol.insertOne({
-        email: adminEmail,
-        username: "admin",
-        passwordHash,
-        role: "admin",
-        preferences: {
-          defaultSubtitleLang: "en",
-          autoPlayNext: true,
-          theme: "dark",
-        },
-        isDisabled: false,
-        createdAt: new Date().toISOString(),
-      } as any);
-      adminCreated = true;
-      console.log(`[Bootstrap] Created initial admin: ${adminEmail} (password: admin12345)`);
-    }
-  } else {
-    const memoryUsers = getMemoryCollection<User>("users");
-    const existingAdmin = memoryUsers.find((u) => u.role === "admin");
-    if (!existingAdmin) {
-      const passwordHash = await hashPassword("admin12345");
-      memoryUsers.push({
-        _id: "admin-root-id",
-        email: adminEmail,
-        username: "admin",
-        passwordHash,
-        role: "admin",
-        preferences: {
-          defaultSubtitleLang: "en",
-          autoPlayNext: true,
-          theme: "dark",
-        },
-        isDisabled: false,
-        createdAt: new Date().toISOString(),
-      });
-      adminCreated = true;
+  // 2. Check or seed Admin User if credentials are provided
+  if (adminEmail && adminPassword) {
+    const usersCol = await getCollection<User>("users");
+    if (usersCol) {
+      const existingAdmin = await usersCol.findOne({ role: "admin" });
+      if (!existingAdmin) {
+        const passwordHash = await hashPassword(adminPassword);
+        await usersCol.insertOne({
+          email: adminEmail,
+          username: adminEmail.split("@")[0] || "admin",
+          passwordHash,
+          role: "admin",
+          preferences: {
+            defaultSubtitleLang: "en",
+            autoPlayNext: true,
+            theme: "dark",
+          },
+          isDisabled: false,
+          createdAt: new Date().toISOString(),
+        } as any);
+        adminCreated = true;
+        console.log(`[Bootstrap] Created initial admin: ${adminEmail}`);
+      }
+    } else {
+      const memoryUsers = getMemoryCollection<User>("users");
+      const existingAdmin = memoryUsers.find((u) => u.role === "admin");
+      if (!existingAdmin) {
+        const passwordHash = await hashPassword(adminPassword);
+        memoryUsers.push({
+          _id: "admin-root-id",
+          email: adminEmail,
+          username: adminEmail.split("@")[0] || "admin",
+          passwordHash,
+          role: "admin",
+          preferences: {
+            defaultSubtitleLang: "en",
+            autoPlayNext: true,
+            theme: "dark",
+          },
+          isDisabled: false,
+          createdAt: new Date().toISOString(),
+        });
+        adminCreated = true;
+      }
     }
   }
 

@@ -85,6 +85,54 @@ export default function SettingsPage() {
     setSyncingSimkl(null);
   };
 
+  const [currentPassword, setCurrentPassword] = useState("");
+  const [newPassword, setNewPassword] = useState("");
+  const [confirmNewPassword, setConfirmNewPassword] = useState("");
+  const [changingPassword, setChangingPassword] = useState(false);
+  const [changePasswordError, setChangePasswordError] = useState("");
+  const [changePasswordSuccess, setChangePasswordSuccess] = useState("");
+
+  const handleChangePassword = async (e: React.FormEvent) => {
+    e.preventDefault();
+    setChangePasswordError("");
+    setChangePasswordSuccess("");
+
+    if (newPassword.length < 8) {
+      setChangePasswordError("New password must be at least 8 characters long.");
+      return;
+    }
+
+    if (newPassword !== confirmNewPassword) {
+      setChangePasswordError("New passwords do not match.");
+      return;
+    }
+
+    setChangingPassword(true);
+
+    try {
+      const res = await fetch("/api/auth/change-password", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({ currentPassword, newPassword }),
+      });
+
+      const data = await res.json();
+      if (!data.ok) {
+        setChangePasswordError(data.error?.message || "Failed to change password.");
+      } else {
+        setChangePasswordSuccess("Password updated successfully!");
+        setCurrentPassword("");
+        setNewPassword("");
+        setConfirmNewPassword("");
+        setTimeout(() => setChangePasswordSuccess(""), 4000);
+      }
+    } catch {
+      setChangePasswordError("A network error occurred while updating password.");
+    }
+
+    setChangingPassword(false);
+  };
+
   return (
     <div style={{ maxWidth: 840, margin: "0 auto", padding: "1.5rem 1rem 5rem 1rem" }}>
       {/* Header */}
@@ -289,7 +337,7 @@ export default function SettingsPage() {
           )}
         </div>
 
-        {/* Submit */}
+        {/* Submit Preferences */}
         <div>
           <button type="submit" disabled={saving} className="btn btn-primary font-mono" style={{ padding: "7px 18px", fontSize: "0.8rem" }}>
             {saving ? (
@@ -304,6 +352,116 @@ export default function SettingsPage() {
           </button>
         </div>
       </form>
+
+      {/* Separate Form for Change Password */}
+      <div className="panel" style={{ marginTop: "1.5rem", padding: "1.25rem", background: "var(--bg-surface)" }}>
+        <span className="font-mono" style={{ fontSize: "0.75rem", fontWeight: 700, color: "var(--text-muted)", display: "block", marginBottom: 3 }}>
+          // SECURITY_CREDENTIALS
+        </span>
+        <p style={{ color: "var(--text-secondary)", fontSize: "0.78rem", marginBottom: "1rem" }}>
+          Update your account password. Requires your existing password for verification.
+        </p>
+
+        {changePasswordError && (
+          <div
+            style={{
+              background: "var(--accent-rose-subtle)",
+              border: "1px solid rgba(244, 63, 94, 0.3)",
+              color: "#fda4af",
+              padding: "7px 12px",
+              borderRadius: "var(--radius-xs)",
+              fontSize: "0.78rem",
+              marginBottom: "1rem",
+              display: "flex",
+              alignItems: "center",
+              gap: 8,
+              fontFamily: "var(--font-mono)",
+            }}
+          >
+            {changePasswordError}
+          </div>
+        )}
+
+        {changePasswordSuccess && (
+          <div
+            style={{
+              background: "rgba(16, 185, 129, 0.08)",
+              border: "1px solid rgba(16, 185, 129, 0.3)",
+              color: "#6ee7b7",
+              padding: "7px 12px",
+              borderRadius: "var(--radius-xs)",
+              fontSize: "0.78rem",
+              marginBottom: "1rem",
+              display: "flex",
+              alignItems: "center",
+              gap: 8,
+              fontFamily: "var(--font-mono)",
+            }}
+          >
+            <CheckCircle2 size={14} color="#10b981" /> {changePasswordSuccess}
+          </div>
+        )}
+
+        <form onSubmit={handleChangePassword} style={{ display: "flex", flexDirection: "column", gap: "0.85rem", maxWidth: 420 }}>
+          <div>
+            <label className="font-mono" style={{ fontSize: "0.7rem", color: "var(--text-muted)", display: "block", marginBottom: 3 }}>
+              CURRENT_PASSWORD
+            </label>
+            <input
+              type="password"
+              placeholder="••••••••"
+              value={currentPassword}
+              onChange={(e) => setCurrentPassword(e.target.value)}
+              className="input-field font-mono"
+              style={{ fontSize: "0.8rem", padding: "6px 10px" }}
+              required
+            />
+          </div>
+
+          <div>
+            <label className="font-mono" style={{ fontSize: "0.7rem", color: "var(--text-muted)", display: "block", marginBottom: 3 }}>
+              NEW_PASSWORD (MIN 8 CHARS)
+            </label>
+            <input
+              type="password"
+              placeholder="••••••••"
+              value={newPassword}
+              onChange={(e) => setNewPassword(e.target.value)}
+              className="input-field font-mono"
+              style={{ fontSize: "0.8rem", padding: "6px 10px" }}
+              required
+              minLength={8}
+            />
+          </div>
+
+          <div>
+            <label className="font-mono" style={{ fontSize: "0.7rem", color: "var(--text-muted)", display: "block", marginBottom: 3 }}>
+              CONFIRM_NEW_PASSWORD
+            </label>
+            <input
+              type="password"
+              placeholder="••••••••"
+              value={confirmNewPassword}
+              onChange={(e) => setConfirmNewPassword(e.target.value)}
+              className="input-field font-mono"
+              style={{ fontSize: "0.8rem", padding: "6px 10px" }}
+              required
+              minLength={8}
+            />
+          </div>
+
+          <div>
+            <button
+              type="submit"
+              disabled={changingPassword}
+              className="btn btn-secondary font-mono"
+              style={{ padding: "6px 16px", fontSize: "0.78rem", marginTop: "0.25rem" }}
+            >
+              {changingPassword ? <RefreshCw size={12} className="animate-spin" /> : "UPDATE_PASSWORD"}
+            </button>
+          </div>
+        </form>
+      </div>
     </div>
   );
 }
