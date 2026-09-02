@@ -145,7 +145,9 @@ async function seed() {
     { expireAfterSeconds: 172800 }
   );
   await db.collection("telemetry_logs").createIndex({ providerSlug: 1, createdAt: -1 });
-  console.log(" -> All 11 collection & TTL indexes verified.");
+  await db.collection("password_resets").createIndex({ token: 1 }, { unique: true });
+  await db.collection("password_resets").createIndex({ email: 1 });
+  console.log(" -> All 13 collection & TTL indexes verified.");
 
   // 2. Admin User
   console.log("\x1b[34m[2/4] Verifying Admin account...\x1b[0m");

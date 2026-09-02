@@ -67,6 +67,10 @@ export async function initDbIndexes(db: Db): Promise<void> {
     );
     await db.collection("telemetry_logs").createIndex({ providerSlug: 1, createdAt: -1 }, { background: true });
 
+    // 6. password_resets
+    await db.collection("password_resets").createIndex({ token: 1 }, { unique: true, background: true });
+    await db.collection("password_resets").createIndex({ email: 1 }, { background: true });
+
     indexesInitialized = true;
     console.log("[MongoDB] All collections and database indexes initialized successfully.");
   } catch (err) {

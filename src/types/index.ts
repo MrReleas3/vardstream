@@ -176,3 +176,14 @@ export interface AuthSessionUser {
   username: string;
   role: UserRole;
 }
+
+export interface PasswordResetToken {
+  _id?: string;
+  userId: string;
+  email: string;
+  token: string;
+  expiresAt: string;
+  used: boolean;
+  createdAt: string;
+}
+

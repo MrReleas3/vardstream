@@ -7,11 +7,13 @@ const ACCESS_SECRET = new TextEncoder().encode(
 );
 
 // Paths accessible to anyone
-const PUBLIC_PAGE_PATHS = ["/welcome", "/login", "/register"];
+const PUBLIC_PAGE_PATHS = ["/welcome", "/login", "/register", "/forgot-password", "/reset-password"];
 const PUBLIC_API_PATHS = [
   "/api/auth/login",
   "/api/auth/register",
   "/api/auth/refresh",
+  "/api/auth/forgot-password",
+  "/api/auth/reset-password",
   "/api/health",
 ];
 
