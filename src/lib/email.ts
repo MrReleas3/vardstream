@@ -1,38 +1,46 @@
 import nodemailer from "nodemailer";
 
-const SMTP_HOST = process.env.SMTP_HOST;
-const SMTP_PORT = parseInt(process.env.SMTP_PORT || "587", 10);
-const SMTP_USER = process.env.SMTP_USER;
-const SMTP_PASS = process.env.SMTP_PASS;
-const SMTP_FROM = process.env.SMTP_FROM || `"VardStream" <noreply@${process.env.NEXT_PUBLIC_APP_URL ? new URL(process.env.NEXT_PUBLIC_APP_URL).hostname : "vardsrm.local"}>`;
-const SMTP_SECURE = process.env.SMTP_SECURE === "true" || SMTP_PORT === 465;
-
 export function isSmtpConfigured(): boolean {
-  return !!(SMTP_HOST && SMTP_USER && SMTP_PASS);
+  const host = process.env.SMTP_HOST;
+  const user = process.env.SMTP_USER;
+  const pass = process.env.SMTP_PASS;
+  return !!(host && user && pass);
 }
 
 export async function sendPasswordResetEmail(
   toEmail: string,
   resetUrl: string,
   username: string
-): Promise<{ success: boolean; previewUrl?: string }> {
+): Promise<{ success: boolean; messageId?: string; previewUrl?: string }> {
+  const host = process.env.SMTP_HOST;
+  const port = parseInt(process.env.SMTP_PORT || "587", 10);
+  const user = process.env.SMTP_USER;
+  const pass = process.env.SMTP_PASS;
+  const fromRaw = process.env.SMTP_FROM || user || "noreply@vardsrm.local";
+  const secure = process.env.SMTP_SECURE === "true" || port === 465;
+
   if (!isSmtpConfigured()) {
     console.log("\n=======================================================");
     console.log(" [SMTP DEV FALLBACK] Password Reset Requested");
     console.log(` Target User: ${username} <${toEmail}>`);
     console.log(` Reset URL:   ${resetUrl}`);
-    console.log(" Configure SMTP_HOST, SMTP_USER, SMTP_PASS in .env.local to send real emails.");
+    console.log(" Configure SMTP_HOST, SMTP_USER, SMTP_PASS in environment to dispatch real emails.");
     console.log("=======================================================\n");
     return { success: true, previewUrl: resetUrl };
   }
 
+  const fromFormatted = fromRaw.includes("<") ? fromRaw : `"VardStream" <${fromRaw}>`;
+
   const transporter = nodemailer.createTransport({
-    host: SMTP_HOST,
-    port: SMTP_PORT,
-    secure: SMTP_SECURE,
+    host,
+    port,
+    secure,
     auth: {
-      user: SMTP_USER,
-      pass: SMTP_PASS,
+      user,
+      pass,
+    },
+    tls: {
+      rejectUnauthorized: false,
     },
   });
 
@@ -60,7 +68,7 @@ export async function sendPasswordResetEmail(
           <tr>
             <td style="padding: 30px; font-size: 14px; line-height: 1.6; color: #a1a1aa;">
               <p style="margin: 0 0 16px 0; color: #f4f4f5;">Hello <strong>${username}</strong>,</p>
-              <p style="margin: 0 0 24px 0;">We received a request to reset your password for your VardStream account. Click the secure button below to set a new password:</p>
+              <p style="margin: 0 0 24px 0;">We received a request to reset the password for your VardStream account. Click the secure button below to set a new password:</p>
               
               <table cellpadding="0" cellspacing="0" style="margin: 24px 0;">
                 <tr>
@@ -91,13 +99,19 @@ export async function sendPasswordResetEmail(
 </html>
   `;
 
-  await transporter.sendMail({
-    from: SMTP_FROM,
-    to: toEmail,
-    subject: "Reset your VardStream password",
-    html: htmlContent,
-    text: `Hello ${username},\n\nWe received a request to reset your password. Use the link below to set a new password:\n\n${resetUrl}\n\nThis link will expire in 1 hour.\n\nIf you did not request this, please ignore this email.`,
-  });
+  try {
+    const info = await transporter.sendMail({
+      from: fromFormatted,
+      to: toEmail,
+      subject: "Reset your VardStream password",
+      html: htmlContent,
+      text: `Hello ${username},\n\nWe received a request to reset your password. Use the link below to set a new password:\n\n${resetUrl}\n\nThis link will expire in 1 hour.\n\nIf you did not request this, please ignore this email.`,
+    });
 
-  return { success: true };
+    console.log(`[Brevo SMTP] Email dispatched to ${toEmail} | Message ID: ${info.messageId}`);
+    return { success: true, messageId: info.messageId };
+  } catch (err: any) {
+    console.error(`[Brevo SMTP Error] Failed to send email to ${toEmail}:`, err);
+    throw err;
+  }
 }
