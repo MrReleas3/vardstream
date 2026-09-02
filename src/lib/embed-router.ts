@@ -109,7 +109,7 @@ export function buildEmbedUrl(
 export async function getActiveProviders(): Promise<Provider[]> {
   const cacheKey = "providers:active:v1";
   const cached = await cacheGet<Provider[]>(cacheKey);
-  if (cached && cached.length > 0) return cached;
+  if (cached !== null && Array.isArray(cached)) return cached;
 
   let providers: Provider[] = [];
 
@@ -120,26 +120,12 @@ export async function getActiveProviders(): Promise<Provider[]> {
       .sort({ healthScore: -1, priority: 1 })
       .toArray();
 
-    if (list.length > 0) {
-      providers = list;
-    }
-  }
-
-  if (providers.length === 0) {
-    // Check memory DB
+    providers = list as Provider[];
+  } else {
     const memoryList = getMemoryCollection<Provider>("providers");
-    if (memoryList.length > 0) {
-      providers = memoryList
-        .filter((p) => p.isEnabled && !p.circuitBreakerTripped)
-        .sort((a, b) => b.healthScore - a.healthScore || a.priority - b.priority);
-    }
-  }
-
-  if (providers.length === 0) {
-    // Fallback defaults
-    providers = DEFAULT_PROVIDERS.filter((p) => p.isEnabled && !p.circuitBreakerTripped).sort(
-      (a, b) => b.healthScore - a.healthScore || a.priority - b.priority
-    );
+    providers = memoryList
+      .filter((p) => p.isEnabled && !p.circuitBreakerTripped)
+      .sort((a, b) => b.healthScore - a.healthScore || a.priority - b.priority);
   }
 
   await cacheSet(cacheKey, providers, 3600); // 1 hour TTL

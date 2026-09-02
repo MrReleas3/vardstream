@@ -4,12 +4,15 @@ import { getCollection, getMemoryCollection } from "@/lib/db";
 import { ProviderSchema, UpdateProviderSchema } from "@/lib/validators";
 import { Provider } from "@/types";
 import { cacheDelete } from "@/lib/redis";
+import { bootstrapDatabase } from "@/lib/seed";
 
 export async function GET(req: Request) {
   const authUser = await getAuthUserFromRequest(req);
   if (!authUser || authUser.role !== "admin") {
     return NextResponse.json({ ok: false, error: { code: "FORBIDDEN", message: "Admin privileges required" } }, { status: 403 });
   }
+
+  await bootstrapDatabase();
 
   const providersCol = await getCollection<Provider>("providers");
   let providers: Provider[] = [];

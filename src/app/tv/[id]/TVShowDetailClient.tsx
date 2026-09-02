@@ -6,7 +6,7 @@ import Player from "@/components/Player";
 import MediaRail from "@/components/MediaRail";
 import WatchlistDropdown from "@/components/WatchlistDropdown";
 import { MediaDetail, StreamOption, TVEpisode } from "@/types";
-import { Star, Tv, Play, Hash, Calendar, X } from "lucide-react";
+import { Star, Tv, Play, Hash, Calendar } from "lucide-react";
 import { getClientCache, setClientCache } from "@/lib/client-cache";
 
 interface TVShowDetailClientProps {
@@ -121,35 +121,6 @@ export default function TVShowDetailClient({
       {/* Video Player Section (Rendered when user initiates playback) */}
       {isPlaying && (
         <div ref={playerRef} style={{ marginBottom: "1.75rem" }}>
-          <div
-            style={{
-              display: "flex",
-              alignItems: "center",
-              justifyContent: "space-between",
-              padding: "0.5rem 0.75rem",
-              background: "var(--bg-surface-elevated)",
-              border: "1px solid var(--border-default)",
-              borderBottom: "none",
-              borderRadius: "var(--radius-xs) var(--radius-xs) 0 0",
-            }}
-          >
-            <div style={{ display: "flex", alignItems: "center", gap: 6 }}>
-              <span className="badge-mono badge-brand">NOW_PLAYING</span>
-              <span style={{ fontSize: "0.82rem", fontWeight: 600 }}>
-                {show.title} &mdash; S{selectedSeason}:E{selectedEpisode}
-              </span>
-            </div>
-
-            <button
-              onClick={handleClosePlayer}
-              className="btn btn-ghost"
-              style={{ padding: "3px 8px", fontSize: "0.75rem", color: "var(--text-muted)", gap: 4 }}
-              title="Close Player"
-            >
-              <X size={13} /> Back to Overview
-            </button>
-          </div>
-
           <Player
             key={`${selectedSeason}-${selectedEpisode}`}
             streams={streams}
@@ -159,6 +130,18 @@ export default function TVShowDetailClient({
             episode={selectedEpisode}
             title={`${show.title} (S${selectedSeason}:E${selectedEpisode})`}
             posterPath={show.posterPath}
+            backdropPath={show.backdropPath}
+            seasons={show.seasons || []}
+            episodes={episodes}
+            selectedSeason={selectedSeason}
+            selectedEpisode={selectedEpisode}
+            onSelectSeason={(sNum) => setSelectedSeason(sNum)}
+            onSelectEpisode={(sNum, epNum) => {
+              setSelectedSeason(sNum);
+              setSelectedEpisode(epNum);
+            }}
+            loadingSeason={loadingSeason}
+            onClose={handleClosePlayer}
             initialProgressSeconds={
               savedActivity?.progress?.lastSeason === selectedSeason &&
               savedActivity?.progress?.lastEpisode === selectedEpisode
@@ -257,7 +240,7 @@ export default function TVShowDetailClient({
               )}
 
               <span className="badge-mono">
-                {show.numberOfSeasons} SEASONS // {show.numberOfEpisodes} EPS
+                {show.numberOfSeasons} SEASONS {"//"} {show.numberOfEpisodes} EPS
               </span>
 
               {show.firstAirDate && (
@@ -283,7 +266,7 @@ export default function TVShowDetailClient({
 
             {show.tagline && (
               <p className="font-mono" style={{ fontSize: "0.84rem", color: "var(--text-muted)", fontStyle: "italic" }}>
-                // &ldquo;{show.tagline}&rdquo;
+                {"//"} &ldquo;{show.tagline}&rdquo;
               </p>
             )}
 
@@ -355,7 +338,7 @@ export default function TVShowDetailClient({
               EPISODES
             </span>
             <span className="badge-mono">
-              SEASON {selectedSeason} // {episodes.length} EPS
+              SEASON {selectedSeason} {"//"} {episodes.length} EPS
             </span>
           </div>
 

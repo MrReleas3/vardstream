@@ -19,16 +19,34 @@ export async function bootstrapDatabase(): Promise<{ message: string; adminCreat
   const adminPassword = process.env.ADMIN_INITIAL_PASSWORD;
 
   // 1. Check or seed Providers
+  const metaCol = await getCollection("system_meta");
+  let isAlreadyInitialized = false;
+  if (metaCol) {
+    const meta = await metaCol.findOne({ _id: "db_bootstrapped" as any });
+    if (meta) {
+      isAlreadyInitialized = true;
+    }
+  }
+
   const providersCol = await getCollection<Provider>("providers");
   if (providersCol) {
-    const count = await providersCol.countDocuments();
-    if (count === 0) {
-      await providersCol.insertMany(DEFAULT_PROVIDERS as any);
-      console.log("[Bootstrap] Seeded default providers into MongoDB.");
+    if (!isAlreadyInitialized) {
+      const count = await providersCol.countDocuments();
+      if (count === 0) {
+        await providersCol.insertMany(DEFAULT_PROVIDERS as any);
+        console.log("[Bootstrap] Seeded default providers into MongoDB.");
+      }
+      if (metaCol) {
+        await metaCol.updateOne(
+          { _id: "db_bootstrapped" as any },
+          { $set: { bootstrapped: true, initializedAt: new Date().toISOString() } },
+          { upsert: true }
+        );
+      }
     }
   } else {
     const memoryProviders = getMemoryCollection<Provider>("providers");
-    if (memoryProviders.length === 0) {
+    if (memoryProviders.length === 0 && !global._dbBootstrapped) {
       memoryProviders.push(...DEFAULT_PROVIDERS);
     }
   }

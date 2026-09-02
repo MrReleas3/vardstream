@@ -1,9 +1,9 @@
 "use client";
 
-import React, { useState, useEffect } from "react";
+import React, { useState, useEffect, useRef } from "react";
 import Link from "next/link";
 import { useRouter, usePathname } from "next/navigation";
-import { Film, Tv, Bookmark, Shield, Search, LogOut, Settings, Key, Menu, X } from "lucide-react";
+import { Film, Tv, Bookmark, Shield, Search, LogOut, Settings, Key } from "lucide-react";
 import { AuthSessionUser } from "@/types";
 
 export default function Navbar() {
@@ -12,7 +12,6 @@ export default function Navbar() {
   const [searchQuery, setSearchQuery] = useState("");
   const [user, setUser] = useState<AuthSessionUser | null>(null);
   const [userMenuOpen, setUserMenuOpen] = useState(false);
-  const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
 
   useEffect(() => {
     let isMounted = true;
@@ -40,17 +39,27 @@ export default function Navbar() {
     };
   }, []);
 
-  // Close menus on route change
+  const menuRef = useRef<HTMLDivElement>(null);
+
+  // Close menu when clicking outside
   useEffect(() => {
-    setUserMenuOpen(false);
-    setMobileMenuOpen(false);
-  }, [pathname]);
+    function handleClickOutside(event: MouseEvent) {
+      if (menuRef.current && !menuRef.current.contains(event.target as Node)) {
+        setUserMenuOpen(false);
+      }
+    }
+    if (userMenuOpen) {
+      document.addEventListener("mousedown", handleClickOutside);
+    }
+    return () => {
+      document.removeEventListener("mousedown", handleClickOutside);
+    };
+  }, [userMenuOpen]);
 
   const handleSearch = (e: React.FormEvent) => {
     e.preventDefault();
     if (searchQuery.trim()) {
       router.push(`/search?q=${encodeURIComponent(searchQuery.trim())}`);
-      setMobileMenuOpen(false);
     }
   };
 
@@ -100,7 +109,7 @@ export default function Navbar() {
               V
             </div>
             <span style={{ fontSize: "0.9rem", fontWeight: 700, letterSpacing: "-0.02em", color: "var(--text-primary)" }}>
-              VARD<span style={{ color: "var(--text-muted)", fontWeight: 500 }}>//STREAM</span>
+              VARD<span style={{ color: "var(--text-muted)", fontWeight: 500 }}>{"//"}STREAM</span>
             </span>
           </Link>
 
@@ -188,7 +197,7 @@ export default function Navbar() {
           )}
         </div>
 
-        {/* Right Side: Desktop Search + User Controls */}
+        {/* Right Side: Desktop Search + User Profile Dropdown (Visible on Both Desktop & Mobile) */}
         <div style={{ display: "flex", alignItems: "center", gap: "0.5rem" }}>
           {!isWelcomePage && (
             <form onSubmit={handleSearch} className="hide-on-mobile" style={{ position: "relative", width: 200 }}>
@@ -235,7 +244,7 @@ export default function Navbar() {
           )}
 
           {user ? (
-            <div className="hide-on-mobile" style={{ position: "relative" }}>
+            <div ref={menuRef} style={{ position: "relative" }}>
               <button
                 onClick={() => setUserMenuOpen(!userMenuOpen)}
                 className="btn btn-secondary"
@@ -247,6 +256,7 @@ export default function Navbar() {
                   gap: 6,
                   height: "28px",
                 }}
+                aria-label="User profile and settings"
               >
                 <div
                   style={{
@@ -270,14 +280,14 @@ export default function Navbar() {
 
               {userMenuOpen && (
                 <div
-                  className="panel"
+                  className="panel font-mono"
                   style={{
                     position: "absolute",
                     right: 0,
                     top: "125%",
-                    width: 180,
+                    width: 195,
                     padding: "4px",
-                    boxShadow: "0 10px 25px rgba(0,0,0,0.6)",
+                    boxShadow: "0 10px 30px rgba(0,0,0,0.8)",
                     display: "flex",
                     flexDirection: "column",
                     gap: "2px",
@@ -286,17 +296,28 @@ export default function Navbar() {
                   }}
                 >
                   <div style={{ padding: "6px 8px", borderBottom: "1px solid var(--border-default)", marginBottom: 4 }}>
-                    <div style={{ fontSize: "0.7rem", color: "var(--text-muted)" }}>Signed in as</div>
+                    <div style={{ fontSize: "0.68rem", color: "var(--text-muted)" }}>Signed in as</div>
                     <div className="font-mono" style={{ fontSize: "0.75rem", fontWeight: 600, overflow: "hidden", textOverflow: "ellipsis", whiteSpace: "nowrap" }}>
                       {user.email}
                     </div>
                   </div>
 
+                  {user.role === "admin" && (
+                    <Link
+                      href="/admin"
+                      onClick={() => setUserMenuOpen(false)}
+                      className="btn btn-ghost"
+                      style={{ justifyContent: "flex-start", padding: "5px 8px", fontSize: "0.75rem", gap: 6, color: "#a5b4fc" }}
+                    >
+                      <Shield size={13} /> Admin Panel
+                    </Link>
+                  )}
+
                   <Link
                     href="/settings"
                     onClick={() => setUserMenuOpen(false)}
                     className="btn btn-ghost"
-                    style={{ justifyContent: "flex-start", padding: "5px 8px", fontSize: "0.78rem", gap: 6 }}
+                    style={{ justifyContent: "flex-start", padding: "5px 8px", fontSize: "0.75rem", gap: 6 }}
                   >
                     <Settings size={13} /> Preferences
                   </Link>
@@ -306,7 +327,7 @@ export default function Navbar() {
                       handleLogout();
                     }}
                     className="btn btn-ghost"
-                    style={{ justifyContent: "flex-start", padding: "5px 8px", fontSize: "0.78rem", gap: 6, color: "var(--accent-rose)", width: "100%" }}
+                    style={{ justifyContent: "flex-start", padding: "5px 8px", fontSize: "0.75rem", gap: 6, color: "var(--accent-rose)", width: "100%" }}
                   >
                     <LogOut size={13} /> Log out
                   </button>
@@ -314,7 +335,7 @@ export default function Navbar() {
               )}
             </div>
           ) : (
-            <div className="hide-on-mobile" style={{ display: "flex", alignItems: "center", gap: "0.35rem" }}>
+            <div style={{ display: "flex", alignItems: "center", gap: "0.35rem" }}>
               <Link
                 href="/register"
                 className="btn btn-outline"
@@ -331,185 +352,8 @@ export default function Navbar() {
               </Link>
             </div>
           )}
-
-          {/* Mobile Hamburger Toggle Button */}
-          {!isWelcomePage && (
-            <button
-              onClick={() => setMobileMenuOpen(!mobileMenuOpen)}
-              className="btn btn-secondary show-on-mobile"
-              style={{ width: 32, height: 32, padding: 0 }}
-              aria-label="Toggle Navigation Menu"
-            >
-              {mobileMenuOpen ? <X size={16} /> : <Menu size={16} />}
-            </button>
-          )}
         </div>
       </div>
-
-      {/* Mobile Collapsible Navigation Drawer */}
-      {mobileMenuOpen && !isWelcomePage && (
-        <div
-          className="panel show-on-mobile animate-fade-in"
-          style={{
-            position: "absolute",
-            top: "54px",
-            left: 0,
-            right: 0,
-            background: "var(--bg-surface)",
-            borderBottom: "1px solid var(--border-default)",
-            padding: "1rem",
-            flexDirection: "column",
-            gap: "0.75rem",
-            zIndex: 100,
-            boxShadow: "0 20px 40px rgba(0,0,0,0.8)",
-          }}
-        >
-          {/* Mobile Search Input */}
-          <form onSubmit={handleSearch} style={{ position: "relative", width: "100%" }}>
-            <Search
-              size={14}
-              style={{
-                position: "absolute",
-                left: 10,
-                top: "50%",
-                transform: "translateY(-50%)",
-                color: "var(--text-muted)",
-              }}
-            />
-            <input
-              type="text"
-              placeholder="Search movies, tv series..."
-              value={searchQuery}
-              onChange={(e) => setSearchQuery(e.target.value)}
-              className="input-field font-mono"
-              style={{ paddingLeft: 32, fontSize: "0.82rem", height: "32px", background: "var(--bg-subtle)" }}
-            />
-          </form>
-
-          {/* Nav Links Grid */}
-          <div style={{ display: "grid", gridTemplateColumns: "1fr 1fr", gap: "0.4rem" }}>
-            <Link
-              href="/"
-              onClick={() => setMobileMenuOpen(false)}
-              className="btn btn-secondary"
-              style={{ justifyContent: "flex-start", padding: "8px 10px", fontSize: "0.82rem" }}
-            >
-              Home
-            </Link>
-            <Link
-              href="/movie"
-              onClick={() => setMobileMenuOpen(false)}
-              className="btn btn-secondary"
-              style={{ justifyContent: "flex-start", padding: "8px 10px", fontSize: "0.82rem", gap: 6 }}
-            >
-              <Film size={13} /> Movies
-            </Link>
-            <Link
-              href="/tv"
-              onClick={() => setMobileMenuOpen(false)}
-              className="btn btn-secondary"
-              style={{ justifyContent: "flex-start", padding: "8px 10px", fontSize: "0.82rem", gap: 6 }}
-            >
-              <Tv size={13} /> TV & Anime
-            </Link>
-            <Link
-              href="/watchlist"
-              onClick={() => setMobileMenuOpen(false)}
-              className="btn btn-secondary"
-              style={{ justifyContent: "flex-start", padding: "8px 10px", fontSize: "0.82rem", gap: 6 }}
-            >
-              <Bookmark size={13} /> Watchlist
-            </Link>
-          </div>
-
-          {user?.role === "admin" && (
-            <Link
-              href="/admin"
-              onClick={() => setMobileMenuOpen(false)}
-              className="btn"
-              style={{
-                justifyContent: "center",
-                padding: "8px",
-                fontSize: "0.8rem",
-                fontFamily: "var(--font-mono)",
-                color: "#a5b4fc",
-                background: "var(--accent-brand-subtle)",
-                border: "1px solid rgba(99, 102, 241, 0.3)",
-              }}
-            >
-              <Shield size={13} /> ADMIN COMMAND CENTER
-            </Link>
-          )}
-
-          <div className="divider" style={{ margin: "0.25rem 0" }} />
-
-          {/* User Status / Account Controls */}
-          {user ? (
-            <div style={{ display: "flex", alignItems: "center", justifyContent: "space-between" }}>
-              <div style={{ display: "flex", alignItems: "center", gap: 6 }}>
-                <div
-                  style={{
-                    width: 20,
-                    height: 20,
-                    borderRadius: "var(--radius-xs)",
-                    background: "var(--border-strong)",
-                    display: "flex",
-                    alignItems: "center",
-                    justifyContent: "center",
-                    fontSize: "0.7rem",
-                    color: "var(--text-primary)",
-                    fontWeight: 700,
-                    fontFamily: "var(--font-mono)",
-                  }}
-                >
-                  {user.username.charAt(0).toUpperCase()}
-                </div>
-                <span className="font-mono" style={{ fontSize: "0.8rem" }}>{user.username}</span>
-              </div>
-
-              <div style={{ display: "flex", gap: "0.35rem" }}>
-                <Link
-                  href="/settings"
-                  onClick={() => setMobileMenuOpen(false)}
-                  className="btn btn-outline"
-                  style={{ padding: "4px 8px", fontSize: "0.75rem" }}
-                >
-                  <Settings size={12} /> Config
-                </Link>
-                <button
-                  onClick={() => {
-                    setMobileMenuOpen(false);
-                    handleLogout();
-                  }}
-                  className="btn btn-danger"
-                  style={{ padding: "4px 8px", fontSize: "0.75rem" }}
-                >
-                  <LogOut size={12} />
-                </button>
-              </div>
-            </div>
-          ) : (
-            <div style={{ display: "grid", gridTemplateColumns: "1fr 1fr", gap: "0.5rem" }}>
-              <Link
-                href="/register"
-                onClick={() => setMobileMenuOpen(false)}
-                className="btn btn-outline"
-                style={{ padding: "8px", fontSize: "0.8rem" }}
-              >
-                <Key size={12} /> Invite Key
-              </Link>
-              <Link
-                href="/login"
-                onClick={() => setMobileMenuOpen(false)}
-                className="btn btn-primary"
-                style={{ padding: "8px", fontSize: "0.8rem" }}
-              >
-                Sign In
-              </Link>
-            </div>
-          )}
-        </div>
-      )}
     </header>
   );
 }

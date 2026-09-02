@@ -1,6 +1,8 @@
 import type { Metadata } from "next";
+import { Suspense } from "react";
 import "./globals.css";
 import Navbar from "@/components/Navbar";
+import MobileBottomNav from "@/components/MobileBottomNav";
 
 export const metadata: Metadata = {
   title: "VardStream // Private Streaming Platform",
@@ -17,6 +19,9 @@ export default function RootLayout({
       <body style={{ backgroundColor: "var(--bg-canvas)", color: "var(--text-primary)", minHeight: "100vh" }}>
         <Navbar />
         <main style={{ minHeight: "calc(100vh - 56px)" }}>{children}</main>
+        <Suspense fallback={null}>
+          <MobileBottomNav />
+        </Suspense>
       </body>
     </html>
   );

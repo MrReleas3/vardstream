@@ -1,11 +1,11 @@
 "use client";
 
 import React, { useState, useRef } from "react";
-import { MediaDetail, StreamOption } from "@/types";
+import { MediaDetail, StreamOption, UserActivity } from "@/types";
 import Player from "@/components/Player";
 import MediaRail from "@/components/MediaRail";
 import WatchlistDropdown from "@/components/WatchlistDropdown";
-import { Star, Clock, Calendar, Film, Hash, Play, X, GitBranch, Sparkles } from "lucide-react";
+import { Star, Clock, Calendar, Film, Hash, Play } from "lucide-react";
 
 interface MovieDetailClientProps {
   movie: MediaDetail;
@@ -21,7 +21,7 @@ export default function MovieDetailClient({
   recommendations,
 }: MovieDetailClientProps) {
   const [isPlaying, setIsPlaying] = useState(false);
-  const [savedActivity, setSavedActivity] = useState<any>(null);
+  const [savedActivity, setSavedActivity] = useState<UserActivity | null>(null);
   const playerRef = useRef<HTMLDivElement>(null);
 
   React.useEffect(() => {
@@ -59,40 +59,15 @@ export default function MovieDetailClient({
       {/* Video Player Section (Only rendered when user clicks "Watch") */}
       {isPlaying && (
         <div ref={playerRef} style={{ marginBottom: "1.75rem" }}>
-          <div
-            style={{
-              display: "flex",
-              alignItems: "center",
-              justifyContent: "space-between",
-              padding: "0.5rem 0.75rem",
-              background: "var(--bg-surface-elevated)",
-              border: "1px solid var(--border-default)",
-              borderBottom: "none",
-              borderRadius: "var(--radius-xs) var(--radius-xs) 0 0",
-            }}
-          >
-            <div style={{ display: "flex", alignItems: "center", gap: 6 }}>
-              <span className="badge-mono badge-brand">NOW_PLAYING</span>
-              <span style={{ fontSize: "0.82rem", fontWeight: 600 }}>{movie.title}</span>
-            </div>
-
-            <button
-              onClick={handleClosePlayer}
-              className="btn btn-ghost"
-              style={{ padding: "3px 8px", fontSize: "0.75rem", color: "var(--text-muted)", gap: 4 }}
-              title="Close Player"
-            >
-              <X size={13} /> Back to Overview
-            </button>
-          </div>
-
           <Player
             streams={streams}
             mediaType="movie"
             tmdbId={movie.tmdbId}
             title={movie.title}
             posterPath={movie.posterPath}
+            backdropPath={movie.backdropPath}
             initialProgressSeconds={savedSeconds}
+            onClose={handleClosePlayer}
           />
         </div>
       )}
@@ -213,7 +188,7 @@ export default function MovieDetailClient({
 
             {movie.tagline && (
               <p className="font-mono" style={{ fontSize: "0.84rem", color: "var(--text-muted)", fontStyle: "italic" }}>
-                // &ldquo;{movie.tagline}&rdquo;
+                {"//"} &ldquo;{movie.tagline}&rdquo;
               </p>
             )}
 
