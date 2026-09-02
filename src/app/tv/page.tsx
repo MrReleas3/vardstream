@@ -4,6 +4,7 @@ import React, { useState, useEffect, useCallback } from "react";
 import { Tv, Filter, Star, Sparkles, ChevronDown, RefreshCw, SlidersHorizontal } from "lucide-react";
 import MediaCard from "@/components/MediaCard";
 import MediaGridSkeleton from "@/components/skeletons/MediaGridSkeleton";
+import { getClientCache, setClientCache } from "@/lib/client-cache";
 import { MediaDetail } from "@/types";
 
 const TV_GENRES = [
@@ -58,6 +59,18 @@ export default function TVExplorerPage() {
 
   const fetchTV = useCallback(
     async (pageNum: number, append: boolean = false) => {
+      const cacheKey = `tv:${isCustomFilter ? `${sortBy}:${selectedGenres.join(",")}:${selectedYear}:${minRating}` : activeCategory}:${pageNum}`;
+
+      if (!append) {
+        const cached = getClientCache<any>(cacheKey);
+        if (cached?.results && cached.results.length > 0) {
+          setItems(cached.results);
+          setTotalPages(cached.totalPages || 1);
+          setLoading(false);
+          return;
+        }
+      }
+
       if (append) setLoadingMore(true);
       else setLoading(true);
 
@@ -90,6 +103,7 @@ export default function TVExplorerPage() {
             setItems((prev) => [...prev, ...(data.data.results || [])]);
           } else {
             setItems(data.data.results || []);
+            setClientCache(cacheKey, data.data);
           }
           setTotalPages(data.data.totalPages || 1);
         }

@@ -15,9 +15,11 @@ export default function Navbar() {
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
 
   useEffect(() => {
+    let isMounted = true;
     fetch("/api/auth/me")
       .then((res) => (res.ok ? res.json() : null))
       .then((data) => {
+        if (!isMounted) return;
         if (data?.ok && data.data) {
           setUser({
             userId: data.data.userId,
@@ -29,8 +31,14 @@ export default function Navbar() {
           setUser(null);
         }
       })
-      .catch(() => setUser(null));
-  }, [pathname]);
+      .catch(() => {
+        if (isMounted) setUser(null);
+      });
+
+    return () => {
+      isMounted = false;
+    };
+  }, []);
 
   // Close menus on route change
   useEffect(() => {

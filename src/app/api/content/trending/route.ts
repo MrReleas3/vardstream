@@ -14,14 +14,21 @@ export async function GET(req: Request) {
       getPopular("tv"),
     ]);
 
-    return NextResponse.json({
-      ok: true,
-      data: {
-        trending: trending.status === "fulfilled" ? trending.value : [],
-        popularMovies: popularMovies.status === "fulfilled" ? popularMovies.value : [],
-        popularTV: popularTV.status === "fulfilled" ? popularTV.value : [],
+    return NextResponse.json(
+      {
+        ok: true,
+        data: {
+          trending: trending.status === "fulfilled" ? trending.value : [],
+          popularMovies: popularMovies.status === "fulfilled" ? popularMovies.value : [],
+          popularTV: popularTV.status === "fulfilled" ? popularTV.value : [],
+        },
       },
-    });
+      {
+        headers: {
+          "Cache-Control": "public, s-maxage=300, stale-while-revalidate=600",
+        },
+      }
+    );
   } catch (err: any) {
     console.error("[Content Trending Error]:", err);
     return NextResponse.json(

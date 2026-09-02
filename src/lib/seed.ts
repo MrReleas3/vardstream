@@ -3,7 +3,17 @@ import { hashPassword } from "./auth";
 import { DEFAULT_PROVIDERS } from "./embed-router";
 import { InviteCode, Provider, User } from "@/types";
 
+declare global {
+  // eslint-disable-next-line no-var
+  var _dbBootstrapped: boolean | undefined;
+}
+
 export async function bootstrapDatabase(): Promise<{ message: string; adminCreated: boolean }> {
+  if (global._dbBootstrapped) {
+    return { message: "Database already initialized", adminCreated: false };
+  }
+  global._dbBootstrapped = true;
+
   let adminCreated = false;
   const adminEmail = process.env.ADMIN_INITIAL_EMAIL;
   const adminPassword = process.env.ADMIN_INITIAL_PASSWORD;

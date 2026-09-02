@@ -22,53 +22,67 @@ if (upstashUrl && upstashToken) {
 }
 
 export async function cacheGet<T = any>(key: string): Promise<T | null> {
-  try {
-    if (redisClient) {
-      const data = await redisClient.get<T>(key);
-      return data;
-    }
-  } catch (err) {
-    console.warn("[Redis] Upstash cacheGet error, failing over to local cache:", err);
-  }
-
-  // Fallback memory cache
+  // 1. Check L1 in-process memory cache first (0.01ms)
   const cached = global._memoryCache!.get(key);
   if (cached) {
-    if (Date.now() > cached.expiresAt) {
-      global._memoryCache!.delete(key);
-      return null;
+    if (Date.now() <= cached.expiresAt) {
+      return cached.value as T;
     }
-    return cached.value as T;
+    global._memoryCache!.delete(key);
   }
+
+  // 2. Check L2 Upstash Redis if configured
+  if (redisClient) {
+    try {
+      const data = await redisClient.get<T>(key);
+      if (data !== null && data !== undefined) {
+        // Populate L1 cache for subsequent fast reads
+        global._memoryCache!.set(key, {
+          value: data,
+          expiresAt: Date.now() + 300 * 1000, // 5 min L1 TTL
+        });
+        return data;
+      }
+    } catch (err: any) {
+      if (err?.digest !== "DYNAMIC_SERVER_USAGE") {
+        console.warn("[Redis] Upstash cacheGet error:", err);
+      }
+    }
+  }
+
   return null;
 }
 
 export async function cacheSet(key: string, value: any, ttlSeconds = 3600): Promise<void> {
-  try {
-    if (redisClient) {
-      await redisClient.set(key, value, { ex: ttlSeconds });
-      return;
-    }
-  } catch (err) {
-    console.warn("[Redis] Upstash cacheSet error, storing in local cache:", err);
-  }
-
-  // Fallback memory cache
+  // 1. Populate L1 memory cache
   global._memoryCache!.set(key, {
     value,
-    expiresAt: Date.now() + ttlSeconds * 1000,
+    expiresAt: Date.now() + Math.min(ttlSeconds, 1800) * 1000,
   });
+
+  // 2. Populate L2 Upstash Redis if configured
+  if (redisClient) {
+    try {
+      await redisClient.set(key, value, { ex: ttlSeconds });
+    } catch (err: any) {
+      if (err?.digest !== "DYNAMIC_SERVER_USAGE") {
+        console.warn("[Redis] Upstash cacheSet error:", err);
+      }
+    }
+  }
 }
 
 export async function cacheDelete(key: string): Promise<void> {
-  try {
-    if (redisClient) {
-      await redisClient.del(key);
-    }
-  } catch (err) {
-    console.warn("[Redis] Upstash cacheDelete error:", err);
-  }
   global._memoryCache!.delete(key);
+  if (redisClient) {
+    try {
+      await redisClient.del(key);
+    } catch (err: any) {
+      if (err?.digest !== "DYNAMIC_SERVER_USAGE") {
+        console.warn("[Redis] Upstash cacheDelete error:", err);
+      }
+    }
+  }
 }
 
 export const isRedisConnected = () => !!(upstashUrl && upstashToken);

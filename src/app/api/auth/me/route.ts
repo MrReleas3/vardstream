@@ -8,7 +8,7 @@ import { ObjectId } from "mongodb";
 export async function GET(req: Request) {
   const authUser = await getAuthUserFromRequest(req);
   if (!authUser) {
-    return NextResponse.json({ ok: false, error: { code: "UNAUTHORIZED", message: "Not authenticated" } }, { status: 401 });
+    return NextResponse.json({ ok: false, data: null });
   }
 
   const usersCol = await getCollection<User>("users");
@@ -25,7 +25,7 @@ export async function GET(req: Request) {
   }
 
   if (!user) {
-    return NextResponse.json({ ok: false, error: { code: "USER_NOT_FOUND", message: "User not found" } }, { status: 404 });
+    return NextResponse.json({ ok: false, data: null });
   }
 
   return NextResponse.json({

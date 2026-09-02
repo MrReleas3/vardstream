@@ -23,21 +23,25 @@ export async function GET(req: Request) {
   const page = parseInt(url.searchParams.get("page") || "1", 10);
 
   try {
+    const cacheHeaders = {
+      "Cache-Control": "public, s-maxage=300, stale-while-revalidate=600",
+    };
+
     // If a specific preset category is requested and no custom filter overrides are present
     if (category && !genres && !year && !minRating && !sortBy) {
       if (type === "movie") {
         const data = await getMovieCategory(category as MovieCategory, page);
-        return NextResponse.json({ ok: true, data });
+        return NextResponse.json({ ok: true, data }, { headers: cacheHeaders });
       } else {
         const data = await getTVCategory(category as TVCategory, page);
-        return NextResponse.json({ ok: true, data });
+        return NextResponse.json({ ok: true, data }, { headers: cacheHeaders });
       }
     }
 
     // Special anime shortcut
     if (category === "anime") {
       const data = await getAnimeRail(sortBy || "first_air_date.desc", page, language);
-      return NextResponse.json({ ok: true, data });
+      return NextResponse.json({ ok: true, data }, { headers: cacheHeaders });
     }
 
     // General discovery with dynamic filters
@@ -50,7 +54,7 @@ export async function GET(req: Request) {
       page,
     });
 
-    return NextResponse.json({ ok: true, data });
+    return NextResponse.json({ ok: true, data }, { headers: cacheHeaders });
   } catch (err: any) {
     console.error("[Discover API Error]:", err);
     return NextResponse.json(

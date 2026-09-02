@@ -5,7 +5,7 @@ import InfiniteAnimeGrid from "@/components/InfiniteAnimeGrid";
 import { getTrending, getPopular, getAnimeRail } from "@/lib/tmdb";
 import { bootstrapDatabase } from "@/lib/seed";
 
-export const dynamic = "force-dynamic";
+export const revalidate = 300;
 
 export default async function HomePage() {
   await bootstrapDatabase();
