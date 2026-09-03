@@ -1,39 +1,24 @@
 import React from "react";
-import MediaGridSkeleton from "@/components/skeletons/MediaGridSkeleton";
-import { Skeleton } from "@/components/ui/skeleton";
 
 export default function WatchlistLoading() {
   return (
-    <div style={{ maxWidth: 1360, margin: "0 auto", padding: "1.5rem 1rem 5rem 1rem" }}>
-      {/* Header Skeleton */}
-      <div
-        style={{
-          display: "flex",
-          alignItems: "center",
-          justifyContent: "space-between",
-          marginBottom: "1.25rem",
-          paddingBottom: "0.75rem",
-          borderBottom: "1px solid var(--border-subtle)",
-          flexWrap: "wrap",
-          gap: "0.75rem",
-        }}
-      >
-        <div style={{ display: "flex", alignItems: "center", gap: 8 }}>
-          <Skeleton style={{ width: 140, height: 24 }} />
-          <Skeleton style={{ width: 80, height: 18 }} />
-        </div>
-
-        {/* Tab filters skeleton */}
-        <div style={{ display: "flex", gap: "0.35rem", flexWrap: "wrap" }}>
-          <Skeleton style={{ width: 45, height: 24 }} />
-          <Skeleton style={{ width: 75, height: 24 }} />
-          <Skeleton style={{ width: 85, height: 24 }} />
-          <Skeleton style={{ width: 70, height: 24 }} />
-          <Skeleton style={{ width: 55, height: 24 }} />
-        </div>
+    <div
+      style={{
+        flex: 1,
+        minHeight: "60vh",
+        display: "flex",
+        flexDirection: "column",
+        alignItems: "center",
+        justifyContent: "center",
+        fontFamily: "'JetBrains Mono', 'Share Tech Mono', monospace",
+        color: "#8ecf8e",
+        gap: 12,
+      }}
+    >
+      <div style={{ fontSize: 24, animation: "blink 1s step-end infinite" }}>_</div>
+      <div style={{ fontSize: 11, letterSpacing: "0.25em", color: "rgba(142,207,142,0.6)" }}>
+        READING QUEUE DATABASE...
       </div>
-
-      <MediaGridSkeleton count={12} />
     </div>
   );
 }

@@ -1,36 +1,46 @@
-@import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&family=JetBrains+Mono:wght@400;500;600;700&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&family=JetBrains+Mono:wght@300;400;500;600;700&family=Share+Tech+Mono&display=swap');
 
 :root {
-  /* Canvas & Backgrounds */
-  --bg-canvas: #09090b;
-  --bg-subtle: #0d0e11;
-  --bg-surface: #121316;
-  --bg-surface-elevated: #18191e;
-  --bg-surface-hover: #1e1f26;
-  --bg-glass: rgba(9, 9, 11, 0.95);
+  /* Retro Phosphor Terminal Tokens */
+  --phosphor: #8ecf8e;
+  --phosphor-dim: #6aaa6a;
+  --phosphor-ghost: rgba(142, 207, 142, 0.08);
+  --phosphor-glow: rgba(142, 207, 142, 0.22);
+  --screen-bg: #0b110b;
+  --panel-bg: #0e160e;
+  --border-color: rgba(142, 207, 142, 0.15);
+  --text-muted: rgba(142, 207, 142, 0.38);
+  --scanline-color: rgba(0, 0, 0, 0.22);
 
-  /* Borders - Sharp, low-contrast zinc */
-  --border-subtle: #18191e;
-  --border-default: #27272a;
-  --border-strong: #3f3f46;
-  --border-active: #52525b;
-  --border-accent: #6366f1;
+  /* Canvas & Backgrounds */
+  --bg-canvas: #0b110b;
+  --bg-subtle: #0e160e;
+  --bg-surface: rgba(10, 18, 10, 0.85);
+  --bg-surface-elevated: #111c11;
+  --bg-surface-hover: #162416;
+  --bg-glass: rgba(10, 16, 10, 0.9);
+
+  /* Borders - Phosphor and Zinc */
+  --border-subtle: rgba(142, 207, 142, 0.12);
+  --border-default: rgba(142, 207, 142, 0.22);
+  --border-strong: rgba(142, 207, 142, 0.45);
+  --border-active: #8ecf8e;
+  --border-accent: #8ecf8e;
 
   /* Typography */
-  --text-primary: #fafafa;
-  --text-secondary: #a1a1aa;
-  --text-muted: #71717a;
-  --text-faint: #52525b;
-  --text-inverse: #09090b;
+  --text-primary: #8ecf8e;
+  --text-secondary: #6aaa6a;
+  --text-faint: rgba(142, 207, 142, 0.25);
+  --text-inverse: #0b110b;
 
   /* Accents */
-  --accent-brand: #6366f1;
-  --accent-brand-hover: #4f46e5;
-  --accent-brand-subtle: rgba(99, 102, 241, 0.12);
-  --accent-emerald: #10b981;
-  --accent-emerald-subtle: rgba(16, 185, 129, 0.12);
-  --accent-amber: #f59e0b;
-  --accent-amber-subtle: rgba(245, 158, 11, 0.12);
+  --accent-brand: #8ecf8e;
+  --accent-brand-hover: #6aaa6a;
+  --accent-brand-subtle: rgba(142, 207, 142, 0.15);
+  --accent-emerald: #8ecf8e;
+  --accent-emerald-subtle: rgba(142, 207, 142, 0.12);
+  --accent-amber: #c8a96e;
+  --accent-amber-subtle: rgba(200, 169, 110, 0.15);
   --accent-rose: #f43f5e;
   --accent-rose-subtle: rgba(244, 63, 94, 0.12);
 
@@ -41,8 +51,8 @@
   --radius-md: 6px;
 
   /* Typography Fonts */
-  --font-sans: 'Inter', -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
-  --font-mono: 'JetBrains Mono', ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, monospace;
+  --font-sans: 'JetBrains Mono', 'Share Tech Mono', ui-monospace, monospace;
+  --font-mono: 'JetBrains Mono', 'Share Tech Mono', ui-monospace, monospace;
 }
 
 * {
@@ -52,24 +62,42 @@
 }
 
 html, body {
-  background-color: #060608;
-  background-image: 
-    linear-gradient(rgba(0, 0, 0, 0.4) 0%, rgba(0, 0, 0, 0.7) 100%),
-    repeating-linear-gradient(
-      0deg,
-      #050507 0px,
-      #050507 1px,
-      #0b0c10 1px,
-      #0b0c10 3px
-    );
-  background-attachment: fixed;
-  color: var(--text-primary);
-  font-family: var(--font-sans);
+  background: var(--screen-bg);
+  color: var(--phosphor);
+  font-family: 'JetBrains Mono', 'Share Tech Mono', monospace;
   min-height: 100vh;
   overflow-x: hidden;
   -webkit-font-smoothing: antialiased;
   letter-spacing: -0.01em;
   touch-action: manipulation;
+}
+
+/* CRT scanlines */
+body::before {
+  content: '';
+  position: fixed;
+  inset: 0;
+  background: repeating-linear-gradient(
+    to bottom,
+    transparent 0px,
+    transparent 2px,
+    var(--scanline-color) 2px,
+    var(--scanline-color) 3px
+  );
+  pointer-events: none;
+  z-index: 9999;
+}
+
+/* CRT vignette + warm tint */
+body::after {
+  content: '';
+  position: fixed;
+  inset: 0;
+  background:
+    radial-gradient(ellipse at center, transparent 55%, rgba(0,0,0,0.72) 100%),
+    linear-gradient(to bottom, rgba(20,14,0,0.06) 0%, rgba(0,8,0,0.08) 100%);
+  pointer-events: none;
+  z-index: 9998;
 }
 
 h1, h2, h3, h4, h5, h6 {
@@ -601,4 +629,138 @@ a {
     padding-bottom: calc(56px + env(safe-area-inset-bottom, 0px));
   }
 }
+
+/* ==========================================================================
+   RETRO TERMINAL UTILITIES & ANIMATIONS (VARD_stream)
+   ========================================================================== */
+
+/* Cursor blink */
+@keyframes blink {
+  0%, 49% { opacity: 1; }
+  50%, 100% { opacity: 0; }
+}
+
+@keyframes scanin {
+  from { opacity: 0; transform: translateY(-4px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+
+@keyframes flicker {
+  0%, 100% { opacity: 1; }
+  92% { opacity: 1; }
+  93% { opacity: 0.94; }
+  94% { opacity: 1; }
+  96% { opacity: 0.97; }
+  97% { opacity: 1; }
+}
+
+@keyframes pulse-glow {
+  0%, 100% { box-shadow: 0 0 12px rgba(142,207,142,0.07), 0 8px 32px rgba(0,0,0,0.9); }
+  50% { box-shadow: 0 0 20px rgba(142,207,142,0.12), 0 8px 32px rgba(0,0,0,0.9); }
+}
+
+.crt-flicker {
+  animation: flicker 8s infinite;
+}
+
+.cursor-blink::after {
+  content: '█';
+  animation: blink 1s step-end infinite;
+  margin-left: 2px;
+  font-size: 0.85em;
+}
+
+.glow-text {
+  text-shadow: 0 0 6px rgba(142,207,142,0.4), 0 0 18px rgba(142,207,142,0.12);
+}
+
+.glow-border {
+  border: 1px solid rgba(142,207,142,0.14);
+  box-shadow: 0 0 8px rgba(142,207,142,0.06), inset 0 0 8px rgba(142,207,142,0.02);
+}
+
+.card-hover {
+  transition: transform 0.18s ease, border-color 0.18s ease, box-shadow 0.18s ease;
+  will-change: transform;
+}
+.card-hover:hover {
+  border-color: rgba(142,207,142,0.38) !important;
+  box-shadow: 0 0 14px rgba(142,207,142,0.1), inset 0 0 12px rgba(142,207,142,0.03);
+  transform: translateY(-1px);
+}
+
+.nav-pill {
+  background: rgba(10, 16, 10, 0.92);
+  backdrop-filter: blur(20px);
+  -webkit-backdrop-filter: blur(20px);
+  border: 1px solid rgba(142,207,142,0.2);
+  box-shadow: 0 0 16px rgba(142,207,142,0.08), 0 8px 32px rgba(0,0,0,0.9);
+  animation: pulse-glow 5s ease-in-out infinite;
+}
+
+.search-input:focus {
+  outline: none;
+  border-color: rgba(142,207,142,0.5) !important;
+  box-shadow: 0 0 0 1px rgba(142,207,142,0.2), 0 0 16px rgba(142,207,142,0.08), inset 0 0 12px rgba(142,207,142,0.03) !important;
+}
+
+.tag {
+  font-size: 10px;
+  letter-spacing: 0.12em;
+  padding: 2px 6px;
+  border: 1px solid rgba(142,207,142,0.25);
+  color: var(--text-muted);
+}
+
+.rating-bar {
+  height: 2px;
+  background: rgba(142,207,142,0.15);
+  position: relative;
+  overflow: hidden;
+}
+.rating-bar-fill {
+  height: 100%;
+  background: var(--phosphor);
+  box-shadow: 0 0 6px rgba(142,207,142,0.6);
+}
+
+.section-header::before {
+  content: '> ';
+  opacity: 0.5;
+}
+
+.entry-animate {
+  animation: scanin 0.3s ease forwards;
+}
+
+/* Retro scrollbars */
+::-webkit-scrollbar { width: 4px; height: 4px; }
+::-webkit-scrollbar-track { background: transparent; }
+::-webkit-scrollbar-thumb { background: rgba(142,207,142,0.25); border-radius: 2px; }
+::-webkit-scrollbar-thumb:hover { background: rgba(142,207,142,0.5); }
+
+/* Focused Fullscreen Playback Mode */
+body.playback-active {
+  overflow: hidden !important;
+}
+body.playback-active .nav-pill-wrap {
+  display: none !important;
+}
+body.playback-active .retro-header {
+  display: none !important;
+}
+
+.focused-player-root {
+  position: fixed;
+  inset: 0;
+  z-index: 2000;
+  width: 100vw;
+  height: 100vh;
+  background: #000;
+  display: flex;
+  flex-direction: column;
+  overflow: hidden;
+  font-family: 'JetBrains Mono', 'Share Tech Mono', monospace;
+}
+
 

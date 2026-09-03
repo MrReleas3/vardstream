@@ -1,365 +1,334 @@
 "use client";
 
-import React, { useState } from "react";
-import Link from "next/link";
-import { Star, Play, X, RefreshCw } from "lucide-react";
+import React from "react";
+import { useRouter } from "next/navigation";
 import { MediaDetail, MediaType, UserActivity } from "@/types";
-import ConfirmModal from "./ConfirmModal";
+import { useWatchlist } from "@/context/WatchlistContext";
 
-interface MediaCardProps {
-  item: MediaDetail | UserActivity;
-  showProgress?: boolean;
+export interface MediaCardProps {
+  item: MediaDetail | UserActivity | any;
+  onToggleWatchlist?: (id: number) => void;
   showRemove?: boolean;
   onRemove?: () => void;
-  onCardClick?: (item: any) => void;
 }
 
-const STATUS_CONFIG: Record<string, { label: string; color: string; bg: string; border: string }> = {
-  watching: {
-    label: "WATCHING",
-    color: "#34d399",
-    bg: "rgba(6, 78, 59, 0.85)",
-    border: "rgba(52, 211, 153, 0.45)",
-  },
-  completed: {
-    label: "COMPLETED",
-    color: "#60a5fa",
-    bg: "rgba(30, 58, 138, 0.85)",
-    border: "rgba(96, 165, 250, 0.45)",
-  },
-  plan_to_watch: {
-    label: "PLANNING",
-    color: "#fb923c",
-    bg: "rgba(124, 45, 18, 0.85)",
-    border: "rgba(251, 146, 60, 0.45)",
-  },
-  paused: {
-    label: "PAUSED",
-    color: "#fbbf24",
-    bg: "rgba(113, 63, 18, 0.85)",
-    border: "rgba(251, 191, 36, 0.45)",
-  },
-  dropped: {
-    label: "DROPPED",
-    color: "#f87171",
-    bg: "rgba(127, 29, 29, 0.85)",
-    border: "rgba(248, 113, 113, 0.45)",
-  },
+const TYPE_COLORS: Record<string, string> = {
+  ANIME: "#8ecf8e",
+  MOVIE: "#7ab8cc",
+  SERIES: "#c8a96e",
 };
 
-export default function MediaCard({
-  item,
-  showProgress = false,
-  showRemove = false,
-  onRemove,
-  onCardClick,
-}: MediaCardProps) {
-  const [removing, setRemoving] = useState(false);
-  const [showConfirm, setShowConfirm] = useState(false);
-  const isActivity = "progress" in item || "status" in item;
-  const tmdbId = isActivity
-    ? (item as UserActivity).mediaId || (item as any).tmdbId || (item as any).id
-    : (item as MediaDetail).tmdbId || (item as any).id || (item as any).mediaId;
-  const mediaType: MediaType = isActivity
-    ? (item as UserActivity).mediaType || "movie"
-    : (item as MediaDetail).mediaType || (item as any).type || "movie";
-  const title = (item as any).title || "Untitled";
-  const posterPath = (item as any).posterPath;
-  const backdropPath = (item as any).backdropPath;
-  const voteAverage = (item as MediaDetail).voteAverage;
-  const progress = (item as UserActivity).progress;
-  const initialStatus = (item as any).status || null;
-  const initialFavorite = isActivity ? (item as UserActivity).isFavorite : false;
-  const badgeText = (item as any).badgeText;
-  const episodeCount = (item as any).episodeCount;
-  const targetUrl = (item as any).href || (tmdbId ? `/${mediaType}/${tmdbId}` : `/${mediaType}`);
+function StatusDot({ status }: { status: string }) {
+  const isOngoing = status === "ONGOING" || status === "RETURNING SERIES" || status === "WATCHING";
+  const isComplete = status === "COMPLETE" || status === "ENDED" || status === "RELEASED";
+  const color = isOngoing ? "#8ecf8e" : isComplete ? "rgba(142,207,142,0.4)" : "rgba(142,207,142,0.25)";
+  return (
+    <span
+      style={{
+        width: 6,
+        height: 6,
+        borderRadius: "50%",
+        background: color,
+        display: "inline-block",
+        flexShrink: 0,
+        boxShadow: isOngoing ? "0 0 6px #8ecf8e" : "none",
+      }}
+    />
+  );
+}
 
-  const statusConfig = initialStatus && STATUS_CONFIG[initialStatus] ? STATUS_CONFIG[initialStatus] : null;
+export default function MediaCard({ item, onToggleWatchlist, showRemove, onRemove }: MediaCardProps) {
+  const router = useRouter();
+  const { isQueued, toggleQueue } = useWatchlist();
 
-  const executeQuickRemove = async () => {
-    setRemoving(true);
+  // Normalize ID and MediaType
+  const tmdbId = item.tmdbId || item.mediaId || item.id;
+  const rawMediaType = (item.mediaType || (item.type ? item.type.toLowerCase() : "movie")) as MediaType;
+  const targetType = rawMediaType === "movie" ? "movie" : "tv";
 
-    try {
-      const res = await fetch(`/api/activities/${mediaType}/${tmdbId}`, {
-        method: "DELETE",
-      });
-      if (res.ok) {
-        onRemove?.();
-      }
-    } catch (err) {
-      console.error(err);
+  // Determine Display Type (ANIME | MOVIE | SERIES)
+  let displayType: "ANIME" | "MOVIE" | "SERIES" = "MOVIE";
+  if (item.type === "ANIME" || item.type === "MOVIE" || item.type === "SERIES") {
+    displayType = item.type;
+  } else {
+    const isAnimation =
+      item.genres?.some((g: any) => g.id === 16 || g.name === "Animation" || g.name === "Anime") ||
+      (Array.isArray(item.genre) && item.genre.some((g: string) => g.toLowerCase().includes("anime")));
+    if (isAnimation) {
+      displayType = "ANIME";
+    } else if (rawMediaType === "tv") {
+      displayType = "SERIES";
+    } else {
+      displayType = "MOVIE";
     }
-    setRemoving(false);
-    setShowConfirm(false);
-  };
+  }
 
-  const percentProgress =
-    progress?.durationSeconds && progress?.timestampSeconds
-      ? Math.min(100, Math.round((progress.timestampSeconds / progress.durationSeconds) * 100))
-      : progress?.timestampSeconds
-      ? 55
+  const typeColor = TYPE_COLORS[displayType] || "#8ecf8e";
+
+  // Normalize metadata
+  const title = item.title || item.name || "Untitled";
+  const year =
+    item.year ||
+    (item.releaseDate ? item.releaseDate.substring(0, 4) : null) ||
+    (item.firstAirDate ? item.firstAirDate.substring(0, 4) : "----");
+
+  const rating =
+    typeof item.voteAverage === "number"
+      ? item.voteAverage
+      : typeof item.rating === "number"
+      ? item.rating
       : 0;
 
-  const releaseYear =
-    (item as MediaDetail).releaseDate?.substring(0, 4) ||
-    (item as MediaDetail).firstAirDate?.substring(0, 4) ||
-    "";
+  const rawGenres = Array.isArray(item.genres)
+    ? item.genres.map((g: any) => (typeof g === "string" ? g : g.name)).filter(Boolean)
+    : Array.isArray(item.genre)
+    ? item.genre
+    : [];
+
+  const genreList = rawGenres.map((g: string) => g.toUpperCase());
+
+  const rawStatus = (item.status || "AVAILABLE").toUpperCase();
+  const episodes = item.episodes || item.numberOfEpisodes || item.episodeCount || null;
+
+  const queued = isQueued(targetType, tmdbId);
+
+  // Playback Progress (for continue-watching in watchlist)
+  const progressSeconds = item.progress?.timestampSeconds || 0;
+  const durationSeconds = item.progress?.durationSeconds || 0;
+  const progressPercent =
+    durationSeconds > 0
+      ? Math.min(100, Math.round((progressSeconds / durationSeconds) * 100))
+      : progressSeconds > 0
+      ? 50
+      : 0;
+
+  const handleCardClick = () => {
+    router.push(`/${targetType}/${tmdbId}`);
+  };
+
+  const handleQueueClick = async (e: React.MouseEvent) => {
+    e.stopPropagation();
+    e.preventDefault();
+    if (onToggleWatchlist) {
+      onToggleWatchlist(tmdbId);
+    }
+    await toggleQueue({
+      tmdbId,
+      mediaType: targetType,
+      title,
+      posterPath: item.posterPath,
+      backdropPath: item.backdropPath,
+    });
+    if (showRemove && queued) {
+      onRemove?.();
+    }
+  };
 
   return (
-    <>
-      <Link
-        href={targetUrl}
-        className="media-card-container"
-        onClick={(e) => {
-          if (onCardClick) {
-            e.preventDefault();
-            onCardClick(item);
-          }
+    <div
+      onClick={handleCardClick}
+      className="card-hover glow-border entry-animate"
+      style={{
+        background: "rgba(10, 18, 10, 0.65)",
+        padding: "14px",
+        cursor: "pointer",
+        position: "relative",
+        overflow: "hidden",
+        display: "flex",
+        flexDirection: "column",
+        justifyContent: "space-between",
+        fontFamily: "'JetBrains Mono', 'Share Tech Mono', monospace",
+      }}
+    >
+      {/* Corner Brackets */}
+      <div
+        style={{
+          position: "absolute",
+          top: 0,
+          left: 0,
+          width: 16,
+          height: 16,
+          borderTop: `2px solid ${typeColor}`,
+          borderLeft: `2px solid ${typeColor}`,
+          opacity: 0.75,
         }}
-      >
-        {/* Poster Aspect 2:3 */}
+      />
+      <div
+        style={{
+          position: "absolute",
+          bottom: 0,
+          right: 0,
+          width: 16,
+          height: 16,
+          borderBottom: "2px solid rgba(142,207,142,0.25)",
+          borderRight: "2px solid rgba(142,207,142,0.25)",
+        }}
+      />
+
+      {/* Top Header: Title + Type + Year + Queue Toggle Button */}
+      <div>
         <div
           style={{
-            width: "100%",
-            aspectRatio: "2/3",
-            background: "var(--bg-subtle)",
-            position: "relative",
-            overflow: "hidden",
-            borderBottom: "1px solid var(--border-subtle)",
+            display: "flex",
+            justifyContent: "space-between",
+            alignItems: "flex-start",
+            marginBottom: 10,
+            gap: 8,
           }}
         >
-          {posterPath ? (
-            <img
-              src={posterPath}
-              alt={title}
-              loading="lazy"
-              decoding="async"
-              style={{ width: "100%", height: "100%", objectFit: "cover", display: "block" }}
-            />
-          ) : (
+          <div style={{ flex: 1, minWidth: 0 }}>
             <div
               style={{
-                width: "100%",
-                height: "100%",
-                display: "flex",
-                alignItems: "center",
-                justifyContent: "center",
-                color: "var(--text-muted)",
-                fontSize: "0.72rem",
-                padding: "0.5rem",
-                textAlign: "center",
-                fontFamily: "var(--font-mono)",
+                fontSize: 13,
+                fontWeight: 700,
+                color: "#8ecf8e",
+                letterSpacing: "0.02em",
+                marginBottom: 3,
+                textShadow: "0 0 8px rgba(142,207,142,0.5)",
+                overflow: "hidden",
+                textOverflow: "ellipsis",
+                whiteSpace: "nowrap",
               }}
+              title={title}
             >
-              [NO_POSTER]
+              {title}
             </div>
-          )}
-
-          {/* Top Badges */}
-          <div
-            style={{
-              position: "absolute",
-              top: 4,
-              left: 4,
-              right: (showRemove || showProgress || isActivity) ? 26 : 4,
-              display: "flex",
-              alignItems: "center",
-              justifyContent: "space-between",
-              gap: 3,
-              pointerEvents: "none",
-            }}
-          >
-            <span
-              className="badge-mono"
-              style={{
-                fontSize: "0.58rem",
-                padding: "1px 4px",
-                background: "rgba(9, 9, 11, 0.9)",
-                flexShrink: 0,
-              }}
-            >
-              {badgeText || (mediaType === "tv" ? "TV" : "MOV")}
-            </span>
-
-            {voteAverage !== undefined && voteAverage > 0 && (
+            <div style={{ display: "flex", gap: 6, alignItems: "center" }}>
               <span
-                className="badge-mono"
                 style={{
-                  fontSize: "0.58rem",
-                  padding: "1px 4px",
-                  background: "rgba(9, 9, 11, 0.9)",
-                  color: "#fde68a",
-                  borderColor: "rgba(245, 158, 11, 0.3)",
-                  flexShrink: 0,
+                  fontSize: 10,
+                  fontWeight: 600,
+                  color: typeColor,
+                  letterSpacing: "0.1em",
+                  textShadow: `0 0 6px ${typeColor}`,
                 }}
               >
-                <Star size={8} fill="#fde68a" />
-                {voteAverage.toFixed(1)}
+                {displayType}
               </span>
-            )}
-          </div>
-
-          {/* One-Click Quick Dismiss Button with Confirmation Modal Trigger */}
-          {(showRemove || showProgress || isActivity) && (
-            <button
-              type="button"
-              onClick={(e) => {
-                e.preventDefault();
-                e.stopPropagation();
-                setShowConfirm(true);
-              }}
-              disabled={removing}
-              title="Remove from List"
-              style={{
-                position: "absolute",
-                top: 4,
-                right: 4,
-                width: 20,
-                height: 20,
-                borderRadius: "var(--radius-xs)",
-                background: "rgba(9, 9, 11, 0.85)",
-                border: "1px solid var(--border-default)",
-                color: "var(--text-muted)",
-                display: "flex",
-                alignItems: "center",
-                justifyContent: "center",
-                cursor: "pointer",
-                zIndex: 12,
-                transition: "all 0.15s ease",
-              }}
-              onMouseEnter={(e) => {
-                e.currentTarget.style.color = "var(--accent-rose)";
-                e.currentTarget.style.borderColor = "rgba(244, 63, 94, 0.4)";
-              }}
-              onMouseLeave={(e) => {
-                e.currentTarget.style.color = "var(--text-muted)";
-                e.currentTarget.style.borderColor = "var(--border-default)";
-              }}
-            >
-              {removing ? <RefreshCw size={9} className="animate-spin" /> : <X size={10} />}
-            </button>
-          )}
-
-          {/* Play Icon Subtle Overlay */}
-          <div className="play-hover-overlay">
-            <div
-              style={{
-                width: 30,
-                height: 30,
-                borderRadius: "var(--radius-xs)",
-                background: "#ffffff",
-                color: "#000000",
-                display: "flex",
-                alignItems: "center",
-                justifyContent: "center",
-              }}
-            >
-              <Play size={13} fill="#000" color="#000" style={{ marginLeft: 2 }} />
+              <span style={{ color: "rgba(142,207,142,0.25)", fontSize: 10 }}>·</span>
+              <span style={{ fontSize: 10, color: "rgba(142,207,142,0.5)" }}>{year}</span>
             </div>
           </div>
 
-          {/* Continue Watching Progress Line */}
-          {showProgress && percentProgress > 0 && (
+          {/* Queue Button */}
+          <button
+            onClick={handleQueueClick}
+            style={{
+              background: queued ? "rgba(142,207,142,0.15)" : "transparent",
+              border: `1px solid ${queued ? "rgba(142,207,142,0.6)" : "rgba(142,207,142,0.22)"}`,
+              color: queued ? "#8ecf8e" : "rgba(142,207,142,0.45)",
+              fontSize: 9,
+              padding: "4px 8px",
+              cursor: "pointer",
+              letterSpacing: "0.08em",
+              fontFamily: "inherit",
+              transition: "all 0.15s ease",
+              flexShrink: 0,
+              whiteSpace: "nowrap",
+              textShadow: queued ? "0 0 6px rgba(142,207,142,0.5)" : "none",
+            }}
+            onMouseEnter={(e) => {
+              e.currentTarget.style.borderColor = "#8ecf8e";
+              e.currentTarget.style.color = "#8ecf8e";
+            }}
+            onMouseLeave={(e) => {
+              e.currentTarget.style.borderColor = queued ? "rgba(142,207,142,0.6)" : "rgba(142,207,142,0.22)";
+              e.currentTarget.style.color = queued ? "#8ecf8e" : "rgba(142,207,142,0.45)";
+            }}
+          >
+            {queued ? "QUEUED" : "+ QUEUE"}
+          </button>
+        </div>
+
+        {/* Rating Bar */}
+        <div style={{ marginBottom: 10 }}>
+          <div style={{ display: "flex", justifyContent: "space-between", marginBottom: 4 }}>
+            <span style={{ fontSize: 10, color: "rgba(142,207,142,0.45)", letterSpacing: "0.1em" }}>
+              RATING
+            </span>
+            <span style={{ fontSize: 10, fontWeight: 600, color: "#8ecf8e" }}>
+              {rating > 0 ? rating.toFixed(1) : "N/A"}
+            </span>
+          </div>
+          <div className="rating-bar">
             <div
-              style={{
-                position: "absolute",
-                bottom: 0,
-                left: 0,
-                width: "100%",
-                height: 2,
-                background: "rgba(255,255,255,0.15)",
-              }}
-            >
+              className="rating-bar-fill"
+              style={{ width: `${Math.min(100, Math.max(0, (rating / 10) * 100))}%` }}
+            />
+          </div>
+        </div>
+
+        {/* Playback Progress (if watching) */}
+        {progressPercent > 0 && (
+          <div style={{ marginBottom: 10 }}>
+            <div style={{ display: "flex", justifyContent: "space-between", marginBottom: 3 }}>
+              <span style={{ fontSize: 9, color: "rgba(142,207,142,0.45)", letterSpacing: "0.08em" }}>
+                PROGRESS
+              </span>
+              <span style={{ fontSize: 9, color: "#8ecf8e" }}>{progressPercent}%</span>
+            </div>
+            <div style={{ height: 2, background: "rgba(142,207,142,0.15)" }}>
               <div
                 style={{
                   height: "100%",
-                  width: `${percentProgress}%`,
-                  background: "var(--accent-emerald)",
+                  width: `${progressPercent}%`,
+                  background: "#8ecf8e",
+                  boxShadow: "0 0 4px #8ecf8e",
                 }}
               />
             </div>
-          )}
-        </div>
+          </div>
+        )}
+      </div>
 
-        {/* Info Block */}
-        <div style={{ padding: "6px 8px", display: "flex", flexDirection: "column", gap: 3 }}>
-          <h4
-            style={{
-              fontSize: "0.78rem",
-              fontWeight: 600,
-              whiteSpace: "nowrap",
-              overflow: "hidden",
-              textOverflow: "ellipsis",
-              color: "var(--text-primary)",
-            }}
-            title={title}
-          >
-            {title}
-          </h4>
-          <div
-            className="font-mono"
-            style={{
-              display: "flex",
-              alignItems: "center",
-              justifyContent: "space-between",
-              fontSize: "0.68rem",
-              color: "var(--text-muted)",
-              gap: 4,
-            }}
-          >
-            <div style={{ display: "flex", alignItems: "center", gap: 5, minWidth: 0, overflow: "hidden" }}>
-              {statusConfig && (
-                <span
-                  className="badge-mono"
-                  style={{
-                    fontSize: "0.56rem",
-                    padding: "0px 4px",
-                    background: statusConfig.bg,
-                    color: statusConfig.color,
-                    borderColor: statusConfig.border,
-                    fontWeight: 700,
-                    letterSpacing: "0.02em",
-                    lineHeight: "1.35",
-                    flexShrink: 0,
-                  }}
-                >
-                  {statusConfig.label}
-                </span>
-              )}
-
-              {episodeCount ? (
-                <span style={{ whiteSpace: "nowrap", overflow: "hidden", textOverflow: "ellipsis" }}>
-                  {episodeCount} EPS {releaseYear ? `// ${releaseYear}` : ""}
-                </span>
-              ) : mediaType === "tv" && progress?.lastSeason ? (
-                <span style={{ color: "var(--accent-brand)", whiteSpace: "nowrap" }}>
-                  S{progress.lastSeason}:E{progress.lastEpisode || 1}
-                </span>
-              ) : (
-                <span style={{ whiteSpace: "nowrap" }}>{releaseYear || "—"}</span>
-              )}
-            </div>
-
-            {showProgress && percentProgress > 0 ? (
-              <span style={{ color: "var(--accent-emerald)", flexShrink: 0, fontWeight: 600 }}>{percentProgress}%</span>
-            ) : initialFavorite ? (
-              <span style={{ color: "#fb7185", flexShrink: 0, fontSize: "0.65rem" }}>♥</span>
-            ) : null}
+      {/* Bottom Row: Genre Tags + Status Dot */}
+      <div>
+        <div
+          style={{
+            display: "flex",
+            justifyContent: "space-between",
+            alignItems: "center",
+            gap: 8,
+          }}
+        >
+          <div style={{ display: "flex", gap: 4, flexWrap: "wrap", flex: 1, minWidth: 0 }}>
+            {genreList.slice(0, 2).map((g: string) => (
+              <span key={g} className="tag" style={{ whiteSpace: "nowrap" }}>
+                {g}
+              </span>
+            ))}
+          </div>
+          <div style={{ display: "flex", gap: 4, alignItems: "center", flexShrink: 0 }}>
+            <StatusDot status={rawStatus} />
+            <span
+              style={{
+                fontSize: 9,
+                color: "rgba(142,207,142,0.4)",
+                letterSpacing: "0.06em",
+                maxWidth: 80,
+                overflow: "hidden",
+                textOverflow: "ellipsis",
+                whiteSpace: "nowrap",
+              }}
+            >
+              {rawStatus}
+            </span>
           </div>
         </div>
-      </Link>
 
-      {/* Confirmation Modal for Quick Removal */}
-      <ConfirmModal
-        isOpen={showConfirm}
-        title="CONFIRM_REMOVAL"
-        description={`Are you sure you want to remove "${title}" from your continue watching / watchlist?`}
-        confirmText="Remove Entry"
-        cancelText="Keep"
-        loading={removing}
-        onConfirm={executeQuickRemove}
-        onClose={() => setShowConfirm(false)}
-      />
-    </>
+        {episodes && (
+          <div
+            style={{
+              marginTop: 8,
+              fontSize: 10,
+              color: "rgba(142,207,142,0.3)",
+              letterSpacing: "0.06em",
+            }}
+          >
+            {episodes} EPS
+          </div>
+        )}
+      </div>
+    </div>
   );
 }

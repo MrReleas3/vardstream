@@ -440,6 +440,199 @@ const MOCK_MEDIA_LIST: MediaDetail[] = [
     seasons: [
       { id: 98534, seasonNumber: 1, name: "Season 1", overview: "The vigilantes fight back against Vought.", episodeCount: 8, posterPath: null }
     ]
+  },
+  {
+    tmdbId: 890,
+    imdbId: "tt0112159",
+    title: "Neon Genesis Evangelion",
+    overview: "At the dawn of the 21st century, the secret organization NERV defends the fortress city Tokyo-3 against mysterious alien monsters named Angels using giant bio-mechanical humanoids known as Evangelions.",
+    posterPath: "https://image.tmdb.org/t/p/w500/m9Dkd60b1s2O4n1D523i8xG4hU4.jpg",
+    backdropPath: "https://image.tmdb.org/t/p/original/jBJWaqoSCiARWtfV0Glq6YcWf7j.jpg",
+    firstAirDate: "1995-10-04",
+    numberOfSeasons: 1,
+    numberOfEpisodes: 26,
+    genres: [{ id: 16, name: "Animation" }, { id: 10765, name: "Sci-Fi & Fantasy" }, { id: 18, name: "Drama" }],
+    voteAverage: 9.1,
+    status: "Ended",
+    tagline: "Don't run away.",
+    mediaType: "tv",
+    seasons: [
+      { id: 2568, seasonNumber: 1, name: "Season 1", overview: "Shinji Ikari is drafted to pilot Evangelion Unit-01.", episodeCount: 26, posterPath: null }
+    ]
+  },
+  {
+    tmdbId: 9323,
+    imdbId: "tt0113568",
+    title: "Ghost in the Shell",
+    overview: "In the year 2029, the barriers of our world have been broken down by the net and by cybernetics, but this brings new vulnerability to humans in the form of brain-hacking.",
+    posterPath: "https://image.tmdb.org/t/p/w500/9gC88zC2A9agF1b5Jp6w9d0rXh5.jpg",
+    backdropPath: "https://image.tmdb.org/t/p/original/jBJWaqoSCiARWtfV0Glq6YcWf7j.jpg",
+    releaseDate: "1995-11-18",
+    runtime: 83,
+    genres: [{ id: 16, name: "Animation" }, { id: 878, name: "Sci-Fi" }, { id: 28, name: "Action" }],
+    voteAverage: 8.5,
+    status: "Released",
+    tagline: "It found a voice... now it needs a body.",
+    mediaType: "movie",
+  },
+  {
+    tmdbId: 2190,
+    imdbId: "tt0221769",
+    title: "Serial Experiments Lain",
+    overview: "Lain Iwakura, an awkward and introverted fourteen-year-old girl, is one of the many girls from her school to receive a disturbing email from her classmate Chisa Yomoda.",
+    posterPath: "https://image.tmdb.org/t/p/w500/3o8uWd1j0o4n1D523i8xG4hU4.jpg",
+    backdropPath: "https://image.tmdb.org/t/p/original/jBJWaqoSCiARWtfV0Glq6YcWf7j.jpg",
+    firstAirDate: "1998-07-06",
+    numberOfSeasons: 1,
+    numberOfEpisodes: 13,
+    genres: [{ id: 16, name: "Animation" }, { id: 9648, name: "Mystery" }, { id: 10765, name: "Sci-Fi & Fantasy" }],
+    voteAverage: 8.7,
+    status: "Ended",
+    tagline: "Close the world, Open the nExt.",
+    mediaType: "tv",
+    seasons: [
+      { id: 6200, seasonNumber: 1, name: "Layer 01", overview: "Weird messages from the Wired.", episodeCount: 13, posterPath: null }
+    ]
+  },
+  {
+    tmdbId: 70523,
+    imdbId: "tt5753856",
+    title: "Dark",
+    overview: "A missing child causes four families to help each other for answers. What they could not imagine is that this mystery would be connected to innumerable other secrets of the small town.",
+    posterPath: "https://image.tmdb.org/t/p/w500/apbrbWs8M9lyOpJYU5WXrpFbk1Z.jpg",
+    backdropPath: "https://image.tmdb.org/t/p/original/3lBDg3i6nn5R2NKICJ4990LIXe.jpg",
+    firstAirDate: "2017-12-01",
+    numberOfSeasons: 3,
+    numberOfEpisodes: 26,
+    genres: [{ id: 10765, name: "Sci-Fi & Fantasy" }, { id: 18, name: "Drama" }, { id: 9648, name: "Mystery" }],
+    voteAverage: 8.8,
+    status: "Ended",
+    tagline: "The question is not where, but when.",
+    mediaType: "tv",
+    seasons: [
+      { id: 92837, seasonNumber: 1, name: "Cycle 1", overview: "Secrets spanning across 1953, 1986, and 2019.", episodeCount: 10, posterPath: null }
+    ]
+  },
+  {
+    tmdbId: 149,
+    imdbId: "tt0094625",
+    title: "Akira",
+    overview: "A secret military project endangers Neo-Tokyo when it turns a biker gang member into a rampaging psychic psychopath who can only be stopped by a teenager, his gang of friends and a group of psychics.",
+    posterPath: "https://image.tmdb.org/t/p/w500/5nT1c60o4n1D523i8xG4hU4.jpg",
+    backdropPath: "https://image.tmdb.org/t/p/original/jBJWaqoSCiARWtfV0Glq6YcWf7j.jpg",
+    releaseDate: "1988-07-16",
+    runtime: 124,
+    genres: [{ id: 16, name: "Animation" }, { id: 878, name: "Sci-Fi" }, { id: 28, name: "Action" }],
+    voteAverage: 8.1,
+    status: "Released",
+    tagline: "Neo-Tokyo is about to E.X.P.L.O.D.E.",
+    mediaType: "movie",
+  },
+  {
+    tmdbId: 95396,
+    imdbId: "tt11280740",
+    title: "Severance",
+    overview: "Mark leads a team of office workers whose memories have been surgically divided between their work and personal lives. When a mysterious colleague appears outside of work, it begins a journey to discover the truth about their jobs.",
+    posterPath: "https://image.tmdb.org/t/p/w500/6k9U95Y1j0o4n1D523i8xG4hU4.jpg",
+    backdropPath: "https://image.tmdb.org/t/p/original/o0K5pl4sl5o4n1D523i8xG4hU4.jpg",
+    firstAirDate: "2022-02-17",
+    numberOfSeasons: 2,
+    numberOfEpisodes: 19,
+    genres: [{ id: 18, name: "Drama" }, { id: 9648, name: "Mystery" }, { id: 10765, name: "Sci-Fi & Fantasy" }],
+    voteAverage: 8.7,
+    status: "Returning Series",
+    tagline: "Please do not attempt to adjust your focus.",
+    mediaType: "tv",
+    seasons: [
+      { id: 136195, seasonNumber: 1, name: "Season 1", overview: "The Macrodata Refinement division begins questioning reality.", episodeCount: 9, posterPath: null }
+    ]
+  },
+  {
+    tmdbId: 62,
+    imdbId: "tt0062622",
+    title: "2001: A Space Odyssey",
+    overview: "Humanity finds a mysterious object buried beneath the lunar surface and sets off to find its origins with the help of HAL 9000, the world's most advanced supercomputer.",
+    posterPath: "https://image.tmdb.org/t/p/w500/9gC88zC2A9agF1b5Jp6w9d0rXh5.jpg",
+    backdropPath: "https://image.tmdb.org/t/p/original/jBJWaqoSCiARWtfV0Glq6YcWf7j.jpg",
+    releaseDate: "1968-04-02",
+    runtime: 149,
+    genres: [{ id: 878, name: "Sci-Fi" }, { id: 9648, name: "Mystery" }],
+    voteAverage: 8.3,
+    status: "Released",
+    tagline: "An epic drama of adventure and exploration.",
+    mediaType: "movie",
+  },
+  {
+    tmdbId: 89632,
+    imdbId: "tt10233448",
+    title: "Vinland Saga",
+    overview: "Thorfinn pursues a journey with his father's killer in order to take revenge and end his life in a duel, while finding himself caught in the middle of a war for the crown of England.",
+    posterPath: "https://image.tmdb.org/t/p/w500/3o8uWd1j0o4n1D523i8xG4hU4.jpg",
+    backdropPath: "https://image.tmdb.org/t/p/original/jBJWaqoSCiARWtfV0Glq6YcWf7j.jpg",
+    firstAirDate: "2019-07-07",
+    numberOfSeasons: 2,
+    numberOfEpisodes: 48,
+    genres: [{ id: 16, name: "Animation" }, { id: 28, name: "Action" }, { id: 18, name: "Drama" }],
+    voteAverage: 8.8,
+    status: "Returning Series",
+    tagline: "Beyond the edge of the sea.",
+    mediaType: "tv",
+    seasons: [
+      { id: 124800, seasonNumber: 1, name: "Season 1", overview: "The story of young Thorfinn.", episodeCount: 24, posterPath: null }
+    ]
+  },
+  {
+    tmdbId: 264660,
+    imdbId: "tt0470752",
+    title: "Ex Machina",
+    overview: "Caleb, a coder at the world's largest internet company, wins a competition to spend a week at a private mountain retreat belonging to Nathan, the reclusive CEO. But when he arrives, he discovers that he must participate in a strange and fascinating experiment.",
+    posterPath: "https://image.tmdb.org/t/p/w500/9gC88zC2A9agF1b5Jp6w9d0rXh5.jpg",
+    backdropPath: "https://image.tmdb.org/t/p/original/jBJWaqoSCiARWtfV0Glq6YcWf7j.jpg",
+    releaseDate: "2015-01-21",
+    runtime: 108,
+    genres: [{ id: 18, name: "Drama" }, { id: 878, name: "Sci-Fi" }],
+    voteAverage: 7.7,
+    status: "Released",
+    tagline: "There is nothing more human than the will to survive.",
+    mediaType: "movie",
+  },
+  {
+    tmdbId: 35848,
+    imdbId: "tt0816692",
+    title: "Planetes",
+    overview: "In the year 2075, mankind has reached a point where journeying between Earth, the space stations and the Moon is a daily reality. However, the consequence of space advancement is the problem of space debris.",
+    posterPath: "https://image.tmdb.org/t/p/w500/3o8uWd1j0o4n1D523i8xG4hU4.jpg",
+    backdropPath: "https://image.tmdb.org/t/p/original/jBJWaqoSCiARWtfV0Glq6YcWf7j.jpg",
+    firstAirDate: "2003-10-04",
+    numberOfSeasons: 1,
+    numberOfEpisodes: 26,
+    genres: [{ id: 16, name: "Animation" }, { id: 18, name: "Drama" }, { id: 10765, name: "Sci-Fi & Fantasy" }],
+    voteAverage: 8.1,
+    status: "Ended",
+    tagline: "Orbital debris collection team.",
+    mediaType: "tv",
+    seasons: [
+      { id: 48900, seasonNumber: 1, name: "Season 1", overview: "The Debris Section carries out their duties.", episodeCount: 26, posterPath: null }
+    ]
+  },
+  {
+    tmdbId: 62560,
+    imdbId: "tt4158110",
+    title: "Mr. Robot",
+    overview: "A young programmer who works as a cyber-security engineer by day and a vigilante hacker by night finds himself recruited by an underground group of hacktivists.",
+    posterPath: "https://image.tmdb.org/t/p/w500/9gC88zC2A9agF1b5Jp6w9d0rXh5.jpg",
+    backdropPath: "https://image.tmdb.org/t/p/original/jBJWaqoSCiARWtfV0Glq6YcWf7j.jpg",
+    firstAirDate: "2015-06-24",
+    numberOfSeasons: 4,
+    numberOfEpisodes: 45,
+    genres: [{ id: 80, name: "Crime" }, { id: 18, name: "Drama" }],
+    voteAverage: 8.5,
+    status: "Ended",
+    tagline: "Our democracy has been hacked.",
+    mediaType: "tv",
+    seasons: [
+      { id: 67345, seasonNumber: 1, name: "Season 1", overview: "Elliot Alderson joins fsociety.", episodeCount: 10, posterPath: null }
+    ]
   }
 ];
 
@@ -551,29 +744,48 @@ export async function getSeasonEpisodes(tmdbId: number, seasonNum: number): Prom
   return episodes;
 }
 
-export async function searchMedia(query: string, type: "all" | MediaType = "all"): Promise<MediaDetail[]> {
+export async function searchMedia(query: string, type: "all" | MediaType | "anime" = "all"): Promise<MediaDetail[]> {
   const queryHash = Buffer.from(`${query.toLowerCase()}:${type}`).toString("base64");
   const cacheKey = `tmdb:search:${queryHash}`;
   const cached = await cacheGet<MediaDetail[]>(cacheKey);
   if (cached && cached.length > 0) return cached;
 
-  const endpoint = type === "all" ? "/search/multi" : `/search/${type}`;
+  const endpoint = type === "all" || type === "anime" ? "/search/multi" : `/search/${type}`;
   const raw = await fetchFromTmdb<{ results: any[] }>(endpoint, { query });
 
   let results: MediaDetail[] = [];
   if (raw?.results && raw.results.length > 0) {
     results = raw.results
-      .filter((item) => (type === "all" ? item.media_type === "movie" || item.media_type === "tv" : true))
+      .filter((item) => {
+        if (type === "all") return item.media_type === "movie" || item.media_type === "tv";
+        if (type === "anime") {
+          return (
+            (item.media_type === "movie" || item.media_type === "tv") &&
+            (item.genre_ids?.includes(16) ||
+              item.genres?.some((g: any) => g.id === 16 || g.name === "Animation") ||
+              item.original_language === "ja")
+          );
+        }
+        return item.media_type === type;
+      })
       .map((item) => {
-        const itemType = (item.media_type as MediaType) || (type !== "all" ? type : "movie");
+        const itemType = (item.media_type as MediaType) || (type === "tv" ? "tv" : "movie");
         return itemType === "tv" ? adaptTVDetails(item) : adaptMovieDetails(item);
       });
   } else {
-    results = MOCK_MEDIA_LIST.filter(
-      (m) =>
+    results = MOCK_MEDIA_LIST.filter((m) => {
+      const matchesQuery =
         m.title.toLowerCase().includes(query.toLowerCase()) ||
-        m.overview.toLowerCase().includes(query.toLowerCase())
-    );
+        m.overview.toLowerCase().includes(query.toLowerCase());
+      if (!matchesQuery) return false;
+
+      if (type === "anime") {
+        return m.genres?.some((g) => g.id === 16 || g.name === "Animation" || g.name === "Anime");
+      }
+      if (type === "movie") return m.mediaType === "movie";
+      if (type === "tv") return m.mediaType === "tv";
+      return true;
+    });
   }
 
   await cacheSet(cacheKey, results, 21600); // 6 hours TTL

@@ -5,7 +5,7 @@ import { MediaType } from "@/types";
 export async function GET(req: Request) {
   const url = new URL(req.url);
   const q = url.searchParams.get("q") || "";
-  const type = (url.searchParams.get("type") as "all" | MediaType) || "all";
+  const type = (url.searchParams.get("type") as "all" | MediaType | "anime") || "all";
 
   if (!q.trim()) {
     return NextResponse.json({ ok: true, data: { results: [] } });

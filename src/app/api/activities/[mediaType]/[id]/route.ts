@@ -87,7 +87,7 @@ export async function PUT(
       { userId: authUser.userId, mediaId: tmdbId, mediaType: type },
       {
         $set: {
-          ...(resolvedStatus && { status: resolvedStatus }),
+          status: resolvedStatus || "plan_to_watch",
           ...(isFavorite !== undefined && { isFavorite }),
           ...(rating !== undefined && { rating }),
           ...(progress && { progress }),
@@ -100,7 +100,6 @@ export async function PUT(
           userId: authUser.userId,
           mediaId: tmdbId,
           mediaType: type,
-          status: resolvedStatus || "plan_to_watch",
           createdAt: now,
         },
       },
