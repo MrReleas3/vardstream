@@ -30,6 +30,30 @@ export async function POST(req: Request) {
     const { emailOrUsername, password } = validated.data;
     const query = emailOrUsername.toLowerCase().trim();
 
+    // Development-only escape hatch for preview testing. It still issues the
+    // normal signed cookies, so protected pages and watchlist APIs behave normally.
+    const isDevTestUser =
+      process.env.NODE_ENV !== "production" &&
+      query === "demo@vardsrm.local" &&
+      password === "retro2026";
+
+    if (isDevTestUser) {
+      const sessionUser = {
+        userId: "dev-test-user",
+        email: "demo@vardsrm.local",
+        username: "retro_demo",
+        role: "user" as const,
+      };
+      const accessToken = await signAccessToken(sessionUser);
+      const refreshToken = await signRefreshToken(sessionUser.userId);
+      await setAuthCookies(accessToken, refreshToken);
+
+      return NextResponse.json({
+        ok: true,
+        data: { user: sessionUser, accessToken },
+      });
+    }
+
     const usersCol = await getCollection<User>("users");
     let user: User | null = null;
     let userIdStr = "";

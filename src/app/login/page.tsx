@@ -37,6 +37,12 @@ export default function LoginPage() {
     setLoading(false);
   };
 
+  const useDevelopmentAccount = () => {
+    setEmailOrUsername("demo@vardsrm.local");
+    setPassword("retro2026");
+    setError("");
+  };
+
   return (
     <div
       style={{
@@ -144,6 +150,30 @@ export default function LoginPage() {
             {loading ? "AUTHENTICATING..." : "AUTHENTICATE"} <ArrowRight size={14} />
           </button>
         </form>
+
+        {process.env.NODE_ENV !== "production" && (
+          <div
+            style={{
+              border: "1px solid var(--status-planning-border)",
+              background: "var(--status-planning-bg)",
+              padding: "10px 12px",
+              borderRadius: "var(--radius-xs)",
+              display: "flex",
+              flexDirection: "column",
+              gap: 8,
+            }}
+          >
+            <div className="font-mono" style={{ fontSize: "0.68rem", color: "var(--status-planning)", letterSpacing: "0.04em" }}>
+              DEV_ACCESS // PREVIEW ONLY
+            </div>
+            <div style={{ fontSize: "0.72rem", color: "var(--text-secondary)", lineHeight: 1.5 }}>
+              Use the temporary account to inspect the main app and watchlist.
+            </div>
+            <button type="button" onClick={useDevelopmentAccount} className="btn btn-secondary font-mono" style={{ width: "100%", padding: "7px", fontSize: "0.7rem" }}>
+              USE TEST ACCOUNT
+            </button>
+          </div>
+        )}
 
         <div style={{ textAlign: "center", fontSize: "0.78rem", color: "var(--text-muted)", borderTop: "1px solid var(--border-subtle)", paddingTop: "1rem" }}>
           Have an invite code?{" "}
