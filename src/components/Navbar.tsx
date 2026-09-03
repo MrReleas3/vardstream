@@ -216,7 +216,7 @@ export default function Navbar() {
                 placeholder="Search..."
                 value={searchQuery}
                 onChange={(e) => setSearchQuery(e.target.value)}
-                className="input-field font-mono"
+                className="input-field font-mono glow-focus"
                 style={{
                   paddingLeft: 28,
                   paddingRight: 24,

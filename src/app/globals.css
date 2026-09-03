@@ -33,6 +33,31 @@
   --accent-amber-subtle: rgba(245, 158, 11, 0.12);
   --accent-rose: #f43f5e;
   --accent-rose-subtle: rgba(244, 63, 94, 0.12);
+  --accent-cyan: #22d3ee;
+  --accent-cyan-subtle: rgba(34, 211, 238, 0.12);
+
+  /* Retro Console — Phosphor signature (richer multi-accent CRT) */
+  --phosphor: #7ef0b0;
+  --phosphor-dim: rgba(126, 240, 176, 0.6);
+  --phosphor-glow: rgba(126, 240, 176, 0.28);
+  --scanline: rgba(0, 0, 0, 0.16);
+
+  /* Watchlist status color system (richer retro palette) */
+  --status-watching: #34d399;
+  --status-watching-bg: rgba(6, 78, 59, 0.55);
+  --status-watching-border: rgba(52, 211, 153, 0.4);
+  --status-planning: #fb923c;
+  --status-planning-bg: rgba(124, 45, 18, 0.5);
+  --status-planning-border: rgba(251, 146, 60, 0.4);
+  --status-completed: #22d3ee;
+  --status-completed-bg: rgba(14, 78, 92, 0.5);
+  --status-completed-border: rgba(34, 211, 238, 0.4);
+  --status-paused: #fbbf24;
+  --status-paused-bg: rgba(113, 63, 18, 0.5);
+  --status-paused-border: rgba(251, 191, 36, 0.4);
+  --status-favorite: #fb7185;
+  --status-favorite-bg: rgba(127, 29, 47, 0.5);
+  --status-favorite-border: rgba(251, 113, 133, 0.4);
 
   /* Geometric Radiuses - Razor Sharp */
   --radius-none: 0px;
@@ -70,6 +95,20 @@ html, body {
   -webkit-font-smoothing: antialiased;
   letter-spacing: -0.01em;
   touch-action: manipulation;
+}
+
+/* CRT vignette — static overlay for retro-console depth (no repaint cost) */
+body::before {
+  content: "";
+  position: fixed;
+  inset: 0;
+  pointer-events: none;
+  z-index: 9998;
+  background: radial-gradient(
+    ellipse 120% 100% at center,
+    transparent 60%,
+    rgba(0, 0, 0, 0.35) 100%
+  );
 }
 
 h1, h2, h3, h4, h5, h6 {
@@ -290,6 +329,111 @@ a {
   background: var(--accent-rose-subtle);
   border-color: rgba(244, 63, 94, 0.35);
   color: #fda4af;
+}
+
+.badge-cyan {
+  background: var(--accent-cyan-subtle);
+  border-color: rgba(34, 211, 238, 0.35);
+  color: #67e8f9;
+}
+
+/* ==========================================================================
+   Retro Console — Watchlist Status Chips & Phosphor Utilities
+   ========================================================================== */
+
+/* Status summary chip used across the Watchlist dashboard */
+.status-chip {
+  display: inline-flex;
+  align-items: center;
+  gap: 7px;
+  padding: 8px 12px;
+  border-radius: var(--radius-xs);
+  border: 1px solid var(--border-default);
+  background: var(--bg-surface);
+  font-family: var(--font-mono);
+  cursor: pointer;
+  transition: border-color 0.15s ease, background-color 0.15s ease, box-shadow 0.15s ease, transform 0.15s ease;
+  user-select: none;
+  outline: none;
+}
+.status-chip:hover {
+  transform: translateY(-1px);
+  border-color: var(--border-strong);
+}
+.status-chip:focus-visible {
+  border-color: var(--border-active);
+  box-shadow: 0 0 0 1px var(--border-active);
+}
+.status-chip[data-active="true"] {
+  background: var(--bg-surface-elevated);
+}
+
+/* Per-status accent driven purely by --chip-accent set inline */
+.status-chip[data-active="true"] {
+  border-color: color-mix(in srgb, var(--chip-accent, var(--border-strong)) 55%, transparent);
+  box-shadow: 0 0 14px -4px var(--chip-accent, transparent);
+}
+.status-chip .chip-dot {
+  width: 7px;
+  height: 7px;
+  border-radius: var(--radius-none);
+  background: var(--chip-accent, var(--text-muted));
+  box-shadow: 0 0 8px -1px var(--chip-accent, transparent);
+  flex-shrink: 0;
+}
+.status-chip .chip-count {
+  font-size: 0.95rem;
+  font-weight: 700;
+  color: var(--text-primary);
+  line-height: 1;
+}
+.status-chip .chip-label {
+  font-size: 0.6rem;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: var(--text-muted);
+}
+
+/* Compact status tag (media card / list rows) */
+.status-tag {
+  font-family: var(--font-mono);
+  font-size: 0.56rem;
+  font-weight: 700;
+  letter-spacing: 0.04em;
+  text-transform: uppercase;
+  padding: 1px 5px;
+  border-radius: var(--radius-xs);
+  border: 1px solid var(--status-border, var(--border-default));
+  background: var(--status-bg, var(--bg-subtle));
+  color: var(--status-fg, var(--text-secondary));
+  white-space: nowrap;
+  line-height: 1.4;
+}
+
+/* Phosphor glow helpers — retro-console signature applied sparingly */
+.phosphor-text {
+  color: var(--phosphor);
+  text-shadow: 0 0 8px var(--phosphor-glow);
+}
+.glow-focus:focus-visible {
+  border-color: var(--border-active);
+  box-shadow: 0 0 0 1px var(--border-active), 0 0 16px -6px var(--phosphor-glow);
+}
+
+/* Terminal prompt prefix for section headers */
+.term-prefix::before {
+  content: "> ";
+  color: var(--status-watching);
+  opacity: 0.7;
+  font-family: var(--font-mono);
+}
+
+@keyframes fade-in {
+  from { opacity: 0; transform: translateY(-3px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+.animate-fade-in {
+  animation: fade-in 0.16s ease-out;
 }
 
 /* Structural Divider */

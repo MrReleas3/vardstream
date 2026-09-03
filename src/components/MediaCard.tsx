@@ -17,37 +17,37 @@ interface MediaCardProps {
 const STATUS_CONFIG: Record<string, { label: string; color: string; bg: string; border: string }> = {
   watching: {
     label: "WATCHING",
-    color: "#34d399",
-    bg: "rgba(6, 78, 59, 0.85)",
-    border: "rgba(52, 211, 153, 0.45)",
+    color: "var(--status-watching)",
+    bg: "var(--status-watching-bg)",
+    border: "var(--status-watching-border)",
   },
   completed: {
     label: "COMPLETED",
-    color: "#60a5fa",
-    bg: "rgba(30, 58, 138, 0.85)",
-    border: "rgba(96, 165, 250, 0.45)",
+    color: "var(--status-completed)",
+    bg: "var(--status-completed-bg)",
+    border: "var(--status-completed-border)",
   },
   plan_to_watch: {
     label: "PLANNING",
-    color: "#fb923c",
-    bg: "rgba(124, 45, 18, 0.85)",
-    border: "rgba(251, 146, 60, 0.45)",
+    color: "var(--status-planning)",
+    bg: "var(--status-planning-bg)",
+    border: "var(--status-planning-border)",
   },
   paused: {
     label: "PAUSED",
-    color: "#fbbf24",
-    bg: "rgba(113, 63, 18, 0.85)",
-    border: "rgba(251, 191, 36, 0.45)",
+    color: "var(--status-paused)",
+    bg: "var(--status-paused-bg)",
+    border: "var(--status-paused-border)",
   },
   dropped: {
     label: "DROPPED",
     color: "#f87171",
-    bg: "rgba(127, 29, 29, 0.85)",
-    border: "rgba(248, 113, 113, 0.45)",
+    bg: "rgba(127, 29, 29, 0.55)",
+    border: "rgba(248, 113, 113, 0.4)",
   },
 };
 
-export default function MediaCard({
+function MediaCard({
   item,
   showProgress = false,
   showRemove = false,
@@ -363,3 +363,5 @@ export default function MediaCard({
     </>
   );
 }
+
+export default React.memo(MediaCard);
