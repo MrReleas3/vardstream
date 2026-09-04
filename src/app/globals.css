@@ -763,4 +763,17 @@ body.playback-active .retro-header {
   font-family: 'JetBrains Mono', 'Share Tech Mono', monospace;
 }
 
+@media (min-width: 641px) {
+  .mobile-only {
+    display: none !important;
+  }
+}
+
+@media (max-width: 640px) {
+  .hidden-mobile {
+    display: none !important;
+  }
+}
+
+
 

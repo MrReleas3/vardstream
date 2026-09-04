@@ -19,6 +19,7 @@ import {
   Check,
   Server,
   Layers,
+  X,
 } from "lucide-react";
 import { MediaType } from "@/types";
 import { DirectStreamResult } from "@/lib/nano-api";
@@ -728,20 +729,21 @@ export default function CustomVideoPlayer({
             display: "flex",
             flexDirection: "column",
             alignItems: "center",
-            gap: 12,
+            gap: 10,
             zIndex: 25,
             pointerEvents: "none",
-            background: "rgba(8, 14, 8, 0.85)",
-            border: "1px solid rgba(142, 207, 142, 0.3)",
-            padding: "16px 24px",
+            background: "rgba(6, 12, 6, 0.92)",
+            border: "1px solid rgba(142, 207, 142, 0.35)",
+            padding: "14px 22px",
+            boxShadow: "0 0 28px rgba(0, 0, 0, 0.85), inset 0 0 12px rgba(142, 207, 142, 0.04)",
           }}
         >
-          <RefreshCw size={26} className="animate-spin" color="#8ecf8e" />
+          <RefreshCw size={24} className="animate-spin" color="#8ecf8e" />
           <span
             style={{
               fontSize: 10,
               color: "#8ecf8e",
-              letterSpacing: "0.18em",
+              letterSpacing: "0.14em",
               fontWeight: 700,
             }}
           >
@@ -868,12 +870,14 @@ export default function CustomVideoPlayer({
           top: 0,
           left: 0,
           right: 0,
-          height: 48,
+          height: 44,
           background: "linear-gradient(to bottom, rgba(6, 10, 6, 0.96) 0%, rgba(6, 10, 6, 0.7) 70%, transparent 100%)",
           display: "flex",
           alignItems: "center",
           justifyContent: "space-between",
-          padding: "0 18px",
+          padding: "0 12px",
+          gap: 10,
+          boxSizing: "border-box",
           zIndex: 30,
           opacity: showControls ? 1 : 0,
           pointerEvents: showControls ? "auto" : "none",
@@ -882,11 +886,20 @@ export default function CustomVideoPlayer({
         onClick={(e) => e.stopPropagation()}
       >
         {/* Left Telemetry */}
-        <div style={{ display: "flex", alignItems: "center", gap: 10, minWidth: 0 }}>
+        <div
+          style={{
+            display: "flex",
+            alignItems: "center",
+            gap: 8,
+            minWidth: 0,
+            overflow: "hidden",
+            flex: 1,
+          }}
+        >
           <span
             style={{
-              width: 7,
-              height: 7,
+              width: 6,
+              height: 6,
               borderRadius: "50%",
               background: "#8ecf8e",
               boxShadow: "0 0 8px #8ecf8e",
@@ -895,49 +908,48 @@ export default function CustomVideoPlayer({
           />
           <span
             style={{
-              color: "#8ecf8e",
-              fontWeight: 700,
-              fontSize: 11,
-              letterSpacing: "0.12em",
-            }}
-          >
-            DIRECT PLAY
-          </span>
-          <span style={{ color: "rgba(142, 207, 142, 0.3)" }}>{"//"}</span>
-          <span
-            style={{
               background: "rgba(142, 207, 142, 0.12)",
               border: "1px solid rgba(142, 207, 142, 0.3)",
               color: "#8ecf8e",
               fontSize: 9,
               fontWeight: 700,
-              padding: "1px 6px",
+              padding: "2px 6px",
               letterSpacing: "0.08em",
+              whiteSpace: "nowrap",
+              flexShrink: 0,
+              maxWidth: 90,
+              overflow: "hidden",
+              textOverflow: "ellipsis",
             }}
           >
             {streamData.provider ? streamData.provider.toUpperCase() : "NANO"}
           </span>
+          <span style={{ color: "rgba(142, 207, 142, 0.3)", flexShrink: 0 }} className="hidden-mobile">
+            {"//"}
+          </span>
           <span
             style={{
-              color: "rgba(142, 207, 142, 0.8)",
-              fontSize: 11,
+              color: "rgba(142, 207, 142, 0.85)",
+              fontSize: 10,
+              letterSpacing: "0.05em",
               whiteSpace: "nowrap",
               overflow: "hidden",
               textOverflow: "ellipsis",
+              minWidth: 0,
             }}
-            className="hidden-mobile"
           >
             {mediaType === "tv"
-              ? `S${String(selectedSeason).padStart(2, "0")}E${String(selectedEpisode).padStart(2, "0")}${currentEpisodeName ? ` · "${currentEpisodeName}"` : ""}`
+              ? `S${String(selectedSeason).padStart(2, "0")}E${String(selectedEpisode).padStart(2, "0")}${currentEpisodeName ? ` · ${currentEpisodeName}` : ""}`
               : title}
           </span>
         </div>
 
         {/* Right Top Actions */}
-        <div style={{ display: "flex", alignItems: "center", gap: 8, flexShrink: 0 }}>
-          {/* Switch to Embeds button */}
+        <div style={{ display: "flex", alignItems: "center", gap: 6, flexShrink: 0 }}>
+          {/* Switch to Embeds button (Desktop-only to keep mobile clean & spacious; Ops Menu handles mobile switching) */}
           <button
             onClick={onFallbackToEmbed}
+            className="hidden-mobile"
             style={{
               background: "rgba(142, 207, 142, 0.08)",
               border: "1px solid rgba(142, 207, 142, 0.3)",
@@ -946,16 +958,16 @@ export default function CustomVideoPlayer({
               fontSize: 10,
               fontWeight: 700,
               letterSpacing: "0.08em",
-              padding: "5px 10px",
+              padding: "5px 9px",
               cursor: "pointer",
-              display: "inline-flex",
               alignItems: "center",
               gap: 5,
               transition: "all 0.15s ease",
+              whiteSpace: "nowrap",
             }}
             title="Switch to third-party embed players (fallback)"
           >
-            <Server size={11} />
+            <Server size={11} style={{ flexShrink: 0 }} />
             <span>SWITCH TO EMBED</span>
           </button>
 
@@ -969,17 +981,20 @@ export default function CustomVideoPlayer({
               fontFamily: "inherit",
               fontSize: 10,
               fontWeight: 700,
-              letterSpacing: "0.12em",
-              padding: "5px 12px",
+              letterSpacing: "0.1em",
+              padding: "5px 10px",
               cursor: "pointer",
               display: "inline-flex",
               alignItems: "center",
-              gap: 6,
+              gap: 5,
               textShadow: "0 0 6px rgba(142, 207, 142, 0.6)",
+              whiteSpace: "nowrap",
             }}
             title="Open Ops Menu (Press M)"
           >
-            <span>☰ OPS MENU</span>
+            <span style={{ fontSize: 11, flexShrink: 0 }}>☰</span>
+            <span>OPS</span>
+            <span className="hidden-mobile"> MENU</span>
           </button>
 
           {/* Disconnect/Close Button */}
@@ -992,15 +1007,19 @@ export default function CustomVideoPlayer({
               fontFamily: "inherit",
               fontSize: 10,
               letterSpacing: "0.08em",
-              padding: "5px 10px",
+              padding: "5px 8px",
               cursor: "pointer",
               display: "inline-flex",
               alignItems: "center",
+              justifyContent: "center",
               gap: 4,
+              whiteSpace: "nowrap",
+              minWidth: 28,
             }}
             title="Disconnect Stream (Escape)"
           >
-            <span>DISCONNECT</span>
+            <X size={12} style={{ flexShrink: 0 }} />
+            <span className="hidden-mobile">DISCONNECT</span>
           </button>
         </div>
       </div>
@@ -1218,6 +1237,7 @@ export default function CustomVideoPlayer({
 
               <input
                 type="range"
+                className="hidden-mobile"
                 min="0"
                 max="1"
                 step="0.05"
@@ -1585,7 +1605,12 @@ export default function CustomVideoPlayer({
           border-radius: 2px;
           border: 1px solid rgba(142, 207, 142, 0.3);
         }
-        @media (max-width: 600px) {
+        @media (min-width: 641px) {
+          .mobile-only {
+            display: none !important;
+          }
+        }
+        @media (max-width: 640px) {
           .hidden-mobile {
             display: none !important;
           }

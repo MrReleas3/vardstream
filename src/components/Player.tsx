@@ -335,16 +335,15 @@ export default function Player({
   // Reusable In-Player Ops Menu Modal (Used in both Direct and Embed modes)
   const renderOpsMenuModal = () => (
     <div
-      className="entry-animate"
+      className="entry-animate ops-modal-container"
       style={{
         position: "fixed",
         inset: 0,
         zIndex: 2500,
-        background: "rgba(6, 12, 6, 0.95)",
+        background: "rgba(6, 12, 6, 0.96)",
         backdropFilter: "blur(14px)",
         display: "flex",
         flexDirection: "column",
-        padding: "20px 24px",
         overflowY: "auto",
         fontFamily: "'JetBrains Mono', 'Share Tech Mono', monospace",
       }}
@@ -381,12 +380,13 @@ export default function Player({
           display: "flex",
           alignItems: "center",
           justifyContent: "space-between",
-          paddingBottom: 14,
+          paddingBottom: 12,
           borderBottom: "1px solid rgba(142, 207, 142, 0.2)",
-          marginBottom: 18,
+          marginBottom: 16,
+          gap: 10,
         }}
       >
-        <div style={{ display: "flex", alignItems: "center", gap: 8 }}>
+        <div style={{ display: "flex", alignItems: "center", gap: 8, minWidth: 0 }}>
           <span
             style={{
               width: 6,
@@ -394,18 +394,32 @@ export default function Player({
               borderRadius: "50%",
               background: "#8ecf8e",
               boxShadow: "0 0 6px #8ecf8e",
+              flexShrink: 0,
             }}
           />
           <span
-            className="glow-text"
+            className="glow-text hidden-mobile"
             style={{
               color: "#8ecf8e",
               fontWeight: 700,
               fontSize: 12,
               letterSpacing: "0.14em",
+              whiteSpace: "nowrap",
             }}
           >
             ══ IN-PLAYER OPS MENU // SESSION MANAGER ══
+          </span>
+          <span
+            className="glow-text mobile-only"
+            style={{
+              color: "#8ecf8e",
+              fontWeight: 700,
+              fontSize: 11,
+              letterSpacing: "0.1em",
+              whiteSpace: "nowrap",
+            }}
+          >
+            OPS MENU // SESSION
           </span>
         </div>
 
@@ -417,27 +431,37 @@ export default function Player({
             color: "#8ecf8e",
             fontFamily: "inherit",
             fontSize: 10,
-            letterSpacing: "0.1em",
-            padding: "4px 10px",
+            letterSpacing: "0.08em",
+            padding: "4px 8px",
             cursor: "pointer",
+            display: "inline-flex",
+            alignItems: "center",
+            gap: 4,
+            whiteSpace: "nowrap",
+            flexShrink: 0,
           }}
         >
-          [X] RETURN TO STREAM
+          <X size={11} style={{ flexShrink: 0 }} />
+          <span className="hidden-mobile">RETURN TO STREAM</span>
+          <span className="mobile-only">CLOSE</span>
         </button>
       </div>
 
       {/* Navigation Tabs (Episode Picker, Source Picker, Quick Details) */}
       <div
+        className="ops-tabs-scroll"
         style={{
           display: "flex",
           gap: 6,
-          marginBottom: 20,
-          flexWrap: "wrap",
+          marginBottom: 18,
+          overflowX: "auto",
+          paddingBottom: 2,
         }}
       >
         {mediaType === "tv" && (
           <button
             onClick={() => setActiveOpsTab("episodes")}
+            className="ops-tab-btn"
             style={{
               background:
                 activeOpsTab === "episodes"
@@ -448,18 +472,21 @@ export default function Player({
               fontFamily: "inherit",
               fontSize: 11,
               fontWeight: activeOpsTab === "episodes" ? 700 : 400,
-              letterSpacing: "0.12em",
-              padding: "8px 18px",
+              letterSpacing: "0.1em",
+              padding: "8px 16px",
               cursor: "pointer",
               display: "inline-flex",
               alignItems: "center",
               gap: 6,
+              whiteSpace: "nowrap",
+              flexShrink: 0,
               textShadow:
                 activeOpsTab === "episodes" ? "0 0 8px rgba(142, 207, 142, 0.6)" : "none",
             }}
           >
-            <ListVideo size={13} />
-            <span>1. EPISODE PICKER</span>
+            <ListVideo size={13} style={{ flexShrink: 0 }} />
+            <span>1. EPISODES</span>
+            <span className="hidden-mobile"> PICKER</span>
             {episodes.length > 0 && (
               <span style={{ fontSize: 9, opacity: 0.6 }}>({episodes.length})</span>
             )}
@@ -468,6 +495,7 @@ export default function Player({
 
         <button
           onClick={() => setActiveOpsTab("sources")}
+          className="ops-tab-btn"
           style={{
             background:
               activeOpsTab === "sources"
@@ -478,23 +506,27 @@ export default function Player({
             fontFamily: "inherit",
             fontSize: 11,
             fontWeight: activeOpsTab === "sources" ? 700 : 400,
-            letterSpacing: "0.12em",
-            padding: "8px 18px",
+            letterSpacing: "0.1em",
+            padding: "8px 16px",
             cursor: "pointer",
             display: "inline-flex",
             alignItems: "center",
             gap: 6,
+            whiteSpace: "nowrap",
+            flexShrink: 0,
             textShadow:
               activeOpsTab === "sources" ? "0 0 8px rgba(142, 207, 142, 0.6)" : "none",
           }}
         >
-          <Server size={13} />
-          <span>2. SOURCE PICKER</span>
-          <span style={{ fontSize: 9, opacity: 0.6 }}>({streams.length + 1} SOURCES)</span>
+          <Server size={13} style={{ flexShrink: 0 }} />
+          <span>2. SOURCES</span>
+          <span className="hidden-mobile"> PICKER</span>
+          <span style={{ fontSize: 9, opacity: 0.6 }}>({streams.length + 1})</span>
         </button>
 
         <button
           onClick={() => setActiveOpsTab("details")}
+          className="ops-tab-btn"
           style={{
             background:
               activeOpsTab === "details"
@@ -505,18 +537,20 @@ export default function Player({
             fontFamily: "inherit",
             fontSize: 11,
             fontWeight: activeOpsTab === "details" ? 700 : 400,
-            letterSpacing: "0.12em",
-            padding: "8px 18px",
+            letterSpacing: "0.1em",
+            padding: "8px 16px",
             cursor: "pointer",
             display: "inline-flex",
             alignItems: "center",
             gap: 6,
+            whiteSpace: "nowrap",
+            flexShrink: 0,
             textShadow:
               activeOpsTab === "details" ? "0 0 8px rgba(142, 207, 142, 0.6)" : "none",
           }}
         >
-          <Info size={13} />
-          <span>3. RECORD DETAILS</span>
+          <Info size={13} style={{ flexShrink: 0 }} />
+          <span>3. DETAILS</span>
         </button>
       </div>
 
@@ -1270,17 +1304,27 @@ export default function Player({
           height: 44,
           minHeight: 44,
           background: "rgba(8, 14, 8, 0.98)",
-          borderBottom: "1px solid rgba(142, 207, 142, 0.28)",
+          borderBottom: "1px solid rgba(142, 207, 142, 0.25)",
           display: "flex",
           alignItems: "center",
           justifyContent: "space-between",
-          padding: "0 16px",
+          padding: "0 12px",
+          gap: 8,
           zIndex: 40,
           userSelect: "none",
         }}
       >
         {/* Left Telemetry */}
-        <div style={{ display: "flex", alignItems: "center", gap: 10, minWidth: 0 }}>
+        <div
+          style={{
+            display: "flex",
+            alignItems: "center",
+            gap: 8,
+            minWidth: 0,
+            overflow: "hidden",
+            flex: 1,
+          }}
+        >
           <span
             style={{
               width: 7,
@@ -1292,29 +1336,54 @@ export default function Player({
               flexShrink: 0,
             }}
           />
-          <span style={{ color: "#8ecf8e", fontWeight: 700, fontSize: 11, letterSpacing: "0.12em" }}>
-            EMBED MONITOR
+          <span
+            style={{
+              background: "rgba(142, 207, 142, 0.12)",
+              border: "1px solid rgba(142, 207, 142, 0.3)",
+              color: "#8ecf8e",
+              fontSize: 9,
+              fontWeight: 700,
+              padding: "1px 6px",
+              letterSpacing: "0.08em",
+              whiteSpace: "nowrap",
+              flexShrink: 0,
+              maxWidth: 90,
+              overflow: "hidden",
+              textOverflow: "ellipsis",
+              textTransform: "uppercase",
+            }}
+          >
+            {activeStream?.provider ? activeStream.provider.toUpperCase() : "EMBED"}
           </span>
-          <span style={{ color: "rgba(142, 207, 142, 0.3)" }}>{"//"}</span>
+          <span
+            style={{
+              color: "rgba(142, 207, 142, 0.3)",
+              flexShrink: 0,
+            }}
+            className="hidden-mobile"
+          >
+            {"//"}
+          </span>
           <span
             style={{
               color: "rgba(142, 207, 142, 0.85)",
-              fontSize: 11,
-              letterSpacing: "0.08em",
+              fontSize: 10,
+              letterSpacing: "0.05em",
               whiteSpace: "nowrap",
               overflow: "hidden",
               textOverflow: "ellipsis",
+              minWidth: 0,
             }}
           >
             {mediaType === "tv"
-              ? `FEED S${String(selectedSeason).padStart(2, "0")}E${String(selectedEpisode).padStart(2, "0")}${currentEpisodeObj?.name ? ` · "${currentEpisodeObj.name}"` : ""}`
-              : `${title} // FALLBACK EMBED`}
+              ? `S${String(selectedSeason).padStart(2, "0")}E${String(selectedEpisode).padStart(2, "0")}${currentEpisodeObj?.name ? ` · ${currentEpisodeObj.name}` : ""}`
+              : title}
           </span>
         </div>
 
         {/* Right HUD Controls */}
-        <div style={{ display: "flex", alignItems: "center", gap: 8, flexShrink: 0 }}>
-          {/* Button to Switch Back to Direct Play */}
+        <div style={{ display: "flex", alignItems: "center", gap: 6, flexShrink: 0 }}>
+          {/* Button to Switch Back to Direct Play (Desktop only to prevent mobile cramping; Ops Menu handles mobile source switching) */}
           <button
             onClick={() => {
               if (directStream?.streamUrl) {
@@ -1338,6 +1407,7 @@ export default function Player({
                   .finally(() => setIsLoadingDirect(false));
               }
             }}
+            className="hidden-mobile"
             style={{
               background: "rgba(142, 207, 142, 0.12)",
               border: "1px solid #8ecf8e",
@@ -1346,16 +1416,16 @@ export default function Player({
               fontSize: 10,
               fontWeight: 700,
               letterSpacing: "0.08em",
-              padding: "5px 12px",
+              padding: "5px 9px",
               cursor: "pointer",
-              display: "inline-flex",
               alignItems: "center",
               gap: 5,
               transition: "all 0.15s ease",
+              whiteSpace: "nowrap",
             }}
             title="Switch to Native Direct Play"
           >
-            <Sparkles size={11} />
+            <Sparkles size={11} style={{ flexShrink: 0 }} />
             <span>SWITCH TO DIRECT PLAY</span>
           </button>
 
@@ -1369,19 +1439,21 @@ export default function Player({
               fontFamily: "inherit",
               fontSize: 10,
               fontWeight: 700,
-              letterSpacing: "0.12em",
-              padding: "5px 12px",
+              letterSpacing: "0.1em",
+              padding: "5px 9px",
               cursor: "pointer",
               display: "inline-flex",
               alignItems: "center",
-              gap: 6,
+              gap: 5,
               textShadow: "0 0 8px rgba(142, 207, 142, 0.6)",
               transition: "all 0.15s ease",
+              whiteSpace: "nowrap",
             }}
             title="Open In-Player Ops Menu (Press M)"
           >
-            <span style={{ fontSize: 12 }}>☰</span>
-            <span>{showOpsMenu ? "CLOSE MENU" : "OPS MENU"}</span>
+            <span style={{ fontSize: 11, flexShrink: 0 }}>☰</span>
+            <span>{showOpsMenu ? "CLOSE" : "OPS"}</span>
+            <span className="hidden-mobile">{showOpsMenu ? " MENU" : " MENU"}</span>
           </button>
 
           {/* Fullscreen Toggle */}
@@ -1390,19 +1462,21 @@ export default function Player({
             style={{
               background: "transparent",
               border: "1px solid rgba(142, 207, 142, 0.25)",
-              color: "rgba(142, 207, 142, 0.6)",
+              color: "rgba(142, 207, 142, 0.7)",
               fontFamily: "inherit",
               fontSize: 10,
-              padding: "5px 10px",
+              padding: "5px 8px",
               cursor: "pointer",
               display: "inline-flex",
               alignItems: "center",
+              justifyContent: "center",
               gap: 5,
               transition: "all 0.15s ease",
+              whiteSpace: "nowrap",
             }}
             title="Toggle Native Browser Fullscreen"
           >
-            <Maximize2 size={11} />
+            <Maximize2 size={12} style={{ flexShrink: 0 }} />
             <span className="hidden-mobile">FULLSCREEN</span>
           </button>
 
@@ -1418,17 +1492,19 @@ export default function Player({
               fontFamily: "inherit",
               fontSize: 10,
               letterSpacing: "0.08em",
-              padding: "5px 10px",
+              padding: "5px 8px",
               cursor: "pointer",
               display: "inline-flex",
               alignItems: "center",
+              justifyContent: "center",
               gap: 4,
               transition: "all 0.15s ease",
+              whiteSpace: "nowrap",
             }}
             title="Disconnect Stream Feed and return (Escape)"
           >
-            <X size={11} />
-            <span>DISCONNECT</span>
+            <X size={12} style={{ flexShrink: 0 }} />
+            <span className="hidden-mobile">DISCONNECT</span>
           </button>
         </div>
       </div>
@@ -1450,124 +1526,25 @@ export default function Player({
         {showOpsMenu && renderOpsMenuModal()}
       </div>
 
-      {/* Bottom Minimal HUD Bar */}
-      <div
-        style={{
-          height: 38,
-          minHeight: 38,
-          background: "rgba(8, 14, 8, 0.96)",
-          borderTop: "1px solid rgba(142, 207, 142, 0.2)",
-          display: "flex",
-          alignItems: "center",
-          justifyContent: "space-between",
-          padding: "0 16px",
-          zIndex: 40,
-          userSelect: "none",
-        }}
-      >
-        {/* Active Route Pill & Quick Switcher */}
-        <div style={{ display: "flex", alignItems: "center", gap: 8, overflowX: "auto" }}>
-          <span style={{ fontSize: 9, color: "rgba(142,207,142,0.35)", letterSpacing: "0.1em" }}>
-            ROUTE:
-          </span>
-
-          {/* Direct stream button */}
-          <button
-            onClick={() => setPlayerMode("direct")}
-            style={{
-              background: "rgba(142, 207, 142, 0.1)",
-              border: "1px solid rgba(142, 207, 142, 0.3)",
-              color: "#8ecf8e",
-              fontFamily: "inherit",
-              fontSize: 9,
-              padding: "2px 8px",
-              cursor: "pointer",
-              display: "inline-flex",
-              alignItems: "center",
-              gap: 5,
-            }}
-          >
-            <Sparkles size={9} />
-            <span>★ DIRECT HLS</span>
-          </button>
-
-          {streams.slice(0, 4).map((st, idx) => {
-            const badge = getHealthBadge(st.health);
-            const isSelected = playerMode === "embed" && idx === currentIndex;
-            return (
-              <button
-                key={st.slug}
-                onClick={() => {
-                  setCurrentIndex(idx);
-                  setPlayerMode("embed");
-                }}
-                style={{
-                  background: isSelected ? "rgba(142, 207, 142, 0.2)" : "transparent",
-                  border: `1px solid ${isSelected ? "#8ecf8e" : "rgba(142, 207, 142, 0.2)"}`,
-                  color: isSelected ? "#8ecf8e" : "rgba(142, 207, 142, 0.5)",
-                  fontFamily: "inherit",
-                  fontSize: 9,
-                  padding: "2px 8px",
-                  cursor: "pointer",
-                  display: "inline-flex",
-                  alignItems: "center",
-                  gap: 5,
-                }}
-              >
-                <span
-                  style={{
-                    width: 5,
-                    height: 5,
-                    borderRadius: "50%",
-                    background: badge.color,
-                  }}
-                />
-                <span>{st.provider}</span>
-              </button>
-            );
-          })}
-        </div>
-
-        {/* Status indicator & Ops menu trigger */}
-        <div style={{ display: "flex", alignItems: "center", gap: 10 }}>
-          {activeStream && (
-            <span
-              style={{
-                fontSize: 9,
-                color: getHealthBadge(activeStream.health).color,
-                letterSpacing: "0.08em",
-              }}
-              className="hidden-mobile"
-            >
-              ● {activeStream.health}% HEALTH // {getHealthBadge(activeStream.health).status}
-            </span>
-          )}
-
-          <button
-            onClick={() => setShowOpsMenu(!showOpsMenu)}
-            style={{
-              background: "transparent",
-              border: "1px solid rgba(142, 207, 142, 0.3)",
-              color: "#8ecf8e",
-              fontFamily: "inherit",
-              fontSize: 9,
-              padding: "3px 8px",
-              cursor: "pointer",
-              letterSpacing: "0.08em",
-            }}
-          >
-            [ ☰ MENU ]
-          </button>
-        </div>
-      </div>
-
       <style jsx>{`
-        @media (max-width: 600px) {
+        @media (min-width: 641px) {
+          .mobile-only {
+            display: none !important;
+          }
+        }
+        @media (max-width: 640px) {
           .hidden-mobile {
             display: none !important;
           }
           .ops-details-wrap {
             grid-template-columns: 1fr !important;
+          }
+          .ops-modal-container {
+            padding: 14px 12px !important;
+          }
+          .ops-tab-btn {
+            padding: 6px 10px !important;
+            font-size: 10px !important;
           }
         }
       `}</style>
